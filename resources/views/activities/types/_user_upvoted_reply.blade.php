@@ -16,7 +16,7 @@
       @if ($activity->data['topic_type'] == 'article')
         赞了文章
       @else
-        赞了话题
+        赞了topic
       @endif
       <a href="{{ $activity->data['topic_link'] }}#reply{{ $activity->data['reply_id'] }}"
          title="{{ $activity->data['topic_title'] }}">

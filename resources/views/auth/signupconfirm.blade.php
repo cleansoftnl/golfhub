@@ -44,7 +44,7 @@
             </div>
 
             <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
-              <label class="control-label" for="password">密 码</label>
+              <label class="control-label" for="password">password</label>
               <input class="form-control" name="password" type="password" value="{{ old('password') }}">
               {!! $errors->first('password', '<span class="help-block">:message</span>') !!}
             </div>

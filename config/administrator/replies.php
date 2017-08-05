@@ -2,16 +2,16 @@
 use App\Models\Reply;
 
 return [
-    'title' => '回复',
-    'heading' => '回复',
-    'single' => '回复',
+    'title' => 'replies',
+    'heading' => 'replies',
+    'single' => 'replies',
     'model' => Reply::class,
     'columns' => [
         'id' => [
             'title' => 'ID',
         ],
         'user' => [
-            'title' => '用户',
+            'title' => 'user',
             'sortable' => false,
             'output' => function ($value, $model) {
                 return admin_link(
@@ -22,7 +22,7 @@ return [
             },
         ],
         'topic' => [
-            'title' => '话题',
+            'title' => 'topic',
             'sortable' => false,
             'output' => function ($value, $model) {
                 return admin_link(
@@ -39,7 +39,7 @@ return [
             'title' => '投票数量',
         ],
         'operation' => [
-            'title' => '管理',
+            'title' => 'operation',
             'output' => function ($value, $model) {
 
             },
@@ -48,7 +48,7 @@ return [
     ],
     'edit_fields' => [
         'user' => [
-            'title' => '用户',
+            'title' => 'user',
             'type' => 'relationship',
             'name_field' => 'name',
             'autocomplete' => true,
@@ -56,7 +56,7 @@ return [
             'options_sort_field' => 'id',
         ],
         'topic' => [
-            'title' => '话题',
+            'title' => 'topic',
             'type' => 'relationship',
             'name_field' => 'title',
             'autocomplete' => true,
@@ -83,7 +83,7 @@ return [
     ],
     'filters' => [
         'user' => [
-            'title' => '用户',
+            'title' => 'user',
             'type' => 'relationship',
             'name_field' => 'name',
             'autocomplete' => true,
@@ -91,7 +91,7 @@ return [
             'options_sort_field' => 'id',
         ],
         'topic' => [
-            'title' => '话题',
+            'title' => 'topic',
             'type' => 'relationship',
             'name_field' => 'title',
             'autocomplete' => true,
@@ -107,7 +107,7 @@ return [
             ],
         ],
         'body_original' => [
-            'title' => '回复内容',
+            'title' => 'replies内容',
         ],
         'vote_count' => [
             'type' => 'number',
@@ -120,6 +120,6 @@ return [
         'body_original' => 'required'
     ],
     'messages' => [
-        'body_original.required' => '请填写回复内容',
+        'body_original.required' => '请填写replies内容',
     ],
 ];

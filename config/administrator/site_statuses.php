@@ -2,9 +2,9 @@
 use App\Models\SiteStatus;
 
 return [
-    'title' => '数据统计',
-    'heading' => '数据统计',
-    'single' => '数据统计',
+    'title' => 'title',
+    'heading' => 'heading',
+    'single' => 'single',
     'model' => SiteStatus::class,
     'permission' => function () {
         // return Auth::user()->hasRole('Developer');
@@ -33,7 +33,7 @@ return [
             'sortable' => false,
         ],
         'register_count' => [
-            'title' => '注册用户数',
+            'title' => '注册user数',
         ],
         'github_regitster_count' => [
             'title' => 'Github 注册数',
@@ -42,16 +42,16 @@ return [
             'title' => 'WeChat 注册数',
         ],
         'topic_count' => [
-            'title' => '话题数量',
+            'title' => 'topic数量',
         ],
         'reply_count' => [
-            'title' => '回复数量',
+            'title' => 'replies数量',
         ],
         'image_count' => [
             'title' => '图片数量',
         ],
         'operation' => [
-            'title' => '管理',
+            'title' => 'operation',
             'sortable' => false,
         ],
     ],

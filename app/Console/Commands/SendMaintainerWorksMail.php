@@ -43,9 +43,9 @@ class SendMaintainerWorksMail extends Command
         $content = "<table style=\"box-sizing: border-box; border-collapse: collapse; border-spacing: 0px; margin-top: 0px; margin-bottom: 16px; display: block; width: 637px; overflow: auto; word-break: keep-all; font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif; font-size: 16px;\">
                     <thead style=\"box-sizing: border-box;\">
                         <tr style=\"box-sizing: border-box; border-top-width: 1px; border-top-style: solid; border-top-color: rgb(204, 204, 204);\">
-                            <th style=\"box-sizing: border-box; padding: 6px 13px; border: 1px solid rgb(221, 221, 221);\">用户</th>
+                            <th style=\"box-sizing: border-box; padding: 6px 13px; border: 1px solid rgb(221, 221, 221);\">user</th>
                             <th style=\"box-sizing: border-box; padding: 6px 13px; border: 1px solid rgb(221, 221, 221); text-align: center;\">发帖数</th>
-                            <th style=\"box-sizing: border-box; padding: 6px 13px; border: 1px solid rgb(221, 221, 221); text-align: right;\">回复数</th>
+                            <th style=\"box-sizing: border-box; padding: 6px 13px; border: 1px solid rgb(221, 221, 221); text-align: right;\">replies数</th>
                         </tr>
                     </thead>
                     <tbody style=\"box-sizing: border-box;\">";

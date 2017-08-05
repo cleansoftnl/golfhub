@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 class TopicImagesRecollect extends Command
 {
     protected $signature = 'topics:images_recollect';
-    protected $description = '把所有话题里的图片提取出来。';
+    protected $description = '把所有topic里的图片提取出来。';
 
     public function __construct()
     {

@@ -1,6 +1,8 @@
 <?php
 namespace App\Models;
 
+use App\Models\Staff;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Attention extends Model
@@ -17,7 +19,7 @@ class Attention extends Model
         return $this->belongsTo('User');
     }
 
-    public static function isUserAttentedTopic(User $user, Topic $topic)
+    public static function isUserAttentedTopic(Staff $user, Topic $topic)
     {
         return Attention::where('user_id', $user->id)
             ->where('topic_id', $topic->id)

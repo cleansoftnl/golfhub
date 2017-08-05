@@ -2,11 +2,11 @@
 
 @section('title')
   @if (if_query('view', null))
-    我关注的动态 | @parent
+    Home | @parent
   @elseif (if_query('view', 'all'))
-    所有动态 | @parent
+   All | @parent
   @elseif (if_query('view', 'mine'))
-    我的动态 | @parent
+    Mine | @parent
   @endif
 @stop
 
@@ -19,12 +19,12 @@
       <div class="panel-heading">
         <ul class="nav nav-tabs">
           <li role="presentation" class="{{ active_class(if_query('view', null)) }}"><a href="{{ route('home') }}"><i
-                class="fa fa-eye" aria-hidden="true"></i> 我的关注</a></li>
+                class="fa fa-eye" aria-hidden="true"></i> Home</a></li>
           <li role="presentation" class="{{ active_class(if_query('view', 'all')) }}"><a
-              href="{{ route('home', ['view' => 'all']) }}"><i class="fa fa-rss" aria-hidden="true"></i> 所有动态</a></li>
+              href="{{ route('home', ['view' => 'all']) }}"><i class="fa fa-rss" aria-hidden="true"></i> View All</a></li>
           <li role="presentation" class="{{ active_class(if_query('view', 'mine')) }}"><a
               href="{{ route('home', ['view' => 'mine']) }}"><i class="fa fa-calendar-minus-o" aria-hidden="true"></i>
-              我的动态</a></li>
+              View Mine</a></li>
         </ul>
       </div>
 
@@ -58,7 +58,7 @@
           @else
             <div class="panel-footer text-center remove-padding-horizontal pager-footer">
               <div class="pagination" style="color: #ccc;">
-                加载完毕~~
+                After loading
               </div>
             </div>
           @endif
@@ -70,9 +70,9 @@
         <div class="panel-body">
           <div class="empty-block">
             @if (if_query('view', null))
-              (=￣ω￣=)··· 关注用户或订阅专栏这里才会有内容哦。
+              Concerned about the user or subscribe to the column where there will be content Oh.
             @elseif (if_query('view', 'all'))
-              (=￣ω￣=)···  不活跃度啊你，动态数据为空！记得评论、点赞可产生动态。
+              Not active ah you, the dynamic data is empty! Remember the comment, the point of praise can produce dynamic.
             @endif
           </div>
         </div>

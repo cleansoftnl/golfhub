@@ -45,7 +45,7 @@
                         </a>
                         •
                         @if ($notification->type != 'follow' && $notification->topic->isArticle())
-                          {{ str_replace('话题', '文章', $notification->present()->lableUp) }}
+                          {{ str_replace('topic', '文章', $notification->present()->lableUp) }}
                           <a
                             href="{{ $notification->topic->link() }}{{ !empty($notification->reply_id) ? '#reply' . $notification->reply_id : '' }}"
                             title="{{ $notification->topic->title }}">

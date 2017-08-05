@@ -20,40 +20,40 @@
             href="{{ route('topics.index') }}">{{ lang('Topics') }}</a></li>
         <li
           class="{{ (Request::is('categories/'.config('phphub.life_category_id')) || (isset($topic) && $topic->category_id == config('phphub.life_category_id'))) ? ' active' : '' }}">
-          <a href="{{ route('categories.show', config('phphub.life_category_id')) }}">生活</a></li>
+          <a href="{{ route('categories.show', config('phphub.life_category_id')) }}">life</a></li>
         <li class="{{ Request::is('categories/1') || (isset($topic) && $topic->category_id === 1) ? ' active' : '' }}">
           <a href="{{ route('categories.show', 1) }}">{{ lang('Jobs') }}</a></li>
         <li
           class="{{ (Request::is('categories/'.config('phphub.qa_category_id')) || (isset($topic) && $topic->category_id == config('phphub.qa_category_id'))) ? ' active' : '' }}">
-          <a href="{{ route('categories.show', config('phphub.qa_category_id')) }}">问答</a></li>
+          <a href="{{ route('categories.show', config('phphub.qa_category_id')) }}">Q & A</a></li>
         <li class="{{ (Request::is('news') ? ' active' : '') }}"><a href="https://laravel-china.org/news"
-                                                                    class="no-pjax">资讯</a></li>
+                                                                    class="no-pjax">information</a></li>
         <li class="{{ (Request::is('wiki') ? ' active' : '') }} hidden-sm"><a href="{{ route('wiki') }}">Wiki</a></li>
-        <li class="nav-docs hidden-sm"><a href="http://d.laravel-china.org" class="no-pjax" target="_blank">文档</a></li>
+        <li class="nav-docs hidden-sm"><a href="http://d.laravel-china.org" class="no-pjax" target="_blank">document</a></li>
         <li class="hidden-sm"><a href="https://fsdhub.com/books/laravel-essential-training-5.1" class="no-pjax"
-                                 target="_blank">教程</a></li>
+                                 target="_blank">Tutorial</a></li>
       </ul>
 
       <div class="navbar-right">
 
-        @if ((Request::is('users*') && isset($user)) || (Request::is('search*') && $user->id > 0))
+        {{--@if ((Request::is('users*') && isset($user)) || (Request::is('search*') && $user->id > 0))
 
           <form method="GET" action="{{ route('search') }}" accept-charset="UTF-8"
                 class="navbar-form navbar-left hidden-sm hidden-md">
             <div class="form-group">
-              <input class="form-control search-input mac-style" placeholder="搜索范围：{{ $user->name }}" name="q"
+              <input class="form-control search-input mac-style" placeholder="search：{{ $user->name }}" name="q"
                      type="text" value="{{ (Request::is('search*') && isset($query)) ? $query : '' }}">
               <input class="form-control search-input mac-style" name="user_id" type="hidden" value="{{ $user->id }}">
-              @else
+        @else
                 <form method="GET" action="{{ route('search') }}" accept-charset="UTF-8"
                       class="navbar-form navbar-left hidden-sm hidden-md">
                   <div class="form-group">
-                    <input class="form-control search-input mac-style" placeholder="搜索" name="q" type="text"
+                    <input class="form-control search-input mac-style" placeholder="search" name="q" type="text"
                            value="{{ (Request::is('search*') && isset($query)) ? $query : '' }}">
-                    @endif
+        @endif
 
                   </div>
-                </form>
+                </form>--}}
 
                 <ul class="nav navbar-nav github-login">
                   @if (Auth::check())
@@ -71,7 +71,7 @@
                         <li>
                           <a class="button no-pjax"
                              href="{{ isset($category) ? URL::route('topics.create', ['category_id' => $category->id]) : URL::route('topics.create') }}">
-                            <i class="fa fa-comment text-md"></i> 发起讨论
+                            <i class="fa fa-comment text-md"></i> initiate discussion
                           </a>
                         </li>
                       </ul>
@@ -81,7 +81,7 @@
                       <a href="{{ route('notifications.unread') }}" class="text-warning" style="margin-top: -4px;">
                       <span
                         class="badge badge-{{ $currentUser->notification_count + $currentUser->message_count > 0 ? 'important' : 'fade' }} popover-with-html"
-                        data-content="消息提醒" id="notification-count">
+                        data-content="notifications" id="notification-count">
                           {{ $currentUser->notification_count + $currentUser->message_count }}
                       </span>
                       </a>
@@ -100,7 +100,7 @@
                         @if (Auth::user()->can('visit_admin'))
                           <li>
                             <a href="/admin" class="no-pjax">
-                              <i class="fa fa-tachometer text-md"></i> 管理后台
+                              <i class="fa fa-tachometer text-md"></i> admincp
                             </a>
                           </li>
                         @endif
@@ -108,7 +108,7 @@
                         @if(Auth::user()->can('access_board'))
                           <li>
                             <a class="button" href="{{ route('categories.show', config('phphub.admin_board_cid')) }}">
-                              <i class="fa fa-users "></i> 站务
+                              <i class="fa fa-users "></i> categories
                             </a>
                           </li>
                         @endif
@@ -116,12 +116,12 @@
                         <li>
                           <a class="button" href="{{ route('users.show', $currentUser->id) }}"
                              data-lang-loginout="{{ lang('Are you sure want to logout?') }}">
-                            <i class="fa fa-user text-md"></i> 个人中心
+                            <i class="fa fa-user text-md"></i> users show
                           </a>
                         </li>
                         <li>
                           <a class="button" href="{{ route('users.edit', $currentUser->id) }}">
-                            <i class="fa fa-cog text-md"></i> 编辑资料
+                            <i class="fa fa-cog text-md"></i> edit profile
                           </a>
                         </li>
                         <li>
@@ -140,8 +140,7 @@
                     </a>
                   @endif
                 </ul>
-            </div>
+            {{--</div>--}}
       </div><!-- /navbar-right -->
-    </div><!-- /top-navbar-collapse -->
+    </div>
   </div>
-</div>

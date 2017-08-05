@@ -2,16 +2,16 @@
 use App\Models\Category;
 
 return [
-    'title' => '分类',
-    'heading' => '分类',
-    'single' => '分类',
+    'title' => 'category',
+    'heading' => 'category',
+    'single' => 'category',
     'model' => Category::class,
     'columns' => [
         'id' => [
             'title' => 'ID',
         ],
         'name' => [
-            'title' => '名称',
+            'title' => 'name',
             'sortable' => false,
         ],
         'slug' => [
@@ -19,15 +19,15 @@ return [
             'sortable' => false,
         ],
         'description' => [
-            'title' => '描述',
+            'title' => 'description',
             'sortable' => false,
         ],
         'depth' => [
-            'title' => '标签层次（0 最大）',
+            'title' => 'ordering level (0 max)',
             'sortable' => false,
         ],
         'operation' => [
-            'title' => '管理',
+            'title' => 'operation',
             'output' => function ($value, $model) {
                 return $value;
             },
@@ -36,34 +36,34 @@ return [
     ],
     'edit_fields' => [
         'name' => [
-            'title' => '名称',
+            'title' => 'name',
         ],
         'slug' => [
             'title' => 'Slug',
         ],
         'description' => [
-            'title' => '描述',
+            'title' => 'description',
         ],
     ],
     'filters' => [
         'id' => [
-            'title' => '标签 ID',
+            'title' => 'label ID',
         ],
         'name' => [
-            'title' => '名称',
+            'title' => 'name',
         ],
         'slug' => [
             'title' => 'Slug',
         ],
         'description' => [
-            'title' => '描述',
+            'title' => 'description',
         ],
     ],
     'rules' => [
         'name' => 'required|min:1|unique:categories'
     ],
     'messages' => [
-        'name.unique' => '分类名在数据库里有重复，请选用其他名称。',
-        'name.required' => '请确保名字至少一个字符以上',
+        'name.unique' => ' The category name already exists in the database. Please use another name.',
+        'name.required' => 'Make sure the name is at least one character above',
     ],
 ];

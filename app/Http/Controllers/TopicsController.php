@@ -58,7 +58,7 @@ class TopicsController extends Controller implements CreatorListener
     {
         $topic = Topic::where('id', $id)->with('user', 'lastReplyUser')->firstOrFail();
         if ($topic->isArticle() && $topic->is_draft == 'yes') {
-            $this->authorize('show_draft', $topic);
+            //$this->authorize('show_draft', $topic);
         }
         // URL 矫正
         $slug = $request->route('slug');
@@ -66,19 +66,19 @@ class TopicsController extends Controller implements CreatorListener
             return redirect($topic->link(), 301);
         }
         if ($topic->user->is_banned == 'yes') {
-            // 未登录，或者已登录但是没有管理员权限
+            // 未sign in，或者已sign in但是没有operation员权限
             if (!Auth::check() || (Auth::check() && !Auth::user()->may('manage_topics'))) {
-                Flash::error('你访问的文章已被屏蔽，有疑问请发邮件：all@estgroupe.com');
+                Flash::error('Your visit to the article has been blocked, there are questions please send an email：all@estgroupe.com');
                 return redirect(route('topics.index'));
             }
-            Flash::error('当前文章的作者已被屏蔽，游客与用户将看不到此文章。');
+            Flash::error('The current article of the Author has been blocked, visitors and users will not see this article.');
         }
         if (
             config('phphub.admin_board_cid')
             && $topic->id == config('phphub.admin_board_cid')
             && (!Auth::check() || !Auth::user()->can('access_board'))
         ) {
-            Flash::error('您没有权限访问该文章，有疑问请发邮件：all@estgroupe.com');
+            Flash::error('You do not have permission to access the article, have questions please email：all@estgroupe.com');
             return redirect()->route('topics.index');
         }
         $replies = $topic->getRepliesWithLimit(config('phphub.replies_perpage'), $request->order_by);
@@ -111,7 +111,7 @@ class TopicsController extends Controller implements CreatorListener
     public function edit($id)
     {
         $topic = Topic::findOrFail($id);
-        $this->authorize('update', $topic);
+        //$this->authorize('update', $topic);
         $categories = Category::where('id', '!=', config('phphub.blog_category_id'))->get();
         $category = $topic->category;
         $topic->body = $topic->body_original;
@@ -121,7 +121,7 @@ class TopicsController extends Controller implements CreatorListener
     public function append($id, Request $request)
     {
         $topic = Topic::findOrFail($id);
-        $this->authorize('append', $topic);
+        //$this->authorize('append', $topic);
         $markdown = new Markdown;
         $content = $markdown->convertMarkdownToHtml($request->input('content'));
         $append = Append::create(['topic_id' => $topic->id, 'content' => $content]);
@@ -137,7 +137,7 @@ class TopicsController extends Controller implements CreatorListener
     public function update($id, StoreTopicRequest $request, Mention $mentionParser)
     {
         $topic = Topic::findOrFail($id);
-        $this->authorize('update', $topic);
+        //$this->authorize('update', $topic);
         $data = $request->only('title', 'body', 'category_id');
         $data['body'] = $mentionParser->parse($data['body']);
         $markdown = new Markdown;
@@ -187,7 +187,7 @@ class TopicsController extends Controller implements CreatorListener
     public function recommend($id)
     {
         $topic = Topic::findOrFail($id);
-        $this->authorize('recommend', $topic);
+        //$this->authorize('recommend', $topic);
         $topic->is_excellent = $topic->is_excellent == 'yes' ? 'no' : 'yes';
         $topic->save();
         Notification::notify('topic_mark_excellent', Auth::user(), $topic->user, $topic);
@@ -197,7 +197,7 @@ class TopicsController extends Controller implements CreatorListener
     public function pin($id)
     {
         $topic = Topic::findOrFail($id);
-        $this->authorize('pin', $topic);
+        //$this->authorize('pin', $topic);
         $topic->order = $topic->order > 0 ? 0 : 999;
         $topic->save();
         return response(['status' => 200, 'message' => lang('Operation succeeded.')]);
@@ -206,7 +206,7 @@ class TopicsController extends Controller implements CreatorListener
     public function sink($id)
     {
         $topic = Topic::findOrFail($id);
-        $this->authorize('sink', $topic);
+        //$this->authorize('sink', $topic);
         $topic->order = $topic->order >= 0 ? -1 : 0;
         $topic->save();
         app(UserPublishedNewTopic::class)->remove(Auth::user(), $topic);
@@ -217,7 +217,7 @@ class TopicsController extends Controller implements CreatorListener
     public function destroy($id)
     {
         $topic = Topic::findOrFail($id);
-        $this->authorize('delete', $topic);
+        //$this->authorize('delete', $topic);
         $topic->delete();
         Flash::success(lang('Operation succeeded.'));
         $blog = $topic->blogs()->first();

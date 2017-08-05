@@ -21,7 +21,7 @@
       @else
         在 <a
           href="{{ route('categories.show', $activity->data['topic_category_id'] ) }}">{{ $activity->data['topic_category_name'] }}</a>
-        下发布了话题
+        下发布了topic
 
         <?php
         $topic_title = str_limit($activity->data['topic_title'], '100');

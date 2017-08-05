@@ -2,23 +2,23 @@
 use App\Models\Topic;
 
 return [
-    'title' => '话题',
-    'heading' => '话题',
-    'single' => '话题',
+    'title' => 'topic',
+    'heading' => 'topic',
+    'single' => 'topic',
     'model' => Topic::class,
     'columns' => [
         'id' => [
             'title' => 'ID',
         ],
         'title' => [
-            'title' => '话题',
+            'title' => 'topic',
             'sortable' => false,
             'output' => function ($value, $model) {
                 return '<div style="max-width:260px">' . model_link($value, 'topics', $model->id) . '</div>';
             },
         ],
         'user' => [
-            'title' => '用户',
+            'title' => 'user',
             'sortable' => false,
             'output' => function ($value, $model) {
                 $avatar = $model->user->present()->gravatar();
@@ -37,7 +37,7 @@ return [
             'title' => '排序',
         ],
         'category' => [
-            'title' => '分类',
+            'title' => 'category',
             'sortable' => false,
             'output' => function ($value, $model) {
                 return admin_link(
@@ -63,7 +63,7 @@ return [
             'title' => '投票',
         ],
         'operation' => [
-            'title' => '管理',
+            'title' => 'operation',
             'output' => function ($value, $model) {
 
             },
@@ -76,7 +76,7 @@ return [
             'sortable' => false,
         ],
         'user' => [
-            'title' => '用户',
+            'title' => 'user',
             'type' => 'relationship',
             'name_field' => 'name',
             'autocomplete' => true,
@@ -84,7 +84,7 @@ return [
             'options_sort_field' => 'id',
         ],
         'category' => [
-            'title' => '分类',
+            'title' => 'category',
             'type' => 'relationship',
             'name_field' => 'name',
             'search_fields' => array("CONCAT(id, ' ', name)"),
@@ -131,7 +131,7 @@ return [
             'title' => '内容 ID',
         ],
         'user' => [
-            'title' => '用户',
+            'title' => 'user',
             'type' => 'relationship',
             'name_field' => 'name',
             'autocomplete' => true,
@@ -139,7 +139,7 @@ return [
             'options_sort_field' => 'id',
         ],
         'category' => [
-            'title' => '分类',
+            'title' => 'category',
             'type' => 'relationship',
             'name_field' => 'name',
             'search_fields' => array("CONCAT(id, ' ', screen_name)"),

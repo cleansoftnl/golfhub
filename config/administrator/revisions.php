@@ -29,7 +29,7 @@ return [
             'sortable' => false,
         ],
         'user' => [
-            'title' => '操作用户',
+            'title' => '操作user',
             'relationship' => 'user',
             'select' => "(:table).name",
         ],
@@ -63,7 +63,7 @@ return [
             'title' => '记录的 id',
         ],
         'user' => [
-            'title' => '操作用户',
+            'title' => '操作user',
             'type' => 'relationship',
             'select' => "(:table).name",
         ],

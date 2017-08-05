@@ -13,7 +13,7 @@
 
             <span class="count_seperator">/</span>
 
-                     <span class="count_of_replies" title="回复数">
+                     <span class="count_of_replies" title="replies数">
                        {{ $topic->reply_count }}
                      </span>
 

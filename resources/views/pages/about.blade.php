@@ -25,15 +25,15 @@
         <h2 id="toc_2">关于新手问题</h2>
 
         <p>这个社区不是用来问新手问题的，如果你是 PHP 新手，请先看 <a href="http://www.phptherightway.com/">PHP The Right Way</a>，
-          里面有中文版本，此文档能为你构建一个合理的 PHP 基础知识体系。</p>
+          里面有中文版本，此document能为你构建一个合理的 PHP 基础知识体系。</p>
 
-        <p>第一次接触 Laravel? 这里是 <a href="http://laravel-china.org/docs/home">Laravel 中文文档</a>，Laravel
-          的出名，也得益于这份撰写精炼的文档，值得多次品读。</p>
+        <p>第一次接触 Laravel? 这里是 <a href="http://laravel-china.org/docs/home">Laravel 中文document</a>，Laravel
+          的出名，也得益于这份撰写精炼的document，值得多次品读。</p>
 
         <p>在学习上遇到问题的时候，请先 Google。</p>
 
         <p>如果觉得你的问题比较独占，请先仔细阅读 <a href="https://laravel-china.org/topics/535">提问的智慧</a>，然后在 <a
-            href="https://laravel-china.org/categories/4">问答分类下</a> 发表你的问题，谢谢。 </p>
+            href="https://laravel-china.org/categories/4">Q & Acategory下</a> 发表你的问题，谢谢。 </p>
 
         <h2 id="toc_3">愿景 Vision</h2>
 
@@ -53,7 +53,7 @@
         <h3 id="toc_5">在这里我们可以</h3>
 
         <ul>
-          <li>分享生活见闻，分享知识，分享创意</li>
+          <li>分享life见闻，分享知识，分享创意</li>
           <li>接触新技术</li>
           <li>为自己的创业项目找合伙人</li>
           <li>讨论技术解决方案</li>

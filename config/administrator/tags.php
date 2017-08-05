@@ -2,16 +2,16 @@
 use App\Models\Tag;
 
 return [
-    'title' => '标签',
-    'heading' => '标签',
-    'single' => '标签',
+    'title' => 'label',
+    'heading' => 'label',
+    'single' => 'label',
     'model' => Tag::class,
     'columns' => [
         'id' => [
             'title' => 'ID',
         ],
         'name' => [
-            'title' => '名称',
+            'title' => 'name',
             'sortable' => false,
         ],
         'slug' => [
@@ -19,19 +19,19 @@ return [
             'sortable' => false,
         ],
         'description' => [
-            'title' => '描述',
+            'title' => 'description',
             'sortable' => false,
         ],
         'depth' => [
-            'title' => '标签层次（0 最大）',
+            'title' => 'ordering level (0 max)',
             'sortable' => false,
         ],
         'count' => [
-            'title' => '打过标签的内容数量',
+            'title' => '打过label的内容数量',
             'sortable' => false,
         ],
         'operation' => [
-            'title' => '管理',
+            'title' => 'operation',
             'output' => function ($value, $model) {
                 return $value;
             },
@@ -40,21 +40,21 @@ return [
     ],
     'edit_fields' => [
         'name' => [
-            'title' => '名称',
+            'title' => 'name',
         ],
         'slug' => [
             'title' => 'Slug',
         ],
         'description' => [
-            'title' => '描述',
+            'title' => 'description',
         ],
     ],
     'filters' => [
         'id' => [
-            'title' => '标签 ID',
+            'title' => 'label ID',
         ],
         'name' => [
-            'title' => '名称',
+            'title' => 'name',
         ],
     ],
     'actions' => [],
@@ -62,7 +62,7 @@ return [
         'name' => 'required|min:1|unique:tags'
     ],
     'messages' => [
-        'name.unique' => '标签名在数据库里有重复，请选用其他名称。',
-        'name.required' => '请确保名字至少一个字符以上',
+        'name.unique' => 'label名在数据库里有重复，请选用其他name。',
+        'name.required' => 'Make sure the name is at least one character above',
     ],
 ];

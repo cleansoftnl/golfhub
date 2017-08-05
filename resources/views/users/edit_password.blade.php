@@ -35,12 +35,12 @@
                 <input name="email" type="hidden" value="{{ $user->email }}">
               </div>
               <div class="col-sm-4 help-block">
-                设置密码后将可以使用此邮箱登录。
+                After you set your password, you will be able to log in using this mailbox.
               </div>
             </div>
 
             <div class="form-group">
-              <label class="col-md-2 control-label">密 码：</label>
+              <label class="col-md-2 control-label">password：</label>
               <div class="col-md-6">
                 <input type="password" class="form-control" name="password" required>
               </div>

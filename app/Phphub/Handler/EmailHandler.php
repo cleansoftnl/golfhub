@@ -15,7 +15,7 @@ use Jrean\UserVerification\Facades\UserVerification;
 class EmailHandler
 {
     protected $methodMap = [
-        // 只有需要用户处理的信息，才有必要发送邮件
+        // 只有需要user处理的信息，才有必要发送邮件
         'at' => 'sendAtNotifyMail',
         'mentioned_in_topic' => 'sendMentionedInTopicNotifyMail',
         'attention' => 'sendAttentionNotifyMail',
@@ -44,7 +44,7 @@ class EmailHandler
     public function sendMaintainerWorksMail(User $user, $timeFrame, $content)
     {
         Mail::send('emails.fake', [], function (Message $message) use ($user, $timeFrame, $content) {
-            $message->subject('管理员工作统计');
+            $message->subject('operation员工作统计');
             $message->getSwiftMessage()->setBody(new SendCloudTemplate('maintainer_works', [
                 'name' => $user->name,
                 'time_frame' => $timeFrame,
@@ -76,7 +76,7 @@ class EmailHandler
             || $toUser->id == $fromUser->id             // 发件和收件是同一个人
             || !$toUser->email                          // 不存在邮件
             || $toUser->verified != 1                   // 还未验证
-            || $this->_checkNecessary($type, $toUser)   // 因延迟触发的，用户可能已读过站内通知
+            || $this->_checkNecessary($type, $toUser)   // 因延迟触发的，user可能已读过站内通知
         ) {
             return false;
         }
@@ -102,7 +102,7 @@ class EmailHandler
     {
         if (!$this->reply)
             return false;
-        $action = " 回复了你的主题: <a href='" . $this->reply->topic->link() . "' target='_blank'>{$this->reply->topic->title}</a><br /><br />内容如下：<br />";
+        $action = " replies了你的主题: <a href='" . $this->reply->topic->link() . "' target='_blank'>{$this->reply->topic->title}</a><br /><br />内容如下：<br />";
         $this->_send($this->topic, $this->fromUser, '你的主题有新评论', $action, $this->reply->body, $this->reply->body);
     }
 
@@ -111,39 +111,39 @@ class EmailHandler
         if (!$this->reply)
             return false;
         $action = " 在主题: <a href='" . $this->topic->link(['#reply' . $this->reply->id]) . "' target='_blank'>{$this->reply->topic->title}</a> 的评论中提及了你<br /><br />内容如下：<br />";
-        $this->_send($this->topic, $this->fromUser, '有用户在评论中提及你', $action, $this->reply->body, $this->reply->body);
+        $this->_send($this->topic, $this->fromUser, '有user在评论中提及你', $action, $this->reply->body, $this->reply->body);
     }
 
     protected function sendAttentionNotifyMail()
     {
         if (!$this->reply)
             return false;
-        $action = " 评论了你关注的主题: <a href='" . $this->topic->link(['#reply' . $this->reply->id]) . "' target='_blank'>{$this->reply->topic->title}</a><br /><br />评论内容如下：<br />";
-        $this->_send($this->topic, $this->fromUser, '有用户评论了你关注的主题', $action, $this->reply->body, $this->reply->body);
+        $action = " 评论了你of concern主题: <a href='" . $this->topic->link(['#reply' . $this->reply->id]) . "' target='_blank'>{$this->reply->topic->title}</a><br /><br />评论内容如下：<br />";
+        $this->_send($this->topic, $this->fromUser, '有user评论了你of concern主题', $action, $this->reply->body, $this->reply->body);
     }
 
     protected function sendVoteAppendNotifyMail()
     {
         if (!$this->body || !$this->topic)
             return false;
-        $action = " 你点过赞的话题: <a href='" . $this->topic->link() . "' target='_blank'>{$this->topic->title}</a> 有新附言<br /><br />附言内容如下：<br />";
-        $this->_send($this->topic, '', '你点过赞的话题有新附言', $action, $this->body, $this->body);
+        $action = " 你点过赞的topic: <a href='" . $this->topic->link() . "' target='_blank'>{$this->topic->title}</a> 有新附言<br /><br />附言内容如下：<br />";
+        $this->_send($this->topic, '', '你点过赞的topic有新附言', $action, $this->body, $this->body);
     }
 
     protected function sendCommentAppendNotifyMail()
     {
         if (!$this->body || !$this->topic)
             return false;
-        $action = " 你评论过的话题: <a href='" . $this->topic->link() . "' target='_blank'>{$this->topic->title}</a> 有新附言<br /><br />附言内容如下：<br />";
-        $this->_send($this->topic, '', '你评论过的话题有新附言', $action, $this->body, $this->body);
+        $action = " 你评论过的topic: <a href='" . $this->topic->link() . "' target='_blank'>{$this->topic->title}</a> 有新附言<br /><br />附言内容如下：<br />";
+        $this->_send($this->topic, '', '你评论过的topic有新附言', $action, $this->body, $this->body);
     }
 
     protected function sendAttendAppendNotifyMail()
     {
         if (!$this->body || !$this->topic)
             return false;
-        $action = " 你关注的话题: <a href='" . $this->topic->link() . "' target='_blank'>{$this->topic->title}</a> 有新附言<br /><br />附言内容如下：<br />";
-        $this->_send($this->topic, '', '你关注的话题有新附言', $action, $this->body, $this->body);
+        $action = " 你of concerntopic: <a href='" . $this->topic->link() . "' target='_blank'>{$this->topic->title}</a> 有新附言<br /><br />附言内容如下：<br />";
+        $this->_send($this->topic, '', '你of concerntopic有新附言', $action, $this->body, $this->body);
     }
 
     protected function sendMentionedInTopicNotifyMail()
@@ -151,7 +151,7 @@ class EmailHandler
         if (!$this->topic)
             return false;
         $action = " 在主题: <a href='" . $this->topic->link() . "' target='_blank'>{$this->topic->title}</a> 中提及了你。<br />";
-        $this->_send($this->topic, $this->fromUser, '有用户在主题中提及你', $action, '', '');
+        $this->_send($this->topic, $this->fromUser, '有user在主题中提及你', $action, '', '');
     }
 
     protected function generateMailLog($body = '')
@@ -170,7 +170,7 @@ class EmailHandler
     {
         if ($topic->isArticle()) {
             $subject = str_replace('主题', '文章', $subject);
-            return str_replace('话题', '文章', $subject);
+            return str_replace('topic', '文章', $subject);
         }
         return $subject;
     }
@@ -178,7 +178,7 @@ class EmailHandler
     private function _correctAction($action, Topic $topic)
     {
         if ($topic->isArticle()) {
-            $action = str_replace('话题', '文章', $action);
+            $action = str_replace('topic', '文章', $action);
             $action = str_replace('主题', '文章', $action);
             $action = str_replace('topics', 'articles', $action);
         }
@@ -206,7 +206,7 @@ class EmailHandler
 
     private function _checkNecessary($type, User $toUser)
     {
-        // 从数据库中重新读取用户
+        // 从数据库中重新读取user
         $user = User::find($toUser->id);
         // 私信，如果已读
         if ($type == 'new_message' && $user->message_count <= 0) {

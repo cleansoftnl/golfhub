@@ -11,7 +11,7 @@ return [
             'title' => 'ID',
         ],
         'title' => [
-            'title' => '名称',
+            'title' => 'name',
             'sortable' => false,
         ],
         'link' => [
@@ -33,7 +33,7 @@ return [
             'sortable' => false,
         ],
         'operation' => [
-            'title' => '管理',
+            'title' => 'operation',
             'output' => function ($value, $model) {
                 return $value;
             },
@@ -42,7 +42,7 @@ return [
     ],
     'edit_fields' => [
         'title' => [
-            'title' => '名称',
+            'title' => 'name',
         ],
         'link' => [
             'title' => '链接',
@@ -59,10 +59,10 @@ return [
     ],
     'filters' => [
         'id' => [
-            'title' => '标签 ID',
+            'title' => 'label ID',
         ],
         'title' => [
-            'title' => '名称',
+            'title' => 'name',
         ],
     ],
     'actions' => [

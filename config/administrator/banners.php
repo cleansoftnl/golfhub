@@ -38,18 +38,18 @@ return [
             },
         ],
         'description' => [
-            'title' => '描述',
+            'title' => 'description',
             'sortable' => false,
             'output' => function ($value, $model) {
                 return $value ? "<p style='width:250px'>$value</p>" : 'N/A';
             },
         ],
         'order' => [
-            'title' => '排序（按小到大排序）',
+            'title' => ' Sort (sorted by small to large)',
             'sortable' => false,
         ],
         'operation' => [
-            'title' => '管理',
+            'title' => 'operation',
             'output' => function ($value, $model) {
                 return $value;
             },
@@ -92,11 +92,11 @@ return [
             'display_raw_value' => false,
         ],
         'description' => [
-            'title' => '描述',
+            'title' => 'description',
             'type' => 'textarea',
         ],
         'order' => [
-            'title' => '排序（按小到大排序）',
+            'title' => ' Sort (sorted by small to large)',
             'type' => 'number',
             'value' => 0,
         ],
@@ -112,7 +112,7 @@ return [
             'title' => '标题',
         ],
         'order' => [
-            'title' => '排序（按小到大排序）',
+            'title' => ' Sort (sorted by small to large)',
             'type' => 'number',
         ],
     ],

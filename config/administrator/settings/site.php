@@ -3,20 +3,20 @@
  * The main site settings page
  */
 return [
-    'title' => '站点设置',
+    'title' => 'site',
     'edit_fields' => array(
         'site_name' => array(
-            'title' => '站点名称',
+            'title' => 'sitename',
             'type' => 'text',
             'limit' => 50,
         ),
         'site_intro_footer' => array(
-            'title' => '页脚站点描述',
+            'title' => 'sitedescription',
             'type' => 'textarea',
             'limit' => 250,
         ),
         'site_intro_font_page' => array(
-            'title' => '首页站点描述',
+            'title' => 'introdescription',
             'type' => 'textarea',
             'limit' => 250,
         ),
@@ -36,7 +36,7 @@ return [
             'limit' => 250,
         ),
         'compose_topic_hint' => array(
-            'title' => '发帖页面用户引导',
+            'title' => '发帖页面user引导',
             'type' => 'textarea',
             'limit' => 500,
         ),
@@ -89,7 +89,7 @@ return [
     'actions' => [
         //Ordering an item up
         'clear_cache' => [
-            'title' => '更新系统缓存',
+            'title' => 'clear cache',
             'messages' => [
                 'active' => 'Clearing cache...',
                 'success' => 'Cache Cleared',

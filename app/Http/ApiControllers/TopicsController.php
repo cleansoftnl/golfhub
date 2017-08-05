@@ -41,7 +41,7 @@ class TopicsController extends Controller implements CreatorListener
     public function store(Request $request)
     {
         if (!Auth::user()->verified) {
-            throw new StoreResourceFailedException('创建话题失败，请验证用户邮箱');
+            throw new StoreResourceFailedException('创建topic失败，请验证user邮箱');
         }
         $data = array_merge($request->except('_token'), ['category_id' => $request->category_id]);
         return app('Phphub\Creators\TopicCreator')->create($this, $data);
@@ -117,7 +117,7 @@ class TopicsController extends Controller implements CreatorListener
      */
     public function creatorFailed($errors)
     {
-        throw new StoreResourceFailedException('创建话题失败：' . output_msb($errors->getMessageBag()));
+        throw new StoreResourceFailedException('创建topic失败：' . output_msb($errors->getMessageBag()));
     }
 
     public function creatorSucceed($topic)

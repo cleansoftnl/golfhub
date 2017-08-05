@@ -37,7 +37,7 @@ class MessagesController extends Controller
         $thread = Thread::findOrFail($id);
         $participant = $thread->participant();
         $messages = $thread->messages()->recent()->get();
-        $this->authorize('show', $thread);
+        //$this->authorize('show', $thread);
         // counters
         $unread_message_count = $thread->userUnreadMessagesCount(Auth::id());
         if ($unread_message_count > 0) {

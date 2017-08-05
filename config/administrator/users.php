@@ -2,9 +2,9 @@
 use App\Models\User;
 
 return [
-    'title' => '用户',
-    'heading' => '用户',
-    'single' => '用户',
+    'title' => 'user',
+    'heading' => 'user',
+    'single' => 'user',
     'model' => User::class,
     'permission' => function () {
         return Auth::user()->may('manage_users');
@@ -22,7 +22,7 @@ return [
             'sortable' => false,
         ],
         'name' => [
-            'title' => '用户名',
+            'title' => 'user名',
             'sortable' => false,
             'output' => function ($value, $model) {
                 return '<a href="/users/' . $model->id . '" target=_blank>' . $value . '</a>';
@@ -33,13 +33,13 @@ return [
             'sortable' => false,
         ],
         'github_name' => [
-            'title' => 'GitHub 用户名'
+            'title' => 'GitHub user名'
         ],
         'topic_count' => [
-            'title' => '话题数量'
+            'title' => 'topic数量'
         ],
         'reply_count' => [
-            'title' => '回复数量'
+            'title' => 'replies数量'
         ],
         'register_source' => [
             'title' => '注册来源',
@@ -67,7 +67,7 @@ return [
             },
         ],
         'operation' => [
-            'title' => '管理',
+            'title' => 'operation',
             'output' => function ($value, $model) {
                 return $value;
             },
@@ -124,19 +124,19 @@ return [
             'type' => 'textarea',
         ],
         'github_name' => [
-            'title' => 'GitHub 用户名'
+            'title' => 'GitHub user名'
         ],
         'real_name' => [
             'title' => '真实姓名'
         ],
         'avatar' => [
-            'title' => '用户头像',
+            'title' => 'user头像',
             'type' => 'image',
             'location' => public_path() . '/uploads/avatars/',
         ],
         'roles' => array(
             'type' => 'relationship',
-            'title' => '用户组',
+            'title' => 'user组',
             'name_field' => 'display_name',
         ),
         'register_source' => [
@@ -145,13 +145,13 @@ return [
     ],
     'filters' => [
         'id' => [
-            'title' => '用户 ID',
+            'title' => 'user ID',
         ],
         'name' => [
             'title' => '姓名',
         ],
         'github_name' => [
-            'title' => 'GitHub 用户名'
+            'title' => 'GitHub user名'
         ],
         'real_name' => [
             'title' => '真实姓名'
@@ -161,7 +161,7 @@ return [
         ],
         'roles' => [
             'type' => 'relationship',
-            'title' => '用户组',
+            'title' => 'user组',
             'name_field' => 'display_name',
         ],
         'is_banned' => [

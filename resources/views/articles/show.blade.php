@@ -24,7 +24,7 @@
 
           @if ($topic->is_draft == 'yes')
             <div class="text-center alert alert-warning">
-              当前状态为 <i class="fa fa-file-text-o"></i> 草稿，仅作者可见，请前往 <a href="{{ route('articles.edit', $topic->id) }}"
+              当前状态为 <i class="fa fa-file-text-o"></i> 草稿，仅Author可见，请前往 <a href="{{ route('articles.edit', $topic->id) }}"
                                                                       class="no-pjax">编辑发布</a>
             </div>
           @endif
@@ -75,7 +75,7 @@
         <div class="panel panel-default corner-radius">
 
           <div class="panel-heading text-center">
-            <h3 class="panel-title">作者：{{ $topic->user->name }}</h3>
+            <h3 class="panel-title">Author：{{ $topic->user->name }}</h3>
           </div>
 
           <div class="panel-body text-center topic-author-box">

@@ -42,7 +42,7 @@
                 {!! csrf_field() !!}
 
                 <div class="form-group">
-                  <label for="" class="col-sm-2 control-label">专栏名称</label>
+                  <label for="" class="col-sm-2 control-label">专栏name</label>
                   <div class="col-sm-6">
                     <input class="form-control" name="name" type="text" value="{{ old('name') ?: $blog->name }}"
                            maxlength="20" required>
@@ -72,7 +72,7 @@
                               maxlength="250">{{ old('description') ?:$blog->description }}</textarea>
                   </div>
                   <div class="col-sm-4 help-block">
-                    请简要描述。
+                    请简要description。
                   </div>
                 </div>
 

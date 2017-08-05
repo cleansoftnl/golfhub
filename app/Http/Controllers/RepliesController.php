@@ -35,7 +35,7 @@ class RepliesController extends Controller implements CreatorListener
     public function destroy($id)
     {
         $reply = Reply::findOrFail($id);
-        $this->authorize('delete', $reply);
+        //$this->authorize('delete', $reply);
         $reply->delete();
         $reply->topic->decrement('reply_count', 1);
         $reply->topic->generateLastReplyUserInfo();

@@ -38,7 +38,7 @@
           </a>
 
           @if ($reply->user->present()->isAdmin())
-            <a class="label label-success mod-label popover-with-html" data-content="管理员"
+            <a class="label label-success mod-label popover-with-html" data-content="operation员"
                href="{{ route('roles.show', [$reply->user->present()->badgeID()]) }}">MOD</a>
           @endif
 
@@ -67,7 +67,7 @@
               <span> ⋅  </span>
             @endif
             <a class="fa fa-reply" href="javascript:void(0)" onclick="replyOne('{{$reply->user->name}}');"
-               title="回复 {{$reply->user->name}}"></a>
+               title="replies {{$reply->user->name}}"></a>
         </span>
 
           <div class="meta">

@@ -21,11 +21,11 @@ EOD;
             'sortable' => false,
         ],
         'title' => [
-            'title' => '名称',
+            'title' => 'name',
             'sortable' => false,
         ],
         'description' => [
-            'title' => '描述',
+            'title' => 'description',
             'sortable' => false,
             'output' => function ($value) {
                 return '<p style="width:200px">' . $value . '</p>';
@@ -39,7 +39,7 @@ EOD;
             },
         ],
         'operation' => [
-            'title' => '管理',
+            'title' => 'operation',
             'output' => function ($value, $model) {
                 return $value;
             },
@@ -48,10 +48,10 @@ EOD;
     ],
     'edit_fields' => [
         'title' => [
-            'title' => '名称',
+            'title' => 'name',
         ],
         'description' => [
-            'title' => '描述',
+            'title' => 'description',
             'type' => 'textarea',
         ],
         'link' => [
@@ -86,7 +86,7 @@ EOD;
             'title' => 'ID',
         ],
         'title' => [
-            'title' => '名称',
+            'title' => 'name',
         ],
         'link' => [
             'title' => '链接',

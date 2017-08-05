@@ -16,7 +16,7 @@
       @if ($activity->data['topic_type'] == 'article')
         关注了文章
       @else
-        关注了话题
+        关注了topic
       @endif
       <a href="{{ $activity->data['topic_link'] }}" title="{{ $activity->data['topic_title'] }}">
         {{ str_limit($activity->data['topic_title'], '100') }}

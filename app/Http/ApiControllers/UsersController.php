@@ -36,7 +36,7 @@ class UsersController extends Controller
             $user = $request->performUpdate($user);
             return $this->response()->item($user, new UserTransformer());
         } catch (ValidatorException $e) {
-            throw new UpdateResourceFailedException('无法更新用户信息：' . output_msb($e->getMessageBag()));
+            throw new UpdateResourceFailedException('无法更新user信息：' . output_msb($e->getMessageBag()));
         }
     }
 }

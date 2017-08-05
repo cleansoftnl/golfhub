@@ -2,9 +2,9 @@
 use App\Models\Permission;
 
 return [
-    'title' => '用户组权限',
-    'heading' => '用户组权限',
-    'single' => '用户组权限',
+    'title' => 'user组权限',
+    'heading' => 'user组权限',
+    'single' => 'user组权限',
     'model' => Permission::class,
     'permission' => function () {
         return Auth::user()->may('manage_users');
@@ -32,18 +32,18 @@ return [
             'sortable' => false,
         ],
         'display_name' => [
-            'title' => '权限名称',
+            'title' => '权限name',
             'sortable' => false,
         ],
         'description' => [
-            'title' => '描述',
+            'title' => 'description',
             'sortable' => false,
             'output' => function ($value, $model) {
                 return empty($value) ? 'N/A' : $value;
             },
         ],
         'roles' => [
-            'title' => '用户组',
+            'title' => 'user组',
             'output' => function ($value, $model) {
                 $model->load('roles');
                 $result = [];
@@ -55,7 +55,7 @@ return [
             'sortable' => false,
         ],
         'operation' => [
-            'title' => '管理',
+            'title' => 'operation',
             'sortable' => false,
         ],
     ],
@@ -64,10 +64,10 @@ return [
             'title' => '标示（请慎重修改）',
         ],
         'display_name' => [
-            'title' => '权限名称',
+            'title' => '权限name',
         ],
         'description' => [
-            'title' => '描述',
+            'title' => 'description',
         ],
     ],
     'filters' => [
@@ -75,10 +75,10 @@ return [
             'title' => '标示',
         ],
         'display_name' => [
-            'title' => '权限名称',
+            'title' => '权限name',
         ],
         'description' => [
-            'title' => '描述',
+            'title' => 'description',
         ],
     ],
     'actions' => [],

@@ -30,7 +30,7 @@ class RepliesController extends Controller implements CreatorListener
     public function store(Request $request)
     {
         if (!Auth::user()->verified) {
-            throw new StoreResourceFailedException('创建评论失败，请验证用户邮箱');
+            throw new StoreResourceFailedException('创建评论失败，请验证user邮箱');
         }
         return app('Phphub\Creators\ReplyCreator')->create($this, $request->except('_token'));
     }

@@ -187,7 +187,7 @@
                 <i class="fa fa-times"></i> {{ $user->is_banned == 'yes' ? lang('Unblock User') : lang('Block User') }}
               </a>
               <a class="btn btn-info btn-block" href="{{ url('admin/users/' . $user->id) }}" >
-                <i class="fa fa-eye"></i> 后台管理
+                <i class="fa fa-eye"></i> 后台operation
               </a>
             @endif --}}
 
@@ -211,19 +211,19 @@
       </a>
 
       <a href="{{ route('users.topics', $user->id) }}" class="{{ navViewActive('users.topics') }}">
-        <li class="list-group-item"><i class="text-md fa fa-list-ul"></i> Ta 发布的话题</li>
+        <li class="list-group-item"><i class="text-md fa fa-list-ul"></i> Ta 发布的topic</li>
       </a>
 
       <a href="{{ route('users.replies', $user->id) }}" class="{{ navViewActive('users.replies') }}">
-        <li class="list-group-item"><i class="text-md fa fa-comment"></i> Ta 发表的回复</li>
+        <li class="list-group-item"><i class="text-md fa fa-comment"></i> Ta 发表的replies</li>
       </a>
 
       <a href="{{ route('users.following', $user->id) }}" class="{{ navViewActive('users.following') }}">
-        <li class="list-group-item"><i class="text-md fa fa-eye"></i> Ta 关注的用户</li>
+        <li class="list-group-item"><i class="text-md fa fa-eye"></i> Ta of concernuser</li>
       </a>
 
       <a href="{{ route('users.votes', $user->id) }}" class="{{ navViewActive('users.votes') }}">
-        <li class="list-group-item"><i class="text-md fa fa-thumbs-up"></i> Ta 赞过的话题</li>
+        <li class="list-group-item"><i class="text-md fa fa-thumbs-up"></i> Ta 赞过的topic</li>
       </a>
 
     </ul>

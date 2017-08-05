@@ -74,7 +74,7 @@ function per_page($default = null)
 }
 
 /**
- * 生成用户客户端 URL Schema 技术的链接.
+ * 生成user客户端 URL Schema 技术的链接.
  */
 function schema_url($path, $parameters = [])
 {

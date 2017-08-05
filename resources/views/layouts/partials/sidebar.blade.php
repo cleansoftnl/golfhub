@@ -12,7 +12,7 @@
     <div class="panel panel-default corner-radius">
 
       <div class="panel-heading text-center">
-        <h3 class="panel-title">作者：{{ $topic->user->name }}</h3>
+        <h3 class="panel-title">Author：{{ $topic->user->name }}</h3>
       </div>
 
       <div class="panel-body text-center topic-author-box">
@@ -43,7 +43,7 @@
   @if (isset($userTopics) && count($userTopics))
     <div class="panel panel-default corner-radius">
       <div class="panel-heading text-center">
-        <h3 class="panel-title">{{ $topic->user->name }} 的其他话题</h3>
+        <h3 class="panel-title">{{ $topic->user->name }} other topics</h3>
       </div>
       <div class="panel-body">
         @include('layouts.partials.sidebar_topics', ['sidebarTopics' => $userTopics])

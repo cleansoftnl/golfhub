@@ -148,7 +148,7 @@ class AuthController extends Controller implements UserCreatorListener
         return redirect(route('signup'));
     }
 
-    // 数据库有用户信息, 登录用户
+    // 数据库有user信息, sign inuser
     public function userFound($user)
     {
         Auth::login($user, true);
@@ -157,7 +157,7 @@ class AuthController extends Controller implements UserCreatorListener
         return redirect(route('users.edit', Auth::user()->id));
     }
 
-    // 用户屏蔽
+    // user屏蔽
     public function userIsBanned($user)
     {
         return redirect(route('user-banned'));

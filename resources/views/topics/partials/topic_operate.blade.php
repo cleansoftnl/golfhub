@@ -62,14 +62,14 @@
 
     @if (!isset($is_article) && $currentUser && ($manage_topics || $currentUser->id == $topic->user_id))
       <a id="topic-append-button" href="javascript:void(0);" class="admin  popover-with-html" data-toggle="modal"
-         data-target="#exampleModal" data-content="帖子附言，添加附言后所有参与讨论的用户都能收到消息提醒，包括点赞和评论的用户">
+         data-target="#exampleModal" data-content="帖子附言，添加附言后所有参与讨论的user都能收到消息提醒，包括点赞和评论的user">
         <i class="fa fa-plus"></i>
       </a>
 
       @if ($topic->user->blogs()->count() > 0)
         <a data-method="patch" data-btn="transform-button" href="javascript:void(0);"
            data-url="{{ route('articles.transform', [$topic->id]) }}" class="admin  popover-with-html"
-           data-content="转换话题为专栏文章">
+           data-content="转换topic为专栏文章">
           <i class="fa fa-rocket" aria-hidden="true"></i>
         </a>
       @endif

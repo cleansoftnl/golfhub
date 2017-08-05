@@ -1,6 +1,6 @@
 <div class="box">
   <div class="padding-md ">
-    <div class="list-group text-center">
+    <div class="list-group">
       <a href="{{ route('users.edit', $user->id) }}" class="list-group-item {{ navViewActive('users.edit') }}">
         <i class="text-md fa fa-list-alt" aria-hidden="true"></i>
         &nbsp;{{ lang('Basic Info') }}
@@ -23,7 +23,7 @@
       <a href="{{ route('users.edit_password', $user->id) }}"
          class="list-group-item {{ navViewActive('users.edit_password') }}">
         <i class="text-md fa fa-lock" aria-hidden="true"></i>
-        &nbsp;修改密码
+        &nbsp;Edit Password
       </a>
     </div>
   </div>

@@ -9,7 +9,7 @@
   <div class="hall_of_fames">
 
     <div class="box text-center site-intro rm-link-color">
-      Laravel China 名人堂，用于推荐对 Laravel China 社区有突出贡献的用户。<a style="text-decoration: underline;"
+      Laravel China 名人堂，用于推荐对 Laravel China 社区有突出贡献的user。<a style="text-decoration: underline;"
                                                           href="https://laravel-china.org/topics/2440">更多信息</a>
     </div>
 

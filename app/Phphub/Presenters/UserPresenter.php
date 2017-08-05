@@ -70,7 +70,7 @@ class UserPresenter extends Presenter
     public function getBadge()
     {
         $relations = Role::relationArrayWithCache();
-        // 用户所在的用户组，显示 role_id 最小的名称
+        // user所在的user组，显示 role_id 最小的name
         $relations = array_sort($relations, function ($value) {
             return $value->role_id;
         });

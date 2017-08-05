@@ -1,7 +1,7 @@
 <div class="panel panel-default corner-radius" style="padding-bottom: 20px;">
 
   <div class="panel-heading text-center">
-    <h3 class="panel-title">专栏作者</h3>
+    <h3 class="panel-title">专栏Author</h3>
   </div>
 
   <div class="panel-body text-center topic-author-box blog-info text-center">

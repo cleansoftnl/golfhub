@@ -21,12 +21,12 @@ class ArticlesController extends Controller implements CreatorListener
     {
         $user = Auth::user();
         if ($user->blogs()->count() <= 0) {
-            Flash::info('请先创建专栏，专栏创建成功后才能发布文章。');
+            Flash::info('please create a column first，专栏创建成功后才能发布文章。');
             return redirect()->route('blogs.create');
         }
         $topic = new Topic;
         $blog = $request->blog_id ? Blog::findOrFail($request->blog_id) : Auth::user()->blogs()->first();
-        $this->authorize('create-article', $blog);
+        //$this->authorize('create-article', $blog);
         return view('articles.create_edit', compact('topic', 'user', 'blog'));
     }
 
@@ -34,7 +34,7 @@ class ArticlesController extends Controller implements CreatorListener
     {
         $data = $request->except('_token');
         $blog = Blog::findOrFail($request->blog_id);
-        $this->authorize('create-article', $blog);
+        //$this->authorize('create-article', $blog);
         $data['blog_id'] = $blog->id;
         if ($request->subject == 'draft') {
             $data['is_draft'] = 'yes';
@@ -47,7 +47,7 @@ class ArticlesController extends Controller implements CreatorListener
         Auth::user()->decrement('topic_count', 1);
         Auth::user()->increment('article_count', 1);
         if (Auth::user()->blogs()->count() <= 0) {
-            Flash::info('请先创建专栏，专栏创建成功后才能发布文章。');
+            Flash::info('please create a column first，专栏创建成功后才能发布文章。');
             return redirect()->route('blogs.create');
         }
         $topic = Topic::find($id);

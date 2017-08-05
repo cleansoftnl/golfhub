@@ -21,7 +21,7 @@
         $topic_title = "《" . str_limit($activity->data['topic_title'], '100') . "》";
         ?>
       @else
-        赞了话题
+        赞了topic
 
         <?php
         $topic_title = str_limit($activity->data['topic_title'], '100');

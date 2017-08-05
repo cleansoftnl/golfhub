@@ -24,7 +24,7 @@ return [
     |
     */
     'grant_types' => [
-        // accesstoken 过期时间，以返回的时间的准，单位为秒，注意过期时提醒用户重新授权
+        // accesstoken 过期时间，以返回的时间的准，单位为秒，注意过期时提醒user重新授权
         // 类似于：
         // 1. http://open.weibo.com/wiki/Oauth2/access_token
         // 2. https://developers.douban.com/wiki/?title=oauth2
@@ -37,7 +37,7 @@ return [
             'access_token_ttl' => (int)env('OAUTH_ACCESS_TOKEN_TTL', 2592000),
         ],
         /*
-         * 在用户还未登陆的时候使用，可访问部分资源
+         * 在user还未登陆的时候使用，可访问部分资源
          */
         'client_credentials' => [
             'class' => \League\OAuth2\Server\Grant\ClientCredentialsGrant::class,

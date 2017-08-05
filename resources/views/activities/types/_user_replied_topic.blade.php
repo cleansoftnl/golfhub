@@ -20,7 +20,7 @@
         $topic_title = "《" . str_limit($activity->data['topic_title'], '100') . "》";
         ?>
       @else
-        评论了话题
+        评论了topic
         <?php
         $topic_title = str_limit($activity->data['topic_title'], '100');
         ?>
