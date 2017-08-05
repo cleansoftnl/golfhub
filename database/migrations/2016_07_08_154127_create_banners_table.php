@@ -1,7 +1,6 @@
 <?php
-
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateBannersTable extends Migration
 {
@@ -20,7 +19,7 @@ class CreateBannersTable extends Migration
             $table->string('image_url');
             $table->string('title')->index();
             $table->string('link')->nullable();
-            $table->enum('target', ['_blank',  '_self'])->default('_blank')->index();
+            $table->enum('target', ['_blank', '_self'])->default('_blank')->index();
             $table->text('description')->nullable();
             $table->softDeletes();
             $table->timestamps();

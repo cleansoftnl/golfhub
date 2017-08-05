@@ -1,5 +1,4 @@
 <?php namespace App\Console\Commands;
-
 class ESTInstallCommand extends BaseCommand
 {
     protected $signature = 'est:install {--force : enforce}';

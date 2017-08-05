@@ -1,8 +1,8 @@
 <?php namespace App\Console\Commands;
 
+use App;
 use Illuminate\Console\Command;
 use Ubench;
-use App;
 
 class BaseCommand extends Command
 {
@@ -11,10 +11,8 @@ class BaseCommand extends Command
     public function __construct()
     {
         parent::__construct();
-
-        $this->bench  = new Ubench;
+        $this->bench = new Ubench;
         $this->bench->start();
-
         $this->is_ask = false;
     }
 
@@ -22,7 +20,6 @@ class BaseCommand extends Command
     {
         // 统计结束，可以打印出信息了
         $this->bench->end();
-
         $this->info('-------');
         $this->info('-------');
         $this->info(sprintf("Command execution completed, time consuming: %s, memory usage: %s ",
@@ -47,7 +44,7 @@ class BaseCommand extends Command
         $message = $message ?: 'This is a "very dangerous" operation';
         if (App::environment('production')
             && !$this->option('force')
-            && !$this->confirm('Your are in「Production」environment, '.$message.'! Are you sure you want to do this? [y|N]')
+            && !$this->confirm('Your are in「Production」environment, ' . $message . '! Are you sure you want to do this? [y|N]')
         ) {
             exit('Command termination');
         }

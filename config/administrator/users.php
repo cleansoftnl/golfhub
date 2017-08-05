@@ -1,39 +1,35 @@
 <?php
-
 use App\Models\User;
 
 return [
-    'title'   => '用户',
+    'title' => '用户',
     'heading' => '用户',
-    'single'  => '用户',
-    'model'   => User::class,
-
-    'permission'=> function()
-    {
+    'single' => '用户',
+    'model' => User::class,
+    'permission' => function () {
         return Auth::user()->may('manage_users');
     },
-
     'columns' => [
         'id' => [
             'title' => 'ID',
         ],
         'image_url' => [
-            'title'  => '头像',
+            'title' => '头像',
             'output' => function ($value, $model) {
                 $value = $model->present()->gravatar();
-                return empty($value) ? 'N/A' : '<img src="'.$value.'" width="80">';
+                return empty($value) ? 'N/A' : '<img src="' . $value . '" width="80">';
             },
             'sortable' => false,
         ],
         'name' => [
-            'title'    => '用户名',
+            'title' => '用户名',
             'sortable' => false,
             'output' => function ($value, $model) {
-                return '<a href="/users/'.$model->id.'" target=_blank>'.$value.'</a>';
+                return '<a href="/users/' . $model->id . '" target=_blank>' . $value . '</a>';
             },
         ],
         'real_name' => [
-            'title'    => '真实姓名',
+            'title' => '真实姓名',
             'sortable' => false,
         ],
         'github_name' => [
@@ -46,32 +42,32 @@ return [
             'title' => '回复数量'
         ],
         'register_source' => [
-            'title'  => '注册来源',
+            'title' => '注册来源',
         ],
         'email' => [
             'title' => '邮箱',
         ],
         'is_banned' => [
-            'title'  => '是否被屏蔽',
+            'title' => '是否被屏蔽',
             'output' => function ($value) {
                 return admin_enum_style_output($value, true);
             },
         ],
         'verified' => [
-            'title'  => '邮箱是否已验证',
+            'title' => '邮箱是否已验证',
             'output' => function ($value) {
                 $value = $value ? 'yes' : 'no';
                 return admin_enum_style_output($value);
             },
         ],
         'email_notify_enabled' => [
-            'title'  => '是否开启邮件提醒',
+            'title' => '是否开启邮件提醒',
             'output' => function ($value) {
                 return admin_enum_style_output($value);
             },
         ],
         'operation' => [
-            'title'  => '管理',
+            'title' => '管理',
             'output' => function ($value, $model) {
                 return $value;
             },
@@ -98,14 +94,14 @@ return [
             'title' => '微信 unionid',
         ],
         'register_source' => [
-            'title'  => '注册来源',
+            'title' => '注册来源',
         ],
         'is_banned' => [
-            'title'    => '是否被屏蔽',
-            'type'     => 'enum',
-            'options'  => [
+            'title' => '是否被屏蔽',
+            'type' => 'enum',
+            'options' => [
                 'yes' => '是',
-                'no'  => '否',
+                'no' => '否',
             ],
         ],
         'city' => [
@@ -139,12 +135,12 @@ return [
             'location' => public_path() . '/uploads/avatars/',
         ],
         'roles' => array(
-            'type'       => 'relationship',
-            'title'      => '用户组',
+            'type' => 'relationship',
+            'title' => '用户组',
             'name_field' => 'display_name',
         ),
         'register_source' => [
-            'title'  => '注册来源',
+            'title' => '注册来源',
         ],
     ],
     'filters' => [
@@ -164,24 +160,24 @@ return [
             'title' => '邮箱',
         ],
         'roles' => [
-            'type'       => 'relationship',
-            'title'      => '用户组',
+            'type' => 'relationship',
+            'title' => '用户组',
             'name_field' => 'display_name',
         ],
         'is_banned' => [
-            'title'    => '是否被屏蔽',
-            'type'     => 'enum',
-            'options'  => [
+            'title' => '是否被屏蔽',
+            'type' => 'enum',
+            'options' => [
                 'yes' => '是',
-                'no'  => '否',
+                'no' => '否',
             ],
         ],
         'email_notify_enabled' => [
-            'title'    => '是否开启邮件提醒',
-            'type'     => 'enum',
-            'options'  => [
+            'title' => '是否开启邮件提醒',
+            'type' => 'enum',
+            'options' => [
                 'yes' => '是',
-                'no'  => '否',
+                'no' => '否',
             ],
         ],
         'city' => [
@@ -200,16 +196,16 @@ return [
             'title' => '个人简介'
         ],
         'register_source' => [
-            'title'  => '注册来源',
+            'title' => '注册来源',
         ],
     ],
     'actions' => [
         'banned_user' => [
-            'title'    => '禁用',
+            'title' => '禁用',
             'messages' => array(
-                'active'  => '正在处理...',
+                'active' => '正在处理...',
                 'success' => '处理成功',
-                'error'   => '处理失败，请重新尝试',
+                'error' => '处理失败，请重新尝试',
             ),
             'permission' => function ($model) {
                 return $model->is_banned == 'no';
@@ -221,11 +217,11 @@ return [
             }
         ],
         'unbanned_user' => [
-            'title'    => '启用',
+            'title' => '启用',
             'messages' => array(
-                'active'  => '正在处理...',
+                'active' => '正在处理...',
                 'success' => '处理成功',
-                'error'   => '处理失败，请重新尝试',
+                'error' => '处理失败，请重新尝试',
             ),
             'permission' => function ($model) {
                 return $model->is_banned == 'yes';
@@ -237,11 +233,11 @@ return [
             }
         ],
         'verified_email' => [
-            'title'    => '设置邮箱为已激活',
+            'title' => '设置邮箱为已激活',
             'messages' => array(
-                'active'  => '正在处理...',
+                'active' => '正在处理...',
                 'success' => '处理成功',
-                'error'   => '处理失败，请重新尝试',
+                'error' => '处理失败，请重新尝试',
             ),
             'permission' => function ($model) {
                 return !$model->verified;
@@ -253,11 +249,11 @@ return [
             }
         ],
         'unverified_email' => [
-            'title'    => '设置邮箱为未激活',
+            'title' => '设置邮箱为未激活',
             'messages' => array(
-                'active'  => '正在处理...',
+                'active' => '正在处理...',
                 'success' => '处理成功',
-                'error'   => '处理失败，请重新尝试',
+                'error' => '处理失败，请重新尝试',
             ),
             'permission' => function ($model) {
                 return $model->verified;
@@ -269,11 +265,11 @@ return [
             }
         ],
         'email_notify_enabled' => [
-            'title'    => ' 开启邮件提醒',
+            'title' => ' 开启邮件提醒',
             'messages' => array(
-                'active'  => '正在处理...',
+                'active' => '正在处理...',
                 'success' => '处理成功',
-                'error'   => '处理失败，请重新尝试',
+                'error' => '处理失败，请重新尝试',
             ),
             'permission' => function ($model) {
                 return $model->email_notify_enabled == 'no';
@@ -285,11 +281,11 @@ return [
             }
         ],
         'email_notify_disenabled' => [
-            'title'    => '关闭邮件提醒',
+            'title' => '关闭邮件提醒',
             'messages' => array(
-                'active'  => '正在处理...',
+                'active' => '正在处理...',
                 'success' => '处理成功',
-                'error'   => '处理失败，请重新尝试',
+                'error' => '处理失败，请重新尝试',
             ),
             'permission' => function ($model) {
                 return $model->email_notify_enabled == 'yes';

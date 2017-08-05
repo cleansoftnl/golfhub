@@ -1,10 +1,9 @@
 <?php
-
 namespace App\Policies;
 
-use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\User;
 use App\Models\Topic;
+use App\Models\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TopicPolicy
 {

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
@@ -13,7 +12,6 @@ class AdminAuth
         if (!Auth::user()->may('visit_admin')) {
             return response('Unauthorized.', 401);
         }
-
         return $next($request);
     }
 }

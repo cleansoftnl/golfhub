@@ -1,8 +1,8 @@
 <?php namespace Phphub\Markdown;
 
-use Illuminate\Support\ServiceProvider;
-use Event;
 use App;
+use Event;
+use Illuminate\Support\ServiceProvider;
 
 class MarkdownServiceProvider extends ServiceProvider
 {

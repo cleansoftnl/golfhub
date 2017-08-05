@@ -1,13 +1,11 @@
 <?php
-
 use App\Models\Revision;
 
 return [
-    'title'   => '操作记录',
+    'title' => '操作记录',
     'heading' => '操作记录',
-    'single'  => '操作记录',
-    'model'   => Revision::class,
-
+    'single' => '操作记录',
+    'model' => Revision::class,
     'action_permissions' => [
         'create' => function ($model) {
             return false;
@@ -19,7 +17,6 @@ return [
             return false;
         },
     ],
-
     'columns' => [
         'id' => [
             'title' => 'ID',
@@ -28,19 +25,19 @@ return [
             'title' => '记录的 Model'
         ],
         'revisionable_id' => [
-            'title'    => '记录的 id',
+            'title' => '记录的 id',
             'sortable' => false,
         ],
         'user' => [
-            'title'        => '操作用户',
+            'title' => '操作用户',
             'relationship' => 'user',
-            'select'       => "(:table).name",
+            'select' => "(:table).name",
         ],
         'key' => [
             'title' => '操作的字段',
         ],
         'logs' => [
-            'title'  => '操作的 Log',
+            'title' => '操作的 Log',
             'output' => function ($value, $model) {
                 $html = "<div style='text-align:left;'>
                             <div style='text-indent:2em'>'old_value'&nbsp;&nbsp;&nbsp;=> '$model->old_value',</div>
@@ -53,7 +50,6 @@ return [
             'title' => '操作时间'
         ]
     ],
-
     'edit_fields' => [
         'id' => [
             'title' => 'id'
@@ -67,8 +63,8 @@ return [
             'title' => '记录的 id',
         ],
         'user' => [
-            'title'  => '操作用户',
-            'type'   => 'relationship',
+            'title' => '操作用户',
+            'type' => 'relationship',
             'select' => "(:table).name",
         ],
         'key' => [
@@ -81,6 +77,5 @@ return [
             'title' => '修改后的值'
         ],
     ],
-
     'actions' => [],
 ];

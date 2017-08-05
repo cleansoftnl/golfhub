@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Transformers;
-
 class LaunchScreenAdvertTransformer extends BaseTransformer
 {
     public function transformData($model)

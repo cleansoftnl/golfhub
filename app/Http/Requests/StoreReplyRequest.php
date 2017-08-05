@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
@@ -14,7 +13,7 @@ class StoreReplyRequest extends Request
     public function rules()
     {
         return [
-            'body'     => 'required|min:2',
+            'body' => 'required|min:2',
         ];
     }
 }

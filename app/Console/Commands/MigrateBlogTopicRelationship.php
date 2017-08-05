@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -36,15 +35,12 @@ class MigrateBlogTopicRelationship extends Command
         Topic::where('category_id', config('phphub.blog_category_id'))->chunk(200, function ($topics) {
             foreach ($topics as $topic) {
                 $blog = $topic->user->blogs()->first();
-
-                if ( ! $blog->topics()->where('topic_id', $topic->id)->exists()) {
+                if (!$blog->topics()->where('topic_id', $topic->id)->exists()) {
                     $blog->topics()->attach($topic->id);
-
-                    if ( ! $blog->authors()->where('user_id', $topic->user_id)->exists()) {
+                    if (!$blog->authors()->where('user_id', $topic->user_id)->exists()) {
                         $blog->authors()->attach($topic->user_id);
                     }
                 }
-
                 $this->info("处理完成：$topic->id");
             }
         });

@@ -1,13 +1,13 @@
 <?php namespace Phphub\Stat;
 
-use App\Models\Topic;
 use App\Models\Reply;
+use App\Models\Topic;
 use App\Models\User;
 use Cache;
 
 class Stat
 {
-    const CACHE_KEY     = 'site_stat';
+    const CACHE_KEY = 'site_stat';
     const CACHE_MINUTES = 10;
 
     public function getSiteStat()
@@ -16,7 +16,7 @@ class Stat
             $entity = new StatEntity();
             $entity->topic_count = Topic::count();
             $entity->reply_count = Reply::count();
-            $entity->user_count  = User::count();
+            $entity->user_count = User::count();
             return $entity;
         });
     }

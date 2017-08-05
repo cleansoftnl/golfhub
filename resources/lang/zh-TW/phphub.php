@@ -1,5 +1,4 @@
 <?php
-
 return [
     'Topics' => '社群',
     'Wiki' => 'Wiki',

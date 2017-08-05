@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Zizaco\Entrust\EntrustRole;
@@ -8,12 +7,14 @@ use DB;
 
 class Role extends EntrustRole
 {
+    protected $table = 'staffroles';
+
     protected $fillable = ['name', 'display_name', 'description'];
 
-    public static function boot() {
+    public static function boot()
+    {
         parent::boot();
-
-        static::saving(function($model) {
+        static::saving(function ($model) {
             Cache::forget('all_assigned_roles');
             Cache::forget('all_roles');
         });
@@ -26,9 +27,8 @@ class Role extends EntrustRole
             $role = new Role(['name' => $name]);
         }
         $role->display_name = $display_name;
-        $role->description  = $description;
+        $role->description = $description;
         $role->save();
-
         return $role;
     }
 

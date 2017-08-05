@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\ApiControllers;
 
 use Auth;
@@ -12,7 +11,6 @@ class NotificationController extends Controller
         $notifications = Auth::user()->notifications();
         Auth::user()->notification_count = 0;
         Auth::user()->save();
-
         return $this->response()->paginator($notifications, new NotificationTransformer());
     }
 

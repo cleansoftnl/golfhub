@@ -1,8 +1,5 @@
 <?php
-
 namespace App\Activities;
-
-use App\Models\Activity;
 
 class UserPublishedNewTopic extends BaseActivity
 {

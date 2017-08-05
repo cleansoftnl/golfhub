@@ -1,19 +1,19 @@
 @extends('api.layouts.default')
 
 @section('title')
-$topic->title
+  $topic->title
 @stop
 
 @section('content')
 
-    <div class="header-title">
-        <h3>{{ $topic->title }}</h3>
+  <div class="header-title">
+    <h3>{{ $topic->title }}</h3>
 
-        <p>{{ $topic->created_at }} ⋅ {{ $topic->view_count }} 阅读</p>
-    </div>
+    <p>{{ $topic->created_at }} ⋅ {{ $topic->view_count }} 阅读</p>
+  </div>
 
-    <div class="markdown-content topic-body">
-        {!! $topic->body !!}
-    </div>
+  <div class="markdown-content topic-body">
+    {!! $topic->body !!}
+  </div>
 
 @stop

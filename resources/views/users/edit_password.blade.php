@@ -1,29 +1,30 @@
 @extends('layouts.default')
 
 @section('title')
-修改密码 | @parent
+  修改密码 | @parent
 @stop
 
 @section('content')
 
-<div class="users-show">
+  <div class="users-show">
 
-  <div class="col-md-3 main-col">
-    @include('users.partials.setting_nav')
-  </div>
+    <div class="col-md-3 main-col">
+      @include('users.partials.setting_nav')
+    </div>
 
-  <div class="col-md-9  left-col ">
+    <div class="col-md-9  left-col ">
 
-    <div class="panel panel-default padding-md">
+      <div class="panel panel-default padding-md">
 
-      <div class="panel-body ">
+        <div class="panel-body ">
 
-        <h2><i class="fa fa-lock" aria-hidden="true"></i> 修改密码</h2>
-        <hr>
+          <h2><i class="fa fa-lock" aria-hidden="true"></i> 修改密码</h2>
+          <hr>
 
-        @include('layouts.partials.errors')
+          @include('layouts.partials.errors')
 
-        <form class="form-horizontal" method="POST" action="{{ route('users.update_password', $user->id) }}" accept-charset="UTF-8">
+          <form class="form-horizontal" method="POST" action="{{ route('users.update_password', $user->id) }}"
+                accept-charset="UTF-8">
             <input name="_method" type="hidden" value="PATCH">
             {!! csrf_field() !!}
 
@@ -34,7 +35,7 @@
                 <input name="email" type="hidden" value="{{ $user->email }}">
               </div>
               <div class="col-sm-4 help-block">
-                  设置密码后将可以使用此邮箱登录。
+                设置密码后将可以使用此邮箱登录。
               </div>
             </div>
 
@@ -52,19 +53,19 @@
               </div>
             </div>
 
-          <div class="form-group">
+            <div class="form-group">
               <div class="col-sm-offset-2 col-sm-6">
                 <input class="btn btn-primary" id="user-edit-submit" type="submit" value="{{ lang('Apply Changes') }}">
               </div>
             </div>
-      </form>
+          </form>
+        </div>
+
       </div>
-
     </div>
+
+
   </div>
-
-
-</div>
 
 
 

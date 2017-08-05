@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -26,7 +25,6 @@ class Reply extends Model
     public static function boot()
     {
         parent::boot();
-
         static::created(function ($topic) {
             SiteStatus::newReply();
         });

@@ -1,14 +1,12 @@
 <?php namespace Phphub\Vote;
 
+use App\Activities\UserUpvotedReply;
+use App\Activities\UserUpvotedTopic;
+use App\Models\Notification;
 use App\Models\Reply;
 use App\Models\Topic;
-use App\Models\Vote;
-use App\Models\User;
-use App\Models\Notification;
-use Carbon\Carbon;
 use Auth;
-use App\Activities\UserUpvotedTopic;
-use App\Activities\UserUpvotedReply;
+use Carbon\Carbon;
 
 class Voter
 {
@@ -59,7 +57,6 @@ class Voter
         if (Auth::id() == $reply->user_id) {
             return \Flash::warning(lang('Can not vote your feedback'));
         }
-
         $return = [];
         if ($reply->votes()->ByWhom(Auth::id())->WithType('upvote')->count()) {
             // click twice for remove upvote
@@ -79,7 +76,6 @@ class Voter
             $reply->votes()->create(['user_id' => Auth::id(), 'is' => 'upvote']);
             $reply->increment('vote_count', 1);
             $return['action_type'] = 'add';
-
             Notification::notify('reply_upvote', Auth::user(), $reply->user, $reply->topic, $reply);
             app(UserUpvotedReply::class)->generate(Auth::user(), $reply);
         }

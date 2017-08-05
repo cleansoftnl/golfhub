@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-{{ lang('Permission Deny') }}
+  {{ lang('Permission Deny') }}
 @stop
 
 @section('content')
@@ -13,12 +13,12 @@
         </div>
         <div class="panel-body">
 
-            <div class="alert alert-warning">
-              {!! lang('You dont have permission to proceed.') !!}
-            </div>
-            @if ( ! $currentUser)
-                @include('auth._login_form')
-            @endif
+          <div class="alert alert-warning">
+            {!! lang('You dont have permission to proceed.') !!}
+          </div>
+          @if ( ! $currentUser)
+            @include('auth._login_form')
+          @endif
 
         </div>
       </div>

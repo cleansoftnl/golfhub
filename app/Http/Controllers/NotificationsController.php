@@ -1,6 +1,5 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Auth;
 
 class NotificationsController extends Controller
@@ -24,7 +23,6 @@ class NotificationsController extends Controller
         $notifications = Auth::user()->notifications();
         Auth::user()->notification_count = 0;
         Auth::user()->save();
-
         return view('notifications.index', compact('notifications'));
     }
 

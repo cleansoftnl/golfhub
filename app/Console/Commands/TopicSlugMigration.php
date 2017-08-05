@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Models\Topic;
+use Illuminate\Console\Command;
 
 class TopicSlugMigration extends Command
 {

@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Transformers;
-
 class ReplyTransformer extends BaseTransformer
 {
     protected $availableIncludes = ['user'];
@@ -14,7 +12,7 @@ class ReplyTransformer extends BaseTransformer
             "user_id" => $model->user_id,
             "body" => $model->body,
             'created_at' => $model->created_at->toDateTimeString(),
-            'updated_at'=> $model->updated_at->toDateTimeString(),
+            'updated_at' => $model->updated_at->toDateTimeString(),
         ];
     }
 

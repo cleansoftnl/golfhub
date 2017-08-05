@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Providers;
 
 use Auth;
@@ -14,17 +13,13 @@ class OAuthServiceProvider extends ServiceProvider
     {
         $this->app[DingoAuth::class]->extend('oauth', function ($app) {
             $provider = new OAuth2($app['oauth2-server.authorizer']->getChecker());
-
             $provider->setUserResolver(function ($id) {
                 Auth::loginUsingId($id);
-
                 return User::findOrFail($id);
             });
-
             $provider->setClientResolver(function ($id) {
                 //TODO: Logic to return a client by their ID.
             });
-
             return $provider;
         });
     }

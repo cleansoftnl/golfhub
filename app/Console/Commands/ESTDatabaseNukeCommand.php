@@ -16,11 +16,8 @@ class ESTDatabaseNukeCommand extends BaseCommand
     public function handle()
     {
         $this->productionCheckHint();
-
         $colname = 'Tables_in_' . env('DB_DATABASE');
-
         $tables = DB::select('SHOW TABLES');
-
         foreach ($tables as $table) {
             $droplist[] = $table->$colname;
             $this->info('Will delete table - ' . $table->$colname);
@@ -30,7 +27,6 @@ class ESTDatabaseNukeCommand extends BaseCommand
             return;
         }
         $droplist = implode(',', $droplist);
-
         DB::beginTransaction();
         //turn off referential integrity
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
@@ -38,7 +34,6 @@ class ESTDatabaseNukeCommand extends BaseCommand
         //turn referential integrity back on
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
         DB::commit();
-
-        $this->comment("All the tables have been deleted".PHP_EOL);
+        $this->comment("All the tables have been deleted" . PHP_EOL);
     }
 }

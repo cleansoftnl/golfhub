@@ -65,7 +65,6 @@ class NotificationPresenter extends Presenter
     public function message()
     {
         $message = $this->fromUser->name . ' ⋅ ' . $this->lableUp();
-
         if (count($this->topic)) {
             $message .= ' ⋅ ' . $this->topic->title;
         }

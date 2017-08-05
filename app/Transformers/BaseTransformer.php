@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Transformers;
 
 use Illuminate\Database\Eloquent\Model;
@@ -10,10 +9,9 @@ abstract class BaseTransformer extends TransformerAbstract
     public function transform(Model $model)
     {
         $data = $this->transformData($model);
-
         // 转换 null 字段为空字符串
         foreach (array_keys($data) as $key) {
-            if (! isset($data[$key])) {
+            if (!isset($data[$key])) {
                 $data[$key] = '';
                 continue;
             }
@@ -21,7 +19,6 @@ abstract class BaseTransformer extends TransformerAbstract
                 $data[$key] = '';
             }
         }
-
         return $data;
     }
 

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Jobs;
 
 use App\Jobs\Job;
@@ -23,7 +22,6 @@ class SendNotifyMail extends Job implements SelfHandling, ShouldQueue
     protected $body;
     protected $topic;
     protected $reply;
-
 
     public function __construct($type, User $fromUser, User $toUser, Topic $topic = null, Reply $reply = null, $body = null)
     {

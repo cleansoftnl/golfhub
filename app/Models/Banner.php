@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -16,10 +15,10 @@ class Banner extends Model
     ];
     use SoftDeletes;
 
-    public static function boot() {
+    public static function boot()
+    {
         parent::boot();
-
-        static::saving(function($article) {
+        static::saving(function ($article) {
             Cache::forget('phphub_banner');
         });
     }
@@ -30,8 +29,7 @@ class Banner extends Model
             $parser_url = explode('/', $file_name);
             $file_name = end($parser_url);
         }
-
-        $this->attributes['image_url'] = 'uploads/banners/'.$file_name;
+        $this->attributes['image_url'] = 'uploads/banners/' . $file_name;
     }
 
     public function getImageUrlAttribute($file_name)
@@ -39,24 +37,21 @@ class Banner extends Model
         if (starts_with($file_name, 'http')) {
             return $file_name;
         }
-
         return cdn($file_name);
     }
 
     public static function allByPosition()
     {
-        $data = Cache::remember('phphub_banner', 60, function(){
+        $data = Cache::remember('phphub_banner', 60, function () {
             $return = [];
-            $data   = Banner::orderBy('position', 'DESC')
-                            ->orderBy('order', 'ASC')
-                            ->get();
-
+            $data = Banner::orderBy('position', 'DESC')
+                ->orderBy('order', 'ASC')
+                ->get();
             foreach ($data as $banner) {
                 $return[$banner->position][] = $banner;
             }
             return $return;
         });
-
         return $data;
     }
 }

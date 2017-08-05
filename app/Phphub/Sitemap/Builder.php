@@ -1,7 +1,7 @@
 <?php namespace Phphub\Sitemap;
 
-use Roumen\Sitemap\Sitemap;
 use Illuminate\Config\Repository;
+use Roumen\Sitemap\Sitemap;
 
 class Builder
 {
@@ -36,9 +36,9 @@ class Builder
     /**
      * Create a new sitemap builder instance.
      *
-     * @param  \Roumen\Sitemap\Sitemap                $sitemap
-     * @param  \Phphub\Sitemap\DataProvider  $provider
-     * @param  \Illuminate\Config\Repository          $config
+     * @param  \Roumen\Sitemap\Sitemap $sitemap
+     * @param  \Phphub\Sitemap\DataProvider $provider
+     * @param  \Illuminate\Config\Repository $config
      * @return void
      */
     public function __construct(Sitemap $sitemap, DataProvider $provider, Repository $config)
@@ -51,7 +51,7 @@ class Builder
     /**
      * Set the type of sitemap to build.
      *
-     * @param  string  $type
+     * @param  string $type
      * @return void
      */
     public function setType($type)
@@ -68,12 +68,10 @@ class Builder
     {
         if (!$this->sitemap->isCached()) {
             $this->addStaticPages();
-
             foreach ($this->getTypes()['custom'] as $type => $config) {
                 $this->addDynamicData($type, $config);
             }
         }
-
         return $this->sitemap->render($this->type);
     }
 
@@ -85,7 +83,6 @@ class Builder
     protected function addStaticPages()
     {
         $pages = $this->provider->getStaticPages();
-
         foreach ($pages as $page) {
             $this->sitemap->add($page['url'], null, $page['priority'], $page['freq']);
         }
@@ -104,16 +101,15 @@ class Builder
     /**
      * Add the dynamic data of the given type to the sitemap.
      *
-     * @param  string  $type
-     * @param  array   $config
+     * @param  string $type
+     * @param  array $config
      * @return void
      */
     protected function addDynamicData($type, $config)
     {
         foreach ($this->getItems($type) as $item) {
-            $url     = $this->getItemUrl($item, $type);
+            $url = $this->getItemUrl($item, $type);
             $lastMod = $item->{$config['lastMod']};
-
             $this->sitemap->add($url, $lastMod, $config['priority'], $config['freq']);
         }
     }
@@ -121,7 +117,7 @@ class Builder
     /**
      * Get the dynamic items from the data provider.
      *
-     * @param  string  $type
+     * @param  string $type
      * @return \Illuminate\Support\Collection
      */
     protected function getItems($type)
@@ -133,7 +129,7 @@ class Builder
     /**
      * Get the name of the data method.
      *
-     * @param  string  $type
+     * @param  string $type
      * @return string
      */
     protected function getDataMethodName($type)
@@ -144,21 +140,20 @@ class Builder
     /**
      * Get the url of the given item.
      *
-     * @param  mixed   $item
-     * @param  string  $type
+     * @param  mixed $item
+     * @param  string $type
      * @return string
      */
     protected function getItemUrl($item, $type)
     {
         $method = $this->getUrlMethodName($type);
-
         return $this->provider->$method($item);
     }
 
     /**
      * Get the name of the url method.
      *
-     * @param  string  $type
+     * @param  string $type
      * @return string
      */
     protected function getUrlMethodName($type)

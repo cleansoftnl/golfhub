@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -19,14 +18,17 @@ class SiteStatus extends Model
                 break;
         }
     }
+
     public static function newTopic()
     {
         self::collect('new_topic');
     }
+
     public static function newReply()
     {
         self::collect('new_reply');
     }
+
     public static function newImage()
     {
         self::collect('new_image');
@@ -41,12 +43,10 @@ class SiteStatus extends Model
     public static function collect($subject)
     {
         $today = Carbon::now()->toDateString();
-
         if (!$todayStatus = SiteStatus::where('day', $today)->first()) {
             $todayStatus = new SiteStatus;
             $todayStatus->day = $today;
         }
-
         switch ($subject) {
             case 'new_user':
                 $todayStatus->register_count += 1;
@@ -67,7 +67,6 @@ class SiteStatus extends Model
                 $todayStatus->wechat_registered_count += 1;
                 break;
         }
-
         $todayStatus->save();
     }
 }

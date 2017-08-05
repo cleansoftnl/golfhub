@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Providers;
 
 use Illuminate\Routing\Router;
@@ -21,20 +20,19 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define your route model bindings, pattern filters, etc.
      *
-     * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Routing\Router $router
      * @return void
      */
     public function boot(Router $router)
     {
         $router->pattern('id', '[0-9]+');
-
         parent::boot($router);
     }
 
     /**
      * Define the routes for the application.
      *
-     * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Routing\Router $router
      * @return void
      */
     public function map(Router $router)
@@ -58,7 +56,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         $api_router = app('Dingo\Api\Routing\Router');
         $api_router->group([
-            'version'   => config('api.prefix'),
+            'version' => config('api.prefix'),
             'namespace' => $this->api_namespace,
         ], function ($router) {
             require base_path('routes/api.php');

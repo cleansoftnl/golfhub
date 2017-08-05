@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 
 class PHPHubCreateRevisionsTable extends Migration
@@ -20,7 +19,6 @@ class PHPHubCreateRevisionsTable extends Migration
             $table->text('old_value')->nullable();
             $table->text('new_value')->nullable();
             $table->timestamps();
-
             $table->index(array('revisionable_id', 'revisionable_type'));
         });
     }

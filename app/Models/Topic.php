@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -35,7 +34,7 @@ class Topic extends Model
     protected $searchable = [
         'columns' => [
             'topics.title' => 10,
-            'topics.body'  => 5,
+            'topics.body' => 5,
         ]
     ];
 
@@ -63,11 +62,9 @@ class Topic extends Model
     public static function boot()
     {
         parent::boot();
-
         static::created(function ($topic) {
             SiteStatus::newTopic();
         });
-
         static::deleted(function ($topic) {
             foreach ($topic->replies as $reply) {
                 app(UserRepliedTopic::class)->remove($reply->user, $reply);
@@ -88,10 +85,10 @@ class Topic extends Model
     public function votedUsers()
     {
         $user_ids = Vote::where('votable_type', Topic::class)
-                        ->where('votable_id', $this->id)
-                        ->where('is', 'upvote')
-                        ->lists('user_id')
-                        ->toArray();
+            ->where('votable_id', $this->id)
+            ->where('is', 'upvote')
+            ->lists('user_id')
+            ->toArray();
         return User::whereIn('id', $user_ids)->get();
     }
 
@@ -133,7 +130,6 @@ class Topic extends Model
     public function generateLastReplyUserInfo()
     {
         $lastReply = $this->replies()->recent()->first();
-
         $this->last_reply_user_id = $lastReply ? $lastReply->user_id : 0;
         $this->save();
     }
@@ -144,9 +140,7 @@ class Topic extends Model
         // Default display the latest reply
         $latest_page = is_null(\Input::get($pageName)) ? ceil($this->reply_count / $limit) : 1;
         $query = $this->replies()->with('user');
-
         $query = ($order == 'vote_count') ? $query->orderBy('vote_count', 'desc') : $query->orderBy('created_at', 'asc');
-
         return $query->paginate($limit, ['*'], $pageName, $latest_page);
     }
 
@@ -154,10 +148,10 @@ class Topic extends Model
     {
         $data = Cache::remember('phphub_hot_topics_' . $this->category_id, 30, function () {
             return Topic::where('category_id', '=', $this->category_id)
-                            ->recent()
-                            ->with('user')
-                            ->take(3)
-                            ->get();
+                ->recent()
+                ->with('user')
+                ->take(3)
+                ->get();
         });
         return $data;
     }

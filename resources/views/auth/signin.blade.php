@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-用户登录 | @parent
+  用户登录 | @parent
 @stop
 
 @section('content')
@@ -13,7 +13,7 @@
         </div>
         <div class="panel-body">
 
-            @include('auth._login_form')
+          @include('auth._login_form')
 
         </div>
       </div>

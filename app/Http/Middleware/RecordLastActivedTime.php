@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
@@ -13,7 +12,6 @@ class RecordLastActivedTime
         if (Auth::check() && Request::is('notifications/count') == false) {
             Auth::user()->recordLastActivedAt();
         }
-
         return $next($request);
     }
 }

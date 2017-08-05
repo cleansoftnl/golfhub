@@ -1,5 +1,4 @@
 <?php
-
 namespace Phphub\Handler;
 
 use Spatie\Backup\Notifications\BaseSender;
@@ -16,11 +15,10 @@ class BackupHandler extends BaseSender
 
     public function send()
     {
-        $data                   = [];
-        $data['text']           = $this->subject;
-        $data['color']          = '#E65128';
-        $data['attachments'][]  = ['text' => $this->message];
-
+        $data = [];
+        $data['text'] = $this->subject;
+        $data['color'] = '#E65128';
+        $data['attachments'][] = ['text' => $this->message];
         $this->client->request('POST', config('services.bearychat.hook'), [
             'form_params' => ['payload' => json_encode($data)]
         ]);

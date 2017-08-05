@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Cmgmyr\Messenger\Models\Participant as MessengerParticipant;

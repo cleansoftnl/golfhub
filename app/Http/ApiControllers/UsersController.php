@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\ApiControllers;
 
 use Auth;
@@ -30,16 +29,14 @@ class UsersController extends Controller
     public function update($id, UpdateUserRequest $request)
     {
         $user = User::findOrFail($id);
-
         if (Gate::denies('update', $user)) {
             throw new AccessDeniedHttpException();
         }
-
         try {
             $user = $request->performUpdate($user);
             return $this->response()->item($user, new UserTransformer());
         } catch (ValidatorException $e) {
-            throw new UpdateResourceFailedException('无法更新用户信息：'. output_msb($e->getMessageBag()));
+            throw new UpdateResourceFailedException('无法更新用户信息：' . output_msb($e->getMessageBag()));
         }
     }
 }

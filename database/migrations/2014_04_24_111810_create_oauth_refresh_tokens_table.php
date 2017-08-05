@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of OAuth 2.0 Laravel.
  *
@@ -8,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -31,12 +29,10 @@ class CreateOauthRefreshTokensTable extends Migration
             $table->string('id', 40)->unique();
             $table->string('access_token_id', 40)->primary();
             $table->integer('expire_time');
-
             $table->timestamps();
-
             $table->foreign('access_token_id')
-                  ->references('id')->on('oauth_access_tokens')
-                  ->onDelete('cascade');
+                ->references('id')->on('oauth_access_tokens')
+                ->onDelete('cascade');
         });
     }
 
@@ -50,7 +46,6 @@ class CreateOauthRefreshTokensTable extends Migration
         Schema::table('oauth_refresh_tokens', function (Blueprint $table) {
             $table->dropForeign('oauth_refresh_tokens_access_token_id_foreign');
         });
-
         Schema::drop('oauth_refresh_tokens');
     }
 }

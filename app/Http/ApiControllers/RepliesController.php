@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\ApiControllers;
 
 use Dingo\Api\Exception\StoreResourceFailedException;
@@ -33,7 +32,6 @@ class RepliesController extends Controller implements CreatorListener
         if (!Auth::user()->verified) {
             throw new StoreResourceFailedException('创建评论失败，请验证用户邮箱');
         }
-
         return app('Phphub\Creators\ReplyCreator')->create($this, $request->except('_token'));
     }
 
@@ -41,7 +39,6 @@ class RepliesController extends Controller implements CreatorListener
     {
         $topic = Topic::find($topic_id);
         $replies = $topic->getRepliesWithLimit(config('phphub.replies_perpage'));
-
         return view('api.replies.index', compact('replies'));
     }
 

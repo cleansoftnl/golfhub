@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Http\ApiControllers;
 
-use App\Transformers\CategoryTransformer;
 use App\Models\Category;
+use App\Transformers\CategoryTransformer;
 
 class CategoriesController extends Controller
 {

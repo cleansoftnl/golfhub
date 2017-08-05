@@ -28,17 +28,17 @@ function get_user_static_domain()
 
 function lang($text, $parameters = [])
 {
-    return str_replace('phphub.', '', trans('phphub.'.$text, $parameters));
+    return str_replace('phphub.', '', trans('phphub.' . $text, $parameters));
 }
 
 function admin_link($title, $path, $id = '')
 {
-    return '<a href="'.admin_url($path, $id).'" target="_blank">' . $title . '</a>';
+    return '<a href="' . admin_url($path, $id) . '" target="_blank">' . $title . '</a>';
 }
 
 function admin_url($path, $id = '')
 {
-    return env('APP_URL') . "/admin/$path" . ($id ? '/'.$id : '');
+    return env('APP_URL') . "/admin/$path" . ($id ? '/' . $id : '');
 }
 
 function admin_enum_style_output($value, $reverse = false)
@@ -48,8 +48,7 @@ function admin_enum_style_output($value, $reverse = false)
     } else {
         $class = ($value === true || $value == 'yes') ? 'success' : 'danger';
     }
-
-    return '<span class="label bg-'.$class.'">'.$value.'</span>';
+    return '<span class="label bg-' . $class . '">' . $value . '</span>';
 }
 
 function navViewActive($anchor)
@@ -59,7 +58,7 @@ function navViewActive($anchor)
 
 function model_link($title, $model, $id)
 {
-    return '<a href="'.model_url($model, $id).'" target="_blank">' . $title . '</a>';
+    return '<a href="' . model_url($model, $id) . '" target="_blank">' . $title . '</a>';
 }
 
 function model_url($model, $id)
@@ -71,8 +70,7 @@ function per_page($default = null)
 {
     $max_per_page = config('api.max_per_page');
     $per_page = (Input::get('per_page') ?: $default) ?: config('api.default_per_page');
-
-    return (int) ($per_page < $max_per_page ? $per_page : $max_per_page);
+    return (int)($per_page < $max_per_page ? $per_page : $max_per_page);
 }
 
 /**
@@ -80,17 +78,18 @@ function per_page($default = null)
  */
 function schema_url($path, $parameters = [])
 {
-    $query = empty($parameters) ? '' : '?'.http_build_query($parameters);
-
-    return strtolower(config('app.name')).'://'.trim($path, '/').$query;
+    $query = empty($parameters) ? '' : '?' . http_build_query($parameters);
+    return strtolower(config('app.name')) . '://' . trim($path, '/') . $query;
 }
 
 // formartted Illuminate\Support\MessageBag
-function output_msb(\Illuminate\Support\MessageBag $messageBag){
+function output_msb(\Illuminate\Support\MessageBag $messageBag)
+{
     return implode(", ", $messageBag->all());
 }
 
-function get_platform(){
+function get_platform()
+{
     return Request::header('X-Client-Platform');
 }
 
@@ -110,18 +109,16 @@ function img_crop($filepath, $width = 0, $height = 0, $mode = 1)
     return $filepath . "?imageView2/$mode/w/{$width}/h/{$height}";
 }
 
-
 function setting($key, $default = '')
 {
-    if ( ! config()->get('settings')) {
+    if (!config()->get('settings')) {
         // Decode the settings to an associative array.
         $site_settings = json_decode(file_get_contents(storage_path('/administrator_settings/site.json')), true);
         // Add the site settings to the application configuration
         config()->set('settings', $site_settings);
     }
-
     // Access a setting, supplying a default value
-    return config()->get('settings.'.$key, $default);
+    return config()->get('settings.' . $key, $default);
 }
 
 function is_route($name)
@@ -145,7 +142,6 @@ function get_images_from_html($html)
 {
     $doc = new DOMDocument();
     @$doc->loadHTML($html);
-
     $img_tags = $doc->getElementsByTagName('img');
     $result = [];
     foreach ($img_tags as $img) {
@@ -160,8 +156,8 @@ function slug_trans($word)
 }
 
 // Shortens a number and attaches K, M, B, etc. accordingly
-function number_shorten($number, $precision = 1, $divisors = null) {
-
+function number_shorten($number, $precision = 1, $divisors = null)
+{
     if ($number < 1000) {
         return $number;
     }
@@ -177,7 +173,6 @@ function number_shorten($number, $precision = 1, $divisors = null) {
             pow(1000, 6) => 'Qi', // Quintillion
         );
     }
-
     // Loop through each $divisor and find the
     // lowest amount that matches
     foreach ($divisors as $divisor => $shorthand) {
@@ -186,7 +181,6 @@ function number_shorten($number, $precision = 1, $divisors = null) {
             break;
         }
     }
-
     // We found our match, or there were no matches.
     // Either way, use the last defined value for $divisor.
     return number_format($number / $divisor, $precision) . $shorthand;

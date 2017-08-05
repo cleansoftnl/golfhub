@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
@@ -14,7 +13,6 @@ class CheckUserIsItBanned
         if (Auth::check() && Auth::user()->is_banned == 'yes' && Request::is('user-banned') == false) {
             return redirect('/user-banned');
         }
-
         return $next($request);
     }
 }

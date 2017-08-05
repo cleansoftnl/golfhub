@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of OAuth 2.0 Laravel.
  *
@@ -8,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -31,19 +29,15 @@ class CreateOauthSessionScopesTable extends Migration
             $table->increments('id');
             $table->integer('session_id')->unsigned();
             $table->string('scope_id', 40);
-
             $table->timestamps();
-
             $table->index('session_id');
             $table->index('scope_id');
-
             $table->foreign('session_id')
-                  ->references('id')->on('oauth_sessions')
-                  ->onDelete('cascade');
-
+                ->references('id')->on('oauth_sessions')
+                ->onDelete('cascade');
             $table->foreign('scope_id')
-                  ->references('id')->on('oauth_scopes')
-                  ->onDelete('cascade');
+                ->references('id')->on('oauth_scopes')
+                ->onDelete('cascade');
         });
     }
 

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -24,7 +23,6 @@ class CalculateHotTopic extends Command
         parent::__construct();
     }
 
-
     public function handle()
     {
         HotTopic::query()->delete();
@@ -36,16 +34,14 @@ class CalculateHotTopic extends Command
         $topics = Topic::where('created_at', '>=', Carbon::now()->subDays(self::PASS_DAYS))->get();
         foreach ($topics as $topic) {
             $data = [];
-            $data['topic_id']    = $topic->id;
+            $data['topic_id'] = $topic->id;
             $data['reply_count'] = Reply::where('topic_id', $topic->id)->count();
-            $data['vote_count']  = Vote::where('votable_type', 'App\Models\Topic')
-                                       ->where('votable_id', $topic->id)
-                                       ->where('is', 'upvote')
-                                       ->count();
-
+            $data['vote_count'] = Vote::where('votable_type', 'App\Models\Topic')
+                ->where('votable_id', $topic->id)
+                ->where('is', 'upvote')
+                ->count();
             $data['weight'] = $data['vote_count'] * self::VOTE_TOPIC_WEIGHT
-                            + $data['reply_count'] * self::REPLY_TOPIC_WEIGHT;
-
+                + $data['reply_count'] * self::REPLY_TOPIC_WEIGHT;
             HotTopic::updateOrCreate(['topic_id' => $topic->id], $data);
         }
     }

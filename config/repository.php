@@ -7,7 +7,6 @@
 |
 */
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Repository Pagination Limit Default
@@ -17,7 +16,6 @@ return [
     'pagination' => [
         'limit' => 15
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Fractal Presenter Config
@@ -30,20 +28,19 @@ return [
     JsonApiSerializer
 
     */
-    'fractal'    => [
-        'params'     => [
+    'fractal' => [
+        'params' => [
             'include' => 'include'
         ],
         'serializer' => League\Fractal\Serializer\DataArraySerializer::class
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Cache Config
     |--------------------------------------------------------------------------
     |
     */
-    'cache'      => [
+    'cache' => [
         /*
          |--------------------------------------------------------------------------
          | Cache Status
@@ -52,8 +49,7 @@ return [
          | Enable or disable cache
          |
          */
-        'enabled'    => true,
-
+        'enabled' => true,
         /*
          |--------------------------------------------------------------------------
          | Cache Minutes
@@ -62,8 +58,7 @@ return [
          | Time of expiration cache
          |
          */
-        'minutes'    => 30,
-
+        'minutes' => 30,
         /*
          |--------------------------------------------------------------------------
          | Cache Repository
@@ -73,7 +68,6 @@ return [
          |
          */
         'repository' => 'cache',
-
         /*
           |--------------------------------------------------------------------------
           | Cache Clean Listener
@@ -82,8 +76,7 @@ return [
           |
           |
           */
-        'clean'      => [
-
+        'clean' => [
             /*
               |--------------------------------------------------------------------------
               | Enable clear cache on repository changes
@@ -91,7 +84,6 @@ return [
               |
               */
             'enabled' => true,
-
             /*
               |--------------------------------------------------------------------------
               | Actions in Repository
@@ -102,14 +94,13 @@ return [
               | delete : Clear Cache on delete Entry in repository
               |
               */
-            'on'      => [
+            'on' => [
                 'create' => true,
                 'update' => true,
                 'delete' => true,
             ]
         ],
-
-        'params'     => [
+        'params' => [
             /*
             |--------------------------------------------------------------------------
             | Skip Cache Params
@@ -121,7 +112,6 @@ return [
             */
             'skipCache' => 'skipCache'
         ],
-
         /*
        |--------------------------------------------------------------------------
        | Methods Allowed
@@ -137,12 +127,11 @@ return [
        |
        | 'except'  =>['find'],
        */
-        'allowed'    => [
-            'only'   => null,
+        'allowed' => [
+            'only' => null,
             'except' => null
         ]
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Criteria Config
@@ -151,7 +140,7 @@ return [
     | Settings of request parameters names that will be used by Criteria
     |
     */
-    'criteria'   => [
+    'criteria' => [
         /*
         |--------------------------------------------------------------------------
         | Accepted Conditions
@@ -203,13 +192,13 @@ return [
         |   http://prettus.local/?search=lorem&orderBy=id&sortedBy=desc
         |
         */
-        'params'             => [
-            'search'       => 'search',
+        'params' => [
+            'search' => 'search',
             'searchFields' => 'searchFields',
-            'filter'       => 'filter',
-            'orderBy'      => 'orderBy',
-            'sortedBy'     => 'sortedBy',
-            'with'         => 'with'
+            'filter' => 'filter',
+            'orderBy' => 'orderBy',
+            'sortedBy' => 'sortedBy',
+            'with' => 'with'
         ]
     ],
     /*
@@ -218,19 +207,19 @@ return [
     |--------------------------------------------------------------------------
     |
     */
-    'generator'  => [
-        'basePath'      => app_path(),
+    'generator' => [
+        'basePath' => app_path(),
         'rootNamespace' => 'App\\',
-        'paths'         => [
-            'models'       => 'Entities',
+        'paths' => [
+            'models' => 'Entities',
             'repositories' => 'Repositories',
-            'interfaces'   => 'Repositories',
+            'interfaces' => 'Repositories',
             'transformers' => 'Transformers',
-            'presenters'   => 'Presenters',
-            'validators'   => 'Validators',
-            'controllers'  => 'Http/Controllers',
-            'provider'     => 'RepositoryServiceProvider',
-            'criteria'     => 'Criteria',
+            'presenters' => 'Presenters',
+            'validators' => 'Validators',
+            'controllers' => 'Http/Controllers',
+            'provider' => 'RepositoryServiceProvider',
+            'criteria' => 'Criteria',
             'stubsOverridePath' => app_path()
         ]
     ]

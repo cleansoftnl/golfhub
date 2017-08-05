@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of OAuth 2.0 Laravel.
  *
@@ -8,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -31,19 +29,15 @@ class CreateOauthAuthCodeScopesTable extends Migration
             $table->increments('id');
             $table->string('auth_code_id', 40);
             $table->string('scope_id', 40);
-
             $table->timestamps();
-
             $table->index('auth_code_id');
             $table->index('scope_id');
-
             $table->foreign('auth_code_id')
-                  ->references('id')->on('oauth_auth_codes')
-                  ->onDelete('cascade');
-
+                ->references('id')->on('oauth_auth_codes')
+                ->onDelete('cascade');
             $table->foreign('scope_id')
-                  ->references('id')->on('oauth_scopes')
-                  ->onDelete('cascade');
+                ->references('id')->on('oauth_scopes')
+                ->onDelete('cascade');
         });
     }
 

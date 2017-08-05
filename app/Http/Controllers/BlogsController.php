@@ -1,16 +1,12 @@
 <?php namespace App\Http\Controllers;
 
+use App\Activities\UserSubscribedBlog;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
+use App\Http\Requests\BlogStoreRequest;
 use App\Models\Blog;
-use App\Models\User;
-use App\Models\Topic;
-use Illuminate\Http\Request;
 use Auth;
 use Flash;
-use App\Http\Requests\BlogStoreRequest;
-use App\Activities\UserSubscribedBlog;
+use Illuminate\Http\Request;
 
 class BlogsController extends Controller
 {
@@ -26,23 +22,19 @@ class BlogsController extends Controller
         return view('blogs.create_edit', compact('user', 'blog'));
     }
 
-	public function show($name)
-	{
+    public function show($name)
+    {
         $blog = Blog::where('slug', $name)->firstOrFail();
-        $user   = $blog->user;
+        $user = $blog->user;
         $topics = $blog->topics()->onlyArticle()->withoutDraft()->recent()->paginate(28);
-
         $authors = $blog->authors;
-
         $blog->update(['article_count' => $topics->total()]);
+        return view('blogs.show', compact('user', 'blog', 'topics', 'authors'));
+    }
 
-        return view('blogs.show', compact('user','blog', 'topics', 'authors'));
-	}
-
-	public function store(BlogStoreRequest $request)
-	{
-		$blog = new Blog();
-
+    public function store(BlogStoreRequest $request)
+    {
+        $blog = new Blog();
         try {
             $request->performUpdate($blog);
             Flash::success(lang('Operation succeeded.'));
@@ -50,21 +42,20 @@ class BlogsController extends Controller
             Flash::error(lang($exception->getMessage()));
             return redirect()->back()->withInput($request->input());
         }
+        return redirect()->route('blogs.edit', $blog->id);
+    }
 
-		return redirect()->route('blogs.edit', $blog->id);
-	}
-
-	public function edit($id)
-	{
+    public function edit($id)
+    {
         $blog = Blog::findOrFail($id);
         $this->authorize('update', $blog);
         $user = Auth::user();
-		return view('blogs.create_edit', compact('blog', 'user'));
-	}
+        return view('blogs.create_edit', compact('blog', 'user'));
+    }
 
-	public function update(BlogStoreRequest $request, $id)
-	{
-		$blog = Blog::findOrFail($id);
+    public function update(BlogStoreRequest $request, $id)
+    {
+        $blog = Blog::findOrFail($id);
         $this->authorize('update', $blog);
         try {
             $request->performUpdate($blog);
@@ -73,9 +64,8 @@ class BlogsController extends Controller
             Flash::error(lang($exception->getMessage()));
             return redirect()->back()->withInput($request->input());
         }
-
-		return redirect()->route('blogs.edit', $blog->id);
-	}
+        return redirect()->route('blogs.edit', $blog->id);
+    }
 
     public function subscribe($id)
     {

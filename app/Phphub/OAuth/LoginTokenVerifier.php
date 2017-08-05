@@ -1,5 +1,4 @@
 <?php
-
 namespace Phphub\OAuth;
 
 use App\Models\User;
@@ -11,11 +10,9 @@ class LoginTokenVerifier
         $user = User::query()
             ->where(['id' => $user_id])
             ->first(['id', 'login_token']);
-
         if (count($user) && $user->login_token === $login_token) {
             return $user->id;
         }
-
         return false;
     }
 }

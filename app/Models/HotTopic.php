@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -16,14 +15,13 @@ class HotTopic extends Model
 
     public static function fetchAll()
     {
-        $data = Cache::remember('phphub_hot_topics', 30, function(){
+        $data = Cache::remember('phphub_hot_topics', 30, function () {
             return self::orderBy('weight', 'DESC')
-                             ->with('topic','topic.user')
-                             ->limit(10)
-                             ->get()
-                             ->pluck('topic');
+                ->with('topic', 'topic.user')
+                ->limit(10)
+                ->get()
+                ->pluck('topic');
         });
-
         return $data;
     }
 }

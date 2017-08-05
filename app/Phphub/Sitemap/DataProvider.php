@@ -1,8 +1,8 @@
 <?php namespace Phphub\Sitemap;
 
-use Illuminate\Routing\UrlGenerator;
-use App\Models\Topic;
 use App\Models\Category;
+use App\Models\Topic;
+use Illuminate\Routing\UrlGenerator;
 
 class DataProvider
 {
@@ -30,16 +30,16 @@ class DataProvider
     /**
      * Create a new data provider instance.
      *
-     * @param  \Illuminate\Routing\UrlGenerator  $url
-     * @param  \Topic                            $topics
-     * @param  \Category                         $categories
+     * @param  \Illuminate\Routing\UrlGenerator $url
+     * @param  \Topic $topics
+     * @param  \Category $categories
      * @return void
      */
     public function __construct(UrlGenerator $url, Topic $topics, Category $categories)
     {
-        $this->url    = $url;
+        $this->url = $url;
         $this->topics = $topics;
-        $this->categories  = $categories;
+        $this->categories = $categories;
     }
 
     /**
@@ -55,7 +55,7 @@ class DataProvider
     /**
      * Get the url for the given topic.
      *
-     * @param  \Topic  $topic
+     * @param  \Topic $topic
      * @return string
      */
     public function getTopicUrl($topic)
@@ -92,27 +92,24 @@ class DataProvider
     public function getStaticPages()
     {
         $static = [];
-
         $static[] = $this->getPage('home', 'daily', '1.0');
         $static[] = $this->getPage('topics.index', 'daily', '1.0');
         $static[] = $this->getPage('users.index', 'weekly', '0.8');
         $static[] = $this->getPage('about', 'monthly', '0.7');
-
         return $static;
     }
 
     /**
      * Get the data for the given page.
      *
-     * @param  string  $route
-     * @param  string  $freq
-     * @param  string  $priority
+     * @param  string $route
+     * @param  string $freq
+     * @param  string $priority
      * @return array
      */
     protected function getPage($route, $freq, $priority)
     {
         $url = $this->url->route($route);
-
         return compact('url', 'freq', 'priority');
     }
 }

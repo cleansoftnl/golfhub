@@ -1,5 +1,4 @@
 <?php
-
 return [
     'Topics' => '社区',
     'Wiki' => 'Wiki',
@@ -81,7 +80,6 @@ return [
     'This kind of topic is not allowed.' => '以下类型的信息会污染我们的社区',
     'We can benefit from it.' => '在高质量优秀社区的我们',
     'Total Reply Count' => '回复数量',
-
     'GitHub Name likes: summerblue' => '如：summerblue',
     'Email example: name@website.com' => '如：name@website.com',
     'Real Name example: 李小明' => '如：李小明',
@@ -103,7 +101,7 @@ return [
     'Are you sure want to unblock this User?' => '您确定要解封该用户吗？',
     'Unblock User' => '解封用户',
     'Block User' => '封停用户',
-    'This user is banned!'  => '该用户已被封停',
+    'This user is banned!' => '该用户已被封停',
     'Basic Info' => '个人信息',
     'Favorites' => '收藏',
     'Replies' => '回复',
@@ -150,10 +148,8 @@ return [
     'Stick' => '置顶',
     'Recommended' => '推荐',
     'Refresh cache success' => '刷新缓存成功',
-
     'Sites' => '酷站',
     'Recommended Sites' => '推荐站点',
-
     'Append' => '附言',
     'Append Content' => '添加附言',
     'append_notice' => '附加内容, 使用此功能的话, 会给所有参加过讨论的人发送提醒.',
@@ -173,7 +169,6 @@ return [
     'Unfollow' => '取消关注',
     'Active Users' => '活跃用户',
     'Hot Topics' => '热门话题',
-
     'GitHub Info' => 'GitHub 信息',
     'User Role' => '用户组',
     'Change Avatar' => '修改头像',
@@ -189,7 +184,6 @@ return [
     'Already binded to this account' => '已完成此账号绑定',
     'Not allow to change register binding account' => '注册时绑定的账号不允许修改',
     'Setup multiple Bindings allow you to login to the same account with different binding site account.' => '绑定多个第三方账号，允许你使用任意一个第三方账号登录同一个 Laravel China 账号。',
-
     'Photo Upload' => '上传头像',
     'Selected image:' => '请选择图片：',
     'Uploading image...' => '图片上传中...',
@@ -210,7 +204,7 @@ return [
     'Email Verification' => '验证邮箱',
     'Resend Verification Mail' => '重新发送验证邮件',
     'The mail send failed! Please try again in 60 seconds.' => '邮件发送失败，你执行此操作过于频繁，请于 :seconds 秒后重试',
-    'The mail send failed! Please fill in your email address first.' => '邮箱不存在，请点击 <a href="' .url(route('users.edit', \Auth::id())). '" target="_blank">此处</a> 编辑你的邮箱！',
+    'The mail send failed! Please fill in your email address first.' => '邮箱不存在，请点击 <a href="' . url(route('users.edit', \Auth::id())) . '" target="_blank">此处</a> 编辑你的邮箱！',
     'The mail sent successfully.' => '验证邮件发送成功！请注意查收哦 ^_^',
     'You need to verify the email for commenting.' => '需要验证邮箱后才能发表评论.',
     'Please verify your email address' => '请激活你的邮箱',

@@ -14,7 +14,6 @@ trait UserSocialiteHelper
         if (!$function) {
             return null;
         }
-
         return self::$function($id);
     }
 

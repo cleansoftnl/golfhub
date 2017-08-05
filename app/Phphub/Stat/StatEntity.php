@@ -1,5 +1,4 @@
 <?php namespace Phphub\Stat;
-
 class StatEntity
 {
     public $topic_count;

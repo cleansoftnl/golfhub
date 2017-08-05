@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-{{ lang('Operation Deny') }}
+  {{ lang('Operation Deny') }}
 @stop
 
 @section('content')
@@ -19,7 +19,7 @@
                 {!! lang('Sorry, You account is banned.') !!}
               </div>
             </fieldset>
-        </form>
+          </form>
 
         </div>
       </div>

@@ -21,34 +21,32 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => [
-                'index', 'show', 'replies',
-                 'topics', 'articles', 'votes', 'following',
-                 'followers', 'githubCard', 'githubApiProxy',
-            ]]);
+            'index', 'show', 'replies',
+            'topics', 'articles', 'votes', 'following',
+            'followers', 'githubCard', 'githubApiProxy',
+        ]]);
     }
 
     public function index()
     {
         $users = User::recent()->take(48)->get();
-
         return view('users.index', compact('users'));
     }
 
     public function show($id)
     {
-        $user    = User::findOrFail($id);
-        $topics  = Topic::whose($user->id)->withoutArticle()->withoutBoardTopics()->recent()->limit(20)->get();
-        $articles  = Topic::whose($user->id)->onlyArticle()->withoutDraft()->recent()->with('blogs')->limit(20)->get();
-        $blog  = $user->blogs()->first();
+        $user = User::findOrFail($id);
+        $topics = Topic::whose($user->id)->withoutArticle()->withoutBoardTopics()->recent()->limit(20)->get();
+        $articles = Topic::whose($user->id)->onlyArticle()->withoutDraft()->recent()->with('blogs')->limit(20)->get();
+        $blog = $user->blogs()->first();
         $replies = Reply::whose($user->id)->recent()->limit(20)->get();
-        return view('users.show', compact('user','blog', 'articles', 'topics', 'replies'));
+        return view('users.show', compact('user', 'blog', 'articles', 'topics', 'replies'));
     }
 
     public function edit($id)
     {
         $user = User::findOrFail($id);
         $this->authorize('update', $user);
-
         return view('users.edit', compact('user', 'topics', 'replies'));
     }
 
@@ -62,67 +60,59 @@ class UsersController extends Controller
         } catch (ImageUploadException $exception) {
             Flash::error(lang($exception->getMessage()));
         }
-
         return redirect(route('users.edit', $id));
     }
 
     public function replies($id)
     {
-        $user    = User::findOrFail($id);
+        $user = User::findOrFail($id);
         $replies = Reply::whose($user->id)->recent()->paginate(15);
-
         return view('users.replies', compact('user', 'replies'));
     }
 
     public function topics($id)
     {
-        $user   = User::findOrFail($id);
+        $user = User::findOrFail($id);
         $topics = Topic::whose($user->id)->withoutArticle()->withoutBoardTopics()->recent()->paginate(30);
-
         return view('users.topics', compact('user', 'topics'));
     }
 
     public function articles($id)
     {
-        $user   = User::findOrFail($id);
+        $user = User::findOrFail($id);
         $topics = Topic::whose($user->id)->onlyArticle()->withoutDraft()->recent()->with('blogs')->paginate(30);
         $user->update(['article_count' => $topics->total()]);
-        return view('users.articles', compact('user','blog', 'topics'));
+        return view('users.articles', compact('user', 'blog', 'topics'));
     }
 
     public function drafts()
     {
-        $user   = Auth::user();
+        $user = Auth::user();
         $topics = $user->topics()->onlyArticle()->draft()->recent()->paginate(30);
-        $blog   = $user->blogs()->first();
-
+        $blog = $user->blogs()->first();
         $user->draft_count = $user->topics()->onlyArticle()->draft()->count();
         $user->save();
-
-        return view('users.articles', compact('user','blog', 'topics'));
+        return view('users.articles', compact('user', 'blog', 'topics'));
     }
 
     public function votes($id)
     {
-        $user   = User::findOrFail($id);
+        $user = User::findOrFail($id);
         $topics = $user->votedTopics()->orderBy('pivot_created_at', 'desc')->paginate(30);
-
         return view('users.votes', compact('user', 'topics'));
     }
 
     public function following($id)
     {
-        $user  = User::findOrFail($id);
+        $user = User::findOrFail($id);
         $users = $user->followings()->orderBy('id', 'desc')->paginate(15);
-
         return view('users.following', compact('user', 'users'));
     }
 
     public function followers($id)
     {
-        $user  = User::findOrFail($id);
+        $user = User::findOrFail($id);
         $users = $user->followers()->orderBy('id', 'desc')->paginate(15);
-
         return view('users.followers', compact('user', 'users'));
     }
 
@@ -131,43 +121,37 @@ class UsersController extends Controller
         if (!Auth::check() || Auth::id() != $id) {
             return redirect(route('users.show', $id));
         }
-        $user     = User::findOrFail($id);
+        $user = User::findOrFail($id);
         $sessions = OAuthSession::where([
             'owner_type' => 'user',
-            'owner_id'   => Auth::id(),
+            'owner_id' => Auth::id(),
         ])
             ->with('token')
             ->lists('id') ?: [];
-
         $tokens = AccessToken::whereIn('session_id', $sessions)->get();
-
         return view('users.access_tokens', compact('user', 'tokens'));
     }
 
     public function revokeAccessToken($token)
     {
         $access_token = AccessToken::with('session')->find($token);
-
         if (!$access_token || !Auth::check() || $access_token->session->owner_id != Auth::id()) {
             Flash::error(lang('Revoke Failed'));
         } else {
             $access_token->delete();
             Flash::success(lang('Revoke success'));
         }
-
         return redirect(route('users.access_tokens', Auth::id()));
     }
 
     public function blocking($id)
     {
-        $user            = User::findOrFail($id);
+        $user = User::findOrFail($id);
         $user->is_banned = $user->is_banned == 'yes' ? 'no' : 'yes';
         $user->save();
-
         // 用户被屏蔽后屏蔽用户所有内容，解封时解封所有内容
         $user->topics()->update(['is_blocked' => $user->is_banned]);
         $user->replies()->update(['is_blocked' => $user->is_banned]);
-
         return redirect(route('users.show', $id));
     }
 
@@ -175,7 +159,6 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
         $this->authorize('update', $user);
-
         return view('users.edit_email_notify', compact('user'));
     }
 
@@ -185,9 +168,7 @@ class UsersController extends Controller
         $this->authorize('update', $user);
         $user->email_notify_enabled = $request->email_notify_enabled == 'on' ? 'yes' : 'no';
         $user->save();
-
         Flash::success(lang('Operation succeeded.'));
-
         return redirect(route('users.edit_email_notify', $id));
     }
 
@@ -195,7 +176,6 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
         $this->authorize('update', $user);
-
         return view('users.edit_password', compact('user'));
     }
 
@@ -203,22 +183,17 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
         $this->authorize('update', $user);
-
         $user->password = bcrypt($request->password);
         $user->save();
-
         Flash::success(lang('Operation succeeded.'));
-
         return redirect(route('users.edit_password', $id));
     }
 
     public function githubApiProxy($username)
     {
         $cache_name = 'github_api_proxy_user_' . $username;
-
         return Cache::remember($cache_name, 1440, function () use ($username) {
             $result = (new GithubUserDataReader())->getDataFromUserName($username);
-
             return response()->json($result);
         });
     }
@@ -232,14 +207,12 @@ class UsersController extends Controller
         } else {
             Flash::error(lang('Regenerate failed.'));
         }
-
         return redirect(route('users.show', Auth::id()));
     }
 
     public function doFollow($id)
     {
         $user = User::findOrFail($id);
-
         if (Auth::user()->isFollowing($id)) {
             Auth::user()->unfollow($id);
             app(UserFollowedUser::class)->remove(Auth::user(), $user);
@@ -249,10 +222,8 @@ class UsersController extends Controller
             app(UserFollowedUser::class)->generate(Auth::user(), $user);
 
         }
-
         $user->update(['follower_count' => $user->followers()->count()]);
         Flash::success(lang('Operation succeeded.'));
-
         return redirect()->back();
     }
 
@@ -260,7 +231,6 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
         $this->authorize('update', $user);
-
         return view('users.edit_avatar', compact('user'));
     }
 
@@ -268,7 +238,6 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
         $this->authorize('update', $user);
-
         if ($file = $request->file('avatar')) {
             try {
                 $user->updateAvatar($file);
@@ -279,13 +248,12 @@ class UsersController extends Controller
         } else {
             Flash::error(lang('Update Avatar Failed'));
         }
-
         return redirect(route('users.edit_avatar', $id));
     }
 
     public function sendVerificationMail()
     {
-        $user      = Auth::user();
+        $user = Auth::user();
         $cache_key = 'send_activite_mail_' . $user->id;
         if (Cache::has($cache_key)) {
             Flash::error(lang('The mail send failed! Please try again in 60 seconds.', ['seconds' => (Cache::get($cache_key) - time())]));
@@ -300,7 +268,6 @@ class UsersController extends Controller
                 }
             }
         }
-
         return redirect()->intended('/');
     }
 
@@ -308,7 +275,6 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
         $this->authorize('update', $user);
-
         return view('users.edit_social_binding', compact('user'));
     }
 
@@ -317,7 +283,6 @@ class UsersController extends Controller
         if (\Auth::user()->verified) {
             return redirect()->intended('/');
         }
-
         return view('users.emailverificationrequired');
     }
 }

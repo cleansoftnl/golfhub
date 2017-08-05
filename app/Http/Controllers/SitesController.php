@@ -1,10 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Site;
 use App\Models\Banner;
+use App\Models\Site;
 
 class SitesController extends Controller
 {

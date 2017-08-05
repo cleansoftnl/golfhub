@@ -1,5 +1,4 @@
 <?php
-
 return [
     'Topics' => 'Темы',
     'Wiki' => 'Wiki',
@@ -102,14 +101,12 @@ return [
     'personal_website_placebolder' => 'Ваш сайт, нет необходимости вводить http://',
     'signature_placeholder' => 'Подпись',
     'introduction_placeholder' => 'Профиль',
-
     'User Login Required for commenting.' => 'Для комментирования необходим вход.',
     'Successfully remove attention.' => 'Вы отказались от отслеживания.',
     'Successfully_attention' => 'Успешно добавлено к отслеживанию, система уведомит вас о наличии новых ответов.',
     'Operation succeeded.' => 'Операция выполнена.',
     'Congratulations and Welcome!' => 'Поздравляем и добро пожаловать!',
     'Operation failed!' => 'Операция не выполнена!',
-
     'Favorited your topic:' => 'Ваши избранные темы:',
     'Attented your topic:' => 'Ваши отслеживаемые темы:',
     'Up Vote your topic' => 'Ваша понравившаяся тема',

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
@@ -18,8 +17,8 @@ class OAuthMiddleware
      * Create a new auth middleware instance.
      *
      * @param \Dingo\Api\Routing\Router $router
-     * @param \Dingo\Api\Auth\Auth      $auth
-     * @param Authorizer                $authorizer
+     * @param \Dingo\Api\Auth\Auth $auth
+     * @param Authorizer $authorizer
      */
     public function __construct(Router $router, Authentication $auth, Authorizer $authorizer)
     {
@@ -31,7 +30,7 @@ class OAuthMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param \Illuminate\Http\Request                $request
+     * @param \Illuminate\Http\Request $request
      * @param Closure|\PHPHub\Http\Middleware\Closure $next
      * @param $type
      *
@@ -42,18 +41,14 @@ class OAuthMiddleware
     public function handle($request, Closure $next, $type = null)
     {
         $route = $this->router->getCurrentRoute();
-
-        if (! $this->auth->check(false)) {
+        if (!$this->auth->check(false)) {
             $this->auth->authenticate($route->getAuthenticationProviders());
         }
-
         $this->authorizer->setRequest($request);
-
         //type: user or client
         if ($type && $this->authorizer->getResourceOwnerType() !== $type) {
             throw new AccessDeniedException();
         }
-
         return $next($request);
     }
 }

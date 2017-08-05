@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-{{ lang('User Login Require') }}_@parent
+  {{ lang('User Login Require') }}_@parent
 @stop
 
 @section('content')
@@ -13,7 +13,7 @@
         </div>
         <div class="panel-body">
 
-            @include('auth._login_form', ['login_required' => true])
+          @include('auth._login_form', ['login_required' => true])
 
         </div>
       </div>

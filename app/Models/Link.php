@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -17,10 +16,10 @@ class Link extends Model
     ];
     use SoftDeletes;
 
-    public static function boot() {
+    public static function boot()
+    {
         parent::boot();
-
-        static::saving(function($model) {
+        static::saving(function ($model) {
             Cache::forget('phphub_links');
         });
     }
@@ -31,8 +30,7 @@ class Link extends Model
             $parser_url = explode('/', $file_name);
             $file_name = end($parser_url);
         }
-
-        $this->attributes['cover'] = 'uploads/banners/'.$file_name;
+        $this->attributes['cover'] = 'uploads/banners/' . $file_name;
     }
 
     public function getCoverAttribute($file_name)
@@ -40,7 +38,6 @@ class Link extends Model
         if (starts_with($file_name, 'http')) {
             return $file_name;
         }
-
         return cdn($file_name);
     }
 

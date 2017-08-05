@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of OAuth 2.0 Laravel.
  *
@@ -8,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -30,12 +28,9 @@ class CreateOauthClientEndpointsTable extends Migration
         Schema::create('oauth_client_endpoints', function (Blueprint $table) {
             $table->increments('id');
             $table->string('client_id', 40);
-            $table->string('redirect_uri');
-
+            $table->string('redirect_uri', 100);
             $table->timestamps();
-
             $table->unique(['client_id', 'redirect_uri']);
-
             $table->foreign('client_id')
                 ->references('id')->on('oauth_clients')
                 ->onDelete('cascade')
@@ -53,7 +48,6 @@ class CreateOauthClientEndpointsTable extends Migration
         Schema::table('oauth_client_endpoints', function (Blueprint $table) {
             $table->dropForeign('oauth_client_endpoints_client_id_foreign');
         });
-
         Schema::drop('oauth_client_endpoints');
     }
 }

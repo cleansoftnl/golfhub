@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -27,7 +26,6 @@ class CalculateActiveUser extends Command
     public function handle()
     {
         ActiveUser::query()->delete();
-
         $this->calculateTopicUsers();
         $this->calculateReplyUsers();
         $this->calculateWeight();
@@ -36,15 +34,13 @@ class CalculateActiveUser extends Command
     protected function calculateTopicUsers()
     {
         $topic_users = Topic::query()->select(DB::raw('user_id, count(*) as topic_count'))
-                                     ->where('created_at', '>=', Carbon::now()->subDays(self::PASS_DAYS))
-                                     ->groupBy('user_id')
-                                     ->get();
-
+            ->where('created_at', '>=', Carbon::now()->subDays(self::PASS_DAYS))
+            ->groupBy('user_id')
+            ->get();
         foreach ($topic_users as $value) {
             $data = [];
             $data['user_id'] = $value->user_id;
             $data['topic_count'] = $value->topic_count;
-
             ActiveUser::updateOrCreate(['user_id' => $value->user_id], $data);
         }
     }
@@ -52,15 +48,13 @@ class CalculateActiveUser extends Command
     protected function calculateReplyUsers()
     {
         $reply_users = Reply::query()->select(DB::raw('user_id, count(*) as reply_count'))
-                                     ->where('created_at', '>=', Carbon::now()->subDays(self::PASS_DAYS))
-                                     ->groupBy('user_id')
-                                     ->get();
-
+            ->where('created_at', '>=', Carbon::now()->subDays(self::PASS_DAYS))
+            ->groupBy('user_id')
+            ->get();
         foreach ($reply_users as $value) {
             $data = [];
             $data['user_id'] = $value->user_id;
             $data['reply_count'] = $value->reply_count;
-
             ActiveUser::updateOrCreate(['user_id' => $value->user_id], $data);
         }
     }
@@ -70,7 +64,7 @@ class CalculateActiveUser extends Command
         $active_users = ActiveUser::all();
         foreach ($active_users as $active_user) {
             $active_user->weight = $active_user->topic_count * self::POST_TOPIC_WEIGHT
-                                 + $active_user->reply_count * self::POST_REPLY_WEIGHT;
+                + $active_user->reply_count * self::POST_REPLY_WEIGHT;
             $active_user->save();
         }
     }

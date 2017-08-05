@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Transformers;
 
 use App\Notification;
@@ -28,7 +27,6 @@ class NotificationTransformer extends BaseTransformer
         if ($model->reply === null) {
             return;
         }
-
         return $this->item($model->reply, new ReplyTransformer());
     }
 
@@ -37,7 +35,6 @@ class NotificationTransformer extends BaseTransformer
         if ($model->topic === null) {
             return;
         }
-
         return $this->item($model->topic, new TopicTransformer());
     }
 }

@@ -1,15 +1,13 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\Topic;
-use App\Models\User;
+use App\Activities\UserAttendedTopic;
 use App\Models\Attention;
 use App\Models\Notification;
+use App\Models\Topic;
 use Auth;
 use Flash;
 use Redirect;
-use App\Activities\UserAttendedTopic;
 
 class AttentionsController extends Controller
 {

@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of OAuth 2.0 Laravel.
  *
@@ -8,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -30,7 +28,6 @@ class CreateOauthScopesTable extends Migration
         Schema::create('oauth_scopes', function (Blueprint $table) {
             $table->string('id', 40)->primary();
             $table->string('description');
-
             $table->timestamps();
         });
     }

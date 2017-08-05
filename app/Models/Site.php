@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -14,10 +13,10 @@ class Site extends Model
 
     protected $guarded = ['id'];
 
-    public static function boot() {
+    public static function boot()
+    {
         parent::boot();
-
-        static::saving(function($model) {
+        static::saving(function ($model) {
             Cache::forget('phphub_sites');
         });
     }
@@ -27,7 +26,6 @@ class Site extends Model
         $data = Cache::remember('phphub_sites', 60, function () {
             $raw_sites = self::orderBy('order', 'desc')->orderBy('created_at', 'desc')->get();
             $sorted = [];
-
             $sorted['site'] = $raw_sites->filter(function ($item) {
                 return $item->type == 'site';
             });

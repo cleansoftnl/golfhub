@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
@@ -13,7 +12,6 @@ class RestrictWebAccess
         if (is_request_from_api()) {
             return response('Bad Request.', 400);
         }
-
         return $next($request);
     }
 }

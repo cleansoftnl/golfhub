@@ -1,7 +1,5 @@
 <?php
-
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Standards Tree
@@ -17,9 +15,7 @@ return [
     | https://tools.ietf.org/html/rfc6838
     |
     */
-
     'standardsTree' => env('API_STANDARDS_TREE', 'vnd'),
-
     /*
     |--------------------------------------------------------------------------
     | API Subtype
@@ -31,9 +27,7 @@ return [
     | For example: Accept: application/x.SUBTYPE.v1+json
     |
     */
-
     'subtype' => env('API_SUBTYPE', 'PHPHub'),
-
     /*
     |--------------------------------------------------------------------------
     | Default API Version
@@ -44,9 +38,7 @@ return [
     | when generating your APIs documentation.
     |
     */
-
     'version' => env('API_VERSION', 'v1'),
-
     /*
     |--------------------------------------------------------------------------
     | Default API Prefix
@@ -56,9 +48,7 @@ return [
     | specify it for each group.
     |
     */
-
     'prefix' => env('API_PREFIX', 'v1'),
-
     /*
     |--------------------------------------------------------------------------
     | Default API Domain
@@ -68,9 +58,7 @@ return [
     | specify it for each group.
     |
     */
-
     'domain' => env('API_DOMAIN', null),
-
     /*
     |--------------------------------------------------------------------------
     | Name
@@ -81,9 +69,7 @@ return [
     | one when using the command.
     |
     */
-
     'name' => env('API_NAME', null),
-
     /*
     |--------------------------------------------------------------------------
     | Conditional Requests
@@ -95,9 +81,7 @@ return [
     | on certain groups or routes.
     |
     */
-
     'conditionalRequest' => env('API_CONDITIONAL_REQUEST', true),
-
     /*
     |--------------------------------------------------------------------------
     | Strict Mode
@@ -108,9 +92,7 @@ return [
     | your API will not be browsable via a web browser.
     |
     */
-
     'strict' => env('API_STRICT', false),
-
     /*
     |--------------------------------------------------------------------------
     | Debug Mode
@@ -121,9 +103,7 @@ return [
     | more detailed information on the exception.
     |
     */
-
     'debug' => env('API_DEBUG', false),
-
     /*
     |--------------------------------------------------------------------------
     | Generic Error Format
@@ -135,7 +115,6 @@ return [
     | removed from the final response.
     |
     */
-
     'errorFormat' => [
         'message' => ':message',
         'errors' => ':errors',
@@ -143,7 +122,6 @@ return [
         'status_code' => ':status_code',
         'debug' => ':debug',
     ],
-
     /*
     |--------------------------------------------------------------------------
     | API Middleware
@@ -152,11 +130,8 @@ return [
     | Middleware that will be applied globally to all API requests.
     |
     */
-
     'middleware' => [
-
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Authentication Providers
@@ -166,11 +141,8 @@ return [
     | authenticate an incoming API request.
     |
     */
-
     'auth' => [
-
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Throttling / Rate Limiting
@@ -181,11 +153,8 @@ return [
     | throttles.
     |
     */
-
     'throttling' => [
-
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Response Transformer
@@ -197,9 +166,7 @@ return [
     | this with your own transformer.
     |
     */
-
     'transformer' => env('API_TRANSFORMER', Dingo\Api\Transformer\Adapter\Fractal::class),
-
     /*
     |--------------------------------------------------------------------------
     | Response Formats
@@ -210,47 +177,36 @@ return [
     | formatter.
     |
     */
-
     'defaultFormat' => env('API_DEFAULT_FORMAT', 'json'),
-
     'formats' => [
-
         'json' => Dingo\Api\Http\Response\Format\Json::class,
-
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Custom by PHPHub
     |--------------------------------------------------------------------------
     */
-
     /*
      * 每页默认数量
      */
     'default_per_page' => env('API_DEFAULT_PER_PAGE', 15),
-
     /*
      * 可接受请求的最大单页数量
      */
     'max_per_page' => env('API_MAX_PER_PAGE', 30),
-
     /*
      * 接口频率限制
      */
     'rate_limits' => [
-
         // 访问频率限制，次数/分钟
         'access' => [
             'expires' => env('RATE_LIMITS_EXPIRES', 1),
-            'limits'  => env('RATE_LIMITS', 60),
+            'limits' => env('RATE_LIMITS', 60),
         ],
-
         // 发布频率限制（发帖和评论），次数/分钟
         'publish' => [
             'expires' => env('PUBLISH_RATE_LIMITS_EXPIRES', 1),
-            'limits'  => env('PUBLISH_RATE_LIMITS', 10),
+            'limits' => env('PUBLISH_RATE_LIMITS', 10),
         ],
     ],
-
 ];

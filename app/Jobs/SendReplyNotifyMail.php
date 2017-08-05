@@ -1,13 +1,11 @@
 <?php
-
 namespace App\Jobs;
 
-use App\Jobs\Job;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
+use App\Models\Reply;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Models\Reply;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Phphub\Handler\EmailHandler;
 
 class SendReplyNotifyMail extends Job implements SelfHandling, ShouldQueue

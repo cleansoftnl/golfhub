@@ -1,5 +1,4 @@
 <?php
-
 return [
     'Topics' => 'Topics',
     'Wiki' => 'Wiki',
@@ -103,14 +102,12 @@ return [
     'personal_website_placebolder' => 'Your Personal website, no need to prefix http://',
     'signature_placeholder' => 'Signature',
     'introduction_placeholder' => 'My Introduction',
-
     'User Login Required for commenting.' => 'User Login Required for commenting.',
     'Successfully remove attention.' => 'Successfully removed attention.',
     'Successfully_attention' => 'Successfully added attention, system will notify you when someone replies.',
     'Operation succeeded.' => 'Operation succeeded.',
     'Congratulations and Welcome!' => 'Congratulations and Welcome!',
     'Operation failed!' => 'Operation failed!',
-
     'Favorited your topic:' => 'Favorited your topic:',
     'Attented your topic:' => 'Attented your topic:',
     'Up Vote your topic' => 'Up Vote your topic',
@@ -124,13 +121,11 @@ return [
     'Can not vote your feedback' => 'You can\'t vote on your own feedback.',
     'Stick' => 'Stick',
     'Recommended' => 'Recommended',
-
     'Append' => 'Append',
     'Append Content' => 'Append Content',
     'append_notice' => 'You can append content to a topic, and it will notify everyone who are involve in this conversation.',
     'Submit' => 'Submit',
     'Close' => 'Close',
-
     'Attented topic has new update:' => 'Attented topic has new update:',
     'Commented topic has new update:' => 'Commented topic has new update:',
     'Document' => 'Document',

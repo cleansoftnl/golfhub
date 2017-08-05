@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models\Traits;
 
 use App\Models\User;
@@ -21,9 +20,7 @@ trait TopicImageHelper
     {
         // For update topic logic
         $this->images()->delete();
-
         $links = get_image_links($this->body);
-
         if (count($links)) {
             $link = array_shift($links);
             $data = [

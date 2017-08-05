@@ -1,5 +1,4 @@
 <?php
-
 namespace Phphub\OAuth;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -18,12 +17,10 @@ class LoginTokenGrant extends BaseGrant
         if (is_null($user_id)) {
             throw new InvalidRequestException('user_id');
         }
-
         $login_token = $this->server->getRequest()->request->get('login_token', null);
         if (is_null($login_token)) {
             throw new InvalidRequestException('login_token');
         }
-
         return call_user_func($verifier, $user_id, $login_token);
     }
 }

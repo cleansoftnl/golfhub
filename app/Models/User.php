@@ -1,32 +1,34 @@
 <?php
-
 namespace App\Models;
 
+use App\Jobs\SendActivateMail;
+use Cache;
+use Carbon\Carbon;
+use Cmgmyr\Messenger\Traits\Messagable;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Foundation\Auth\Access\Authorizable;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Laracasts\Presenter\PresentableTrait;
-use Venturecraft\Revisionable\RevisionableTrait;
-use Overtrue\LaravelFollow\FollowTrait;
-use App\Jobs\SendActivateMail;
-use Carbon\Carbon;
-use Cache;
 use Nicolaslopezj\Searchable\SearchableTrait;
-use Cmgmyr\Messenger\Traits\Messagable;
+use Overtrue\LaravelFollow\Traits\CanFavorite;
+use Overtrue\LaravelFollow\Traits\CanFollow;
+use Overtrue\LaravelFollow\Traits\CanLike;
+use Overtrue\LaravelFollow\Traits\CanSubscribe;
+use Venturecraft\Revisionable\RevisionableTrait;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
-class User extends Model implements AuthenticatableContract,
-                                    AuthorizableContract
+//use Overtrue\LaravelFollow\FollowTrait;
+//AuthenticatableContract, AuthorizableContract
+class User extends Model implements AuthenticatableContract
 {
     use Traits\UserRememberTokenHelper;
     use Traits\UserSocialiteHelper;
     use Traits\UserAvatarHelper;
     use Traits\UserActivityHelper;
-
+    use CanFollow, CanLike, CanFavorite, CanSubscribe;
     use Messagable;
-
     use PresentableTrait;
     public $presenter = 'Phphub\Presenters\UserPresenter';
 
@@ -49,24 +51,23 @@ class User extends Model implements AuthenticatableContract,
         restore as private restoreEntrust;
         EntrustUserTrait::can as may;
     }
-    use SoftDeletes { restore as private restoreSoftDelete; }
-    use FollowTrait;
+    use SoftDeletes {
+        restore as private restoreSoftDelete;
+    }
+    //use FollowTrait;
     protected $dates = ['deleted_at'];
 
-    protected $table   = 'users';
+    protected $table = 'users';
     protected $guarded = ['id', 'is_banned'];
 
     public static function boot()
     {
         parent::boot();
-
         static::created(function ($user) {
             $driver = $user['github_id'] ? 'github' : 'wechat';
             SiteStatus::newUser($driver);
-
             dispatch(new SendActivateMail($user));
         });
-
         static::deleted(function ($user) {
             \Artisan::call('phphub:clear-user-data', ['user_id' => $user->id]);
         });
@@ -75,14 +76,14 @@ class User extends Model implements AuthenticatableContract,
     public function scopeIsRole($query, $role)
     {
         return $query->whereHas('roles', function ($query) use ($role) {
-                $query->where('name', $role);
-            }
+            $query->where('name', $role);
+        }
         );
     }
 
     public static function byRolesName($name)
     {
-        $data = Cache::remember('phphub_roles_'.$name, 60, function () use ($name) {
+        $data = Cache::remember('phphub_roles_' . $name, 60, function () use ($name) {
             return User::isRole($name)->orderBy('last_actived_at', 'desc')->get();
         });
         return $data;
@@ -177,7 +178,6 @@ class User extends Model implements AuthenticatableContract,
      * UserInterface
      * ----------------------------------------
      */
-
     public function getAuthIdentifier()
     {
         return $this->getKey();
@@ -188,15 +188,17 @@ class User extends Model implements AuthenticatableContract,
         return $this->password;
     }
 
+    public function getAuthIdentifierName()
+    {
+    }
+
     public function recordLastActivedAt()
     {
         $now = Carbon::now()->toDateTimeString();
-
         $update_key = config('phphub.actived_time_for_update');
         $update_data = Cache::get($update_key);
         $update_data[$this->id] = $now;
         Cache::forever($update_key, $update_data);
-
         $show_key = config('phphub.actived_time_data');
         $show_data = Cache::get($show_key);
         $show_data[$this->id] = $now;

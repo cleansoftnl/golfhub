@@ -1,10 +1,8 @@
 <?php
-
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Models\Topic;
-use App\Models\Image;
+use Illuminate\Console\Command;
 
 class TopicImagesRecollect extends Command
 {

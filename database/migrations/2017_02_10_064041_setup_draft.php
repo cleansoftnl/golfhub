@@ -1,7 +1,6 @@
 <?php
-
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class SetupDraft extends Migration
 {
@@ -16,7 +15,7 @@ class SetupDraft extends Migration
             $table->integer('draft_count')->unsigned()->default(0);
         });
         Schema::table('topics', function (Blueprint $table) {
-            $table->enum('is_draft', ['yes',  'no'])->default('no')->index();
+            $table->enum('is_draft', ['yes', 'no'])->default('no')->index();
         });
     }
 

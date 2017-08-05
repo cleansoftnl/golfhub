@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\ApiControllers;
 
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -51,30 +50,25 @@ class TopicsController extends Controller implements CreatorListener
     public function show($id)
     {
         $topic = Topic::with('user')->find($id);
-
         $topic_id = $topic->id;
         $user_id = Auth::id();
-
         if (Auth::check()) {
             $upvoted = Vote::where([
-                               'user_id'      => $user_id,
-                               'votable_id'   => $topic_id,
-                               'votable_type' => 'App\Models\Topic',
-                               'is'           => 'upvote',
-                           ])->exists();
+                'user_id' => $user_id,
+                'votable_id' => $topic_id,
+                'votable_type' => 'App\Models\Topic',
+                'is' => 'upvote',
+            ])->exists();
             $downvoted = Vote::where([
-                               'user_id'      => $user_id,
-                               'votable_id'   => $topic_id,
-                               'votable_type' => 'App\Models\Topic',
-                               'is'           => 'downvote',
-                           ])->exists();
-
+                'user_id' => $user_id,
+                'votable_id' => $topic_id,
+                'votable_type' => 'App\Models\Topic',
+                'is' => 'downvote',
+            ])->exists();
             $topic->vote_up = $upvoted;
             $topic->vote_down = $downvoted;
         }
-
         $topic->increment('view_count', 1);
-
         return $this->response()->item($topic, new TopicTransformer());
     }
 
@@ -84,11 +78,9 @@ class TopicsController extends Controller implements CreatorListener
         if (Gate::denies('delete', $topic)) {
             throw new AccessDeniedHttpException();
         }
-
         $topic->delete();
         app(UserPublishedNewTopic::class)->remove(Auth::user(), $topic);
         app(BlogHasNewArticle::class)->remove(Auth::user(), $topic, $topic->blogs()->first());
-
         return ['status' => 'ok'];
     }
 
@@ -96,9 +88,8 @@ class TopicsController extends Controller implements CreatorListener
     {
         $topic = Topic::find($id);
         app('Phphub\Vote\Voter')->topicUpVote($topic);
-
         return response([
-            'vote-up'    => true,
+            'vote-up' => true,
             'vote_count' => $topic->vote_count,
         ]);
     }
@@ -107,9 +98,8 @@ class TopicsController extends Controller implements CreatorListener
     {
         $topic = Topic::find($id);
         app('Phphub\Vote\Voter')->topicDownVote($topic);
-
         return response([
-            'vote-down'  => true,
+            'vote-down' => true,
             'vote_count' => $topic->vote_count,
         ]);
     }
@@ -125,10 +115,9 @@ class TopicsController extends Controller implements CreatorListener
      * CreatorListener Delegate
      * ----------------------------------------
      */
-
     public function creatorFailed($errors)
     {
-        throw new StoreResourceFailedException('创建话题失败：'. output_msb($errors->getMessageBag()) );
+        throw new StoreResourceFailedException('创建话题失败：' . output_msb($errors->getMessageBag()));
     }
 
     public function creatorSucceed($topic)

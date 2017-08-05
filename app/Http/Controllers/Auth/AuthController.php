@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
@@ -22,7 +21,7 @@ use App\Http\Controllers\Traits\SocialiteHelper;
 
 class AuthController extends Controller implements UserCreatorListener
 {
-    use VerifiesUsers,SocialiteHelper,AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    use VerifiesUsers, SocialiteHelper, AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     protected $redirectTo = '/topics';
 
@@ -41,7 +40,6 @@ class AuthController extends Controller implements UserCreatorListener
         if ($user->is_banned == 'yes') {
             return $this->userIsBanned($user);
         }
-
         return $this->userFound($user);
     }
 
@@ -77,10 +75,9 @@ class AuthController extends Controller implements UserCreatorListener
      */
     public function create()
     {
-        if (! Session::has('oauthData')) {
+        if (!Session::has('oauthData')) {
             return redirect()->route('login');
         }
-
         $oauthData = array_merge(Session::get('oauthData'), Session::get('_old_input', []));
         return view('auth.signupconfirm', compact('oauthData'));
     }
@@ -90,13 +87,12 @@ class AuthController extends Controller implements UserCreatorListener
      */
     public function createNewUser(StoreUserRequest $request)
     {
-        if (! Session::has('oauthData')) {
+        if (!Session::has('oauthData')) {
             return redirect()->route('login');
         }
         $oauthUser = array_merge(Session::get('oauthData'), $request->only('name', 'email', 'password'));
         $userData = array_only($oauthUser, array_keys($request->rules()));
         $userData['register_source'] = $oauthUser['driver'];
-
         return app(\Phphub\Creators\UserCreator::class)->create($this, $userData);
     }
 
@@ -105,7 +101,6 @@ class AuthController extends Controller implements UserCreatorListener
         if (Auth::check() && Auth::user()->is_banned == 'no') {
             return redirect(route('home'));
         }
-
         return view('auth.userbanned');
     }
 
@@ -114,7 +109,6 @@ class AuthController extends Controller implements UserCreatorListener
      * UserCreatorListener Delegate
      * ----------------------------------------
      */
-
     public function userValidationError($errors)
     {
         return redirect('/');
@@ -124,9 +118,7 @@ class AuthController extends Controller implements UserCreatorListener
     {
         Auth::login($user, true);
         Session::forget('oauthData');
-
         Flash::success(lang('Congratulations and Welcome!'));
-
         return redirect(route('users.edit', Auth::user()->id));
     }
 
@@ -151,10 +143,8 @@ class AuthController extends Controller implements UserCreatorListener
             $oauthData['email'] = $registerUserData->email;
             $oauthData['wechat_unionid'] = $registerUserData->user['unionid'];
         }
-
         $oauthData['driver'] = $driver;
         Session::put('oauthData', $oauthData);
-
         return redirect(route('signup'));
     }
 
@@ -163,9 +153,7 @@ class AuthController extends Controller implements UserCreatorListener
     {
         Auth::login($user, true);
         Session::forget('oauthData');
-
         Flash::success(lang('Login Successfully.'));
-
         return redirect(route('users.edit', Auth::user()->id));
     }
 
@@ -197,7 +185,6 @@ class AuthController extends Controller implements UserCreatorListener
             Flash::error(lang('Token mismatch'));
             return redirect('/');
         }
-
         return redirect('/');
     }
 }

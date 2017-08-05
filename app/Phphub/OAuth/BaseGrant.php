@@ -1,5 +1,4 @@
 <?php
-
 namespace Phphub\OAuth;
 
 use League\OAuth2\Server\Entity\AccessTokenEntity;
@@ -65,10 +64,9 @@ abstract class BaseGrant extends AbstractGrant
      */
     protected function getVerifyCredentialsCallback()
     {
-        if (is_null($this->callback) || ! is_callable($this->callback)) {
+        if (is_null($this->callback) || !is_callable($this->callback)) {
             throw new ServerErrorException('Null or non-callable callback set on Password grant');
         }
-
         return $this->callback;
     }
 
@@ -82,44 +80,35 @@ abstract class BaseGrant extends AbstractGrant
     public function completeFlow()
     {
         $client = $this->getClient();
-
         $userId = $this->getUserId($this->server->getRequest(), $this->getVerifyCredentialsCallback());
-
         if ($userId === false) {
             $this->server->getEventEmitter()->emit(new UserAuthenticationFailedEvent($this->server->getRequest()));
             throw new InvalidCredentialsException();
         }
-
         // Create a new session
         $session = new SessionEntity($this->server);
         $session->setOwner('user', $userId);
         $session->associateClient($client);
-
         // Generate an access token
         $accessToken = new AccessTokenEntity($this->server);
         $accessToken->setId(SecureKey::generate());
         $accessToken->setExpireTime($this->getAccessTokenTTL() + time());
-
         $this->server->getTokenType()->setSession($session);
         $this->server->getTokenType()->setParam('access_token', $accessToken->getId());
         $this->server->getTokenType()->setParam('expires_in', $this->getAccessTokenTTL());
-
         // Save everything
         $session->save();
         $accessToken->setSession($session);
         $accessToken->save();
-
         // Associate a refresh token if set
         if ($this->server->hasGrantType('refresh_token')) {
             $refreshToken = new RefreshTokenEntity($this->server);
             $refreshToken->setId(SecureKey::generate());
             $refreshToken->setExpireTime($this->server->getGrantType('refresh_token')->getRefreshTokenTTL() + time());
             $this->server->getTokenType()->setParam('refresh_token', $refreshToken->getId());
-
             $refreshToken->setAccessToken($accessToken);
             $refreshToken->save();
         }
-
         return $this->server->getTokenType()->generateResponse();
     }
 
@@ -138,13 +127,11 @@ abstract class BaseGrant extends AbstractGrant
         if (is_null($clientId)) {
             throw new InvalidRequestException('client_id');
         }
-
         $clientSecret = $this->server->getRequest()->request->get('client_secret',
             $this->server->getRequest()->getPassword());
         if (is_null($clientSecret)) {
             throw new InvalidRequestException('client_secret');
         }
-
         // Validate client ID and client secret
         $client = $this->server->getClientStorage()->get(
             $clientId,
@@ -152,12 +139,10 @@ abstract class BaseGrant extends AbstractGrant
             null,
             $this->getIdentifier()
         );
-
         if (($client instanceof ClientEntity) === false) {
             $this->server->getEventEmitter()->emit(new ClientAuthenticationFailedEvent($this->server->getRequest()));
             throw new InvalidClientException();
         }
-
         return $client;
     }
 

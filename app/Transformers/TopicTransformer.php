@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Transformers;
-
 class TopicTransformer extends BaseTransformer
 {
     protected $availableIncludes = ['user', 'last_reply_user', 'replies', 'category'];
@@ -23,7 +21,7 @@ class TopicTransformer extends BaseTransformer
             'links' => [
                 'details_web_view' => route('topic.web_view', $model->id),
                 'replies_web_view' => route('replies.web_view', $model->id),
-                'web_url'          => trim(config('app.url'), '/').'/topics/'.$model->id,
+                'web_url' => trim(config('app.url'), '/') . '/topics/' . $model->id,
             ],
         ];
     }

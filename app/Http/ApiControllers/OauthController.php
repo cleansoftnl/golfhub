@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Http\ApiControllers;
 
-use Response;
 use Authorizer;
+use Response;
 
 class OauthController extends Controller
 {

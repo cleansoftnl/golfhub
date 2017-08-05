@@ -1,7 +1,6 @@
 <?php
-
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateLinksTable extends Migration
 {
@@ -18,7 +17,7 @@ class CreateLinksTable extends Migration
             $table->string('title')->index();
             $table->string('link')->index();
             $table->text('cover')->nullable();
-            $table->enum('is_enabled', ['yes',  'no'])->default('yes')->index();
+            $table->enum('is_enabled', ['yes', 'no'])->default('yes')->index();
             $table->softDeletes();
             $table->timestamps();
         });
