@@ -16,7 +16,7 @@
 
       <ol class="breadcrumb">
         <li><a href="{{ route('users.show', $user->id) }}">个人中心</a></li>
-        <li class="active">Ta 赞过的topic</li>
+        <li class="active">Ta upvoted过 of topic</li>
       </ol>
 
 

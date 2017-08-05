@@ -1,7 +1,7 @@
 @extends('api.layouts.default')
 
 @section('title')
-  评论列表
+  comment列表
 @stop
 
 @section('content')

@@ -79,7 +79,7 @@
     <div class="follow-info row">
       <div class="col-xs-4">
         <a class="counter" href="{{ route('users.followers', $user->id) }}">{{ $user->follower_count }}</a>
-        <a class="text" href="{{ route('users.followers', $user->id) }}">关注者</a>
+        <a class="text" href="{{ route('users.followers', $user->id) }}">attention者</a>
       </div>
       <div class="col-xs-4">
         <a class="counter"
@@ -88,13 +88,13 @@
       </div>
       <div class="col-xs-4">
         <a class="counter" href="{{ route('users.articles', $user->id) }}">{{ $user->article_count }}</a>
-        <a class="text" href="{{ route('users.topics', $user->id) }}">文章</a>
+        <a class="text" href="{{ route('users.topics', $user->id) }}">article</a>
       </div>
     </div>
 
     <hr>
 
-    <div class="topic-author-box text-center">
+    <div class="topic-author-box">
       <ul class="list-inline">
 
         @if ($user->github_name)
@@ -174,7 +174,7 @@
 
       <a data-method="post" class="btn btn-{{ !$isFollowing ? 'warning' : 'default' }} btn-block"
          href="javascript:void(0);" data-url="{{ route('users.doFollow', $user->id) }}" id="user-edit-button">
-        <i class="fa {{!$isFollowing ? 'fa-plus' : 'fa-minus'}}"></i> {{ !$isFollowing ? '关注 Ta' : '已关注' }}
+        <i class="fa {{!$isFollowing ? 'fa-plus' : 'fa-minus'}}"></i> {{ !$isFollowing ? 'attention Ta' : '已attention' }}
       </a>
 
       <a class="btn btn-default btn-block" href="{{ route('messages.create', $user->id) }}">
@@ -202,20 +202,20 @@
   </div>
 @endif
 
-<div class="box text-center">
+<div class="box">
 
   <div class="padding-sm user-basic-nav">
     <ul class="list-group">
       <a href="{{ route('users.articles', $user->id) }}" class="{{ navViewActive('users.articles') }}">
-        <li class="list-group-item"><i class="text-md fa fa-headphones"></i> Ta 发布的文章</li>
+        <li class="list-group-item"><i class="text-md fa fa-headphones"></i> Ta 发布 of article</li>
       </a>
 
       <a href="{{ route('users.topics', $user->id) }}" class="{{ navViewActive('users.topics') }}">
-        <li class="list-group-item"><i class="text-md fa fa-list-ul"></i> Ta 发布的topic</li>
+        <li class="list-group-item"><i class="text-md fa fa-list-ul"></i> Ta 发布 of topic</li>
       </a>
 
       <a href="{{ route('users.replies', $user->id) }}" class="{{ navViewActive('users.replies') }}">
-        <li class="list-group-item"><i class="text-md fa fa-comment"></i> Ta 发表的replies</li>
+        <li class="list-group-item"><i class="text-md fa fa-comment"></i> Ta 发表 of replies</li>
       </a>
 
       <a href="{{ route('users.following', $user->id) }}" class="{{ navViewActive('users.following') }}">
@@ -223,7 +223,7 @@
       </a>
 
       <a href="{{ route('users.votes', $user->id) }}" class="{{ navViewActive('users.votes') }}">
-        <li class="list-group-item"><i class="text-md fa fa-thumbs-up"></i> Ta 赞过的topic</li>
+        <li class="list-group-item"><i class="text-md fa fa-thumbs-up"></i> Ta upvoted过 of topic</li>
       </a>
 
     </ul>

@@ -62,8 +62,8 @@ return [
             'type' => 'enum',
             'options' => [
                 'website_top' => '友站',
-                'footer-sponsor' => '页脚赞助商',
-                'sidebar-sponsor' => '右边栏赞助商',
+                'footer-sponsor' => '页脚upvoted助商',
+                'sidebar-sponsor' => '右边栏upvoted助商',
                 'sidebar-resources' => '右边栏资源推荐',
             ],
         ],

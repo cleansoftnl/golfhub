@@ -15,11 +15,11 @@
         <div class="panel-body">
 
           <h1 class="all-articles">
-            专栏文章
+            专栏article
 
             @can('create-article', $blog)
             <a href="{{ route('articles.create', ['blog_id' => $blog->id]) }}"
-               class="btn btn-primary pull-right no-pjax"> <i class="fa fa-paint-brush"></i> 创作文章</a>
+               class="btn btn-primary pull-right no-pjax"> <i class="fa fa-paint-brush"></i> 创作article</a>
             @endcan
           </h1>
 

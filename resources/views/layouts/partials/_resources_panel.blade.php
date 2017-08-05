@@ -1,6 +1,6 @@
 @if(isset($banners['sidebar-resources']))
   <div class="panel panel-default corner-radius sidebar-resources">
-    <div class="panel-heading text-center">
+    <div class="panel-heading">
       <h3 class="panel-title">推荐资源</h3>
     </div>
     <div class="panel-body">

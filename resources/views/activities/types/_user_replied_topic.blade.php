@@ -15,12 +15,12 @@
       </a>
 
       @if ($activity->data['topic_type'] == 'article')
-        评论了文章
+        comment the article
         <?php
         $topic_title = "《" . str_limit($activity->data['topic_title'], '100') . "》";
         ?>
       @else
-        评论了topic
+        comment the topic
         <?php
         $topic_title = str_limit($activity->data['topic_title'], '100');
         ?>

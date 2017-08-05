@@ -191,7 +191,7 @@ return [
      */
     'default_per_page' => env('API_DEFAULT_PER_PAGE', 15),
     /*
-     * 可接受请求的最大单页数量
+     * 可接受请求 of 最大单页数量
      */
     'max_per_page' => env('API_MAX_PER_PAGE', 30),
     /*
@@ -203,7 +203,7 @@ return [
             'expires' => env('RATE_LIMITS_EXPIRES', 1),
             'limits' => env('RATE_LIMITS', 60),
         ],
-        // 发布频率限制（发帖和评论），次数/分钟
+        // 发布频率限制（发帖和comment），次数/分钟
         'publish' => [
             'expires' => env('PUBLISH_RATE_LIMITS_EXPIRES', 1),
             'limits' => env('PUBLISH_RATE_LIMITS', 10),

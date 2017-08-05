@@ -8,7 +8,7 @@ class TopicSlugMigration extends Command
 {
     protected $signature = 'topics:slug_migration';
 
-    protected $description = '翻译所有的标题为 slug';
+    protected $description = '翻译所有 of 标题为 slug';
 
     public function __construct()
     {
@@ -21,7 +21,7 @@ class TopicSlugMigration extends Command
             foreach ($topics as $topic) {
                 $topic->slug = slug_trans($topic->title);
                 $topic->save();
-                $this->info("处理完成：$topic->id");
+                $this->info("Processing is complete：$topic->id");
             }
         });
 

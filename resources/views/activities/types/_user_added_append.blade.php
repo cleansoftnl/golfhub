@@ -13,11 +13,11 @@
       <a href="{{ route('users.show', [$activity->user->id]) }}">
         {{ $activity->user->name }}
       </a>
-      在
+      In
       <a href="{{ $activity->data['topic_link'] }}" title="{{ $activity->data['topic_title'] }}">
         {{ str_limit($activity->data['topic_title'], '100') }}
       </a>
-      中增加了附言
+      Added Topic
               <span class="meta pull-right">
                  <span class="timeago">{{ $activity->created_at }}</span>
             </span>

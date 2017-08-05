@@ -56,7 +56,7 @@
               {!! $activities->appends(Request::except('page', '_pjax'))->render() !!}
             </div>
           @else
-            <div class="panel-footer text-center remove-padding-horizontal pager-footer">
+            <div class="panel-footer remove-padding-horizontal pager-footer">
               <div class="pagination" style="color: #ccc;">
                 After loading
               </div>

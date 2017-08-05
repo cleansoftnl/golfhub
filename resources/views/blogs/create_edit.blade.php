@@ -20,7 +20,7 @@
           <h2><i class="fa fa-paper-plane" aria-hidden="true"></i> {{ $blog->id > 0 ? '编辑专栏' : '新建专栏' }}
             @if ( $blog->id > 0)
               <a href="{{ route('articles.create') }}" class="btn btn-primary no-pjax">
-                <i class="fa fa-paint-brush" aria-hidden="true"></i> 创作文章
+                <i class="fa fa-paint-brush" aria-hidden="true"></i> 创作article
               </a>
             @endif
           </h2>
@@ -61,7 +61,7 @@
                   <div class="col-sm-4 help-block">
                     如：http://url.com/{别名}
                     <br>
-                    仅包含字母、数字、破折号（ - ）以及下划线（ _ ）。
+                    仅包含字母、数字、破折号（ - ）以及under划线（ _ ）。
                   </div>
                 </div>
 

@@ -3,6 +3,7 @@ namespace App\Activities;
 
 use App\Models\Activity;
 use App\Models\User;
+use App\Models\Staff;
 use App\Models\Topic;
 use Carbon\Carbon;
 
@@ -16,7 +17,7 @@ class BaseActivity
             ->delete();
     }
 
-    public function addTopicActivity(User $user, Topic $topic, $extra_data = [], $indentifier = null)
+    public function addTopicActivity(Staff $user, Topic $topic, $extra_data = [], $indentifier = null)
     {
         // 站务不显示
         if ($topic->category_id == config('phphub.admin_board_cid')) {

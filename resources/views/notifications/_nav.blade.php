@@ -1,6 +1,6 @@
 <div class="box">
   <div class="padding-md">
-    <div class="list-group text-center">
+    <div class="list-group">
       <a href="{{ route('messages.index') }}"
          class="list-group-item big {{ active_class(if_uri_pattern(['messages*'])) }}">
         <i class="text-md fa fa-envelope" aria-hidden="true"></i>

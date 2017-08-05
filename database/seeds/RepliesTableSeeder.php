@@ -2,6 +2,7 @@
 use App\Models\Reply;
 use App\Models\Topic;
 use App\Models\User;
+use App\Models\Staff;
 use Illuminate\Database\Seeder;
 
 class RepliesTableSeeder extends Seeder

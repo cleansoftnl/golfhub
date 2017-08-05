@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Staff;
 use Carbon\Carbon;
 use App\Models\Message;
 use App\Models\Participant;
@@ -64,7 +65,7 @@ class MessagesController extends Controller
         if ($request->thread_id) {
             $thread = Thread::findOrFail($request->thread_id);
         } else {
-            $subject = Auth::user()->name . ' 给 ' . $recipient->name . ' 的私信。';
+            $subject = Auth::user()->name . ' 给 ' . $recipient->name . '  of 私信。';
             $thread = Thread::create(['subject' => $subject]);
         }
         // Message

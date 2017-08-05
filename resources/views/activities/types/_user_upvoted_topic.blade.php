@@ -15,13 +15,13 @@
       </a>
 
       @if ($activity->data['topic_type'] == 'article')
-        赞了文章
+        upvoted the article
 
         <?php
         $topic_title = "《" . str_limit($activity->data['topic_title'], '100') . "》";
         ?>
       @else
-        赞了topic
+        upvoted the topic
 
         <?php
         $topic_title = str_limit($activity->data['topic_title'], '100');

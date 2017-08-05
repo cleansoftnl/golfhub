@@ -71,7 +71,7 @@ return [
             'messages' => array(
                 'active' => '正在处理...',
                 'success' => '处理成功',
-                'error' => '处理失败，请重新尝试',
+                'error' => '处理failure，请重新尝试',
             ),
             'permission' => function ($model) {
                 return $model->is_enabled == 'yes';
@@ -86,7 +86,7 @@ return [
             'messages' => array(
                 'active' => '正在处理...',
                 'success' => '处理成功',
-                'error' => '处理失败，请重新尝试',
+                'error' => '处理failure，请重新尝试',
             ),
             'permission' => function ($model) {
                 return $model->is_enabled == 'no';

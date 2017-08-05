@@ -2,6 +2,7 @@
 namespace Phphub\Handler;
 
 use App\Models\User;
+use App\Models\Staff;
 use App\Models\Reply;
 use App\Models\Topic;
 use App\Models\Mention;
@@ -15,7 +16,7 @@ use Jrean\UserVerification\Facades\UserVerification;
 class EmailHandler
 {
     protected $methodMap = [
-        // 只有需要user处理的信息，才有必要发送邮件
+        // 只有需要user处理 of 信息，才有必要发送邮件
         'at' => 'sendAtNotifyMail',
         'mentioned_in_topic' => 'sendMentionedInTopicNotifyMail',
         'attention' => 'sendAttentionNotifyMail',
@@ -24,7 +25,7 @@ class EmailHandler
         'attented_append' => 'sendAttendAppendNotifyMail',
         'new_reply' => 'sendNewReplyNotifyMail',
         'new_message' => 'sendNewMessageNotifyMail',
-        // 下面动作只是「信息的知悉」，无需发送邮件，系统通知即可（删除保持精简）
+        // under面动作只是「信息 of 知悉」，无需发送邮件，系统通知即可（删除保持精简）
         // 'follow'               => 'sendFollowNotifyMail',
         // 'reply_upvote'         => 'sendReplyUpvoteNotifyMail',
         // 'topic_attent'         => 'sendTopicAttentNotifyMail',
@@ -41,7 +42,7 @@ class EmailHandler
     protected $reply;
     protected $body;
 
-    public function sendMaintainerWorksMail(User $user, $timeFrame, $content)
+    public function sendMaintainerWorksMail(Staff $user, $timeFrame, $content)
     {
         Mail::send('emails.fake', [], function (Message $message) use ($user, $timeFrame, $content) {
             $message->subject('operation员工作统计');
@@ -54,7 +55,7 @@ class EmailHandler
         });
     }
 
-    public function sendActivateMail(User $user)
+    public function sendActivateMail(Staff $user)
     {
         UserVerification::generate($user);
         $token = $user->verification_token;
@@ -71,12 +72,12 @@ class EmailHandler
     public function sendNotifyMail($type, User $fromUser, User $toUser, Topic $topic = null, Reply $reply = null, $body = null)
     {
         if (
-            !isset($this->methodMap[$type])             // 不是运行的类型
+            !isset($this->methodMap[$type])             // 不是运行 of 类型
             || $toUser->email_notify_enabled != 'yes'   // 没开启邮件通知
             || $toUser->id == $fromUser->id             // 发件和收件是同一个人
             || !$toUser->email                          // 不存在邮件
             || $toUser->verified != 1                   // 还未验证
-            || $this->_checkNecessary($type, $toUser)   // 因延迟触发的，user可能已读过站内通知
+            || $this->_checkNecessary($type, $toUser)   // 因延迟触发 of ，user可能已读过站内通知
         ) {
             return false;
         }
@@ -94,63 +95,63 @@ class EmailHandler
     {
         if (!$this->body)
             return false;
-        $action = " 发了一条私信给你。内容如下：<br />";
-        $this->_send(null, $this->fromUser, '你有新的私信', $action, $this->body, $this->body);
+        $action = " 发 the 一条私信给你。内容如under：<br />";
+        $this->_send(null, $this->fromUser, '你有新 of 私信', $action, $this->body, $this->body);
     }
 
     protected function sendNewReplyNotifyMail()
     {
         if (!$this->reply)
             return false;
-        $action = " replies了你的主题: <a href='" . $this->reply->topic->link() . "' target='_blank'>{$this->reply->topic->title}</a><br /><br />内容如下：<br />";
-        $this->_send($this->topic, $this->fromUser, '你的主题有新评论', $action, $this->reply->body, $this->reply->body);
+        $action = " replies the 你 of 主题: <a href='" . $this->reply->topic->link() . "' target='_blank'>{$this->reply->topic->title}</a><br /><br />内容如under：<br />";
+        $this->_send($this->topic, $this->fromUser, '你 of 主题有新comment', $action, $this->reply->body, $this->reply->body);
     }
 
     protected function sendAtNotifyMail()
     {
         if (!$this->reply)
             return false;
-        $action = " 在主题: <a href='" . $this->topic->link(['#reply' . $this->reply->id]) . "' target='_blank'>{$this->reply->topic->title}</a> 的评论中提及了你<br /><br />内容如下：<br />";
-        $this->_send($this->topic, $this->fromUser, '有user在评论中提及你', $action, $this->reply->body, $this->reply->body);
+        $action = " 在主题: <a href='" . $this->topic->link(['#reply' . $this->reply->id]) . "' target='_blank'>{$this->reply->topic->title}</a>  of comment中提及 the 你<br /><br />内容如under：<br />";
+        $this->_send($this->topic, $this->fromUser, '有user在comment中提及你', $action, $this->reply->body, $this->reply->body);
     }
 
     protected function sendAttentionNotifyMail()
     {
         if (!$this->reply)
             return false;
-        $action = " 评论了你of concern主题: <a href='" . $this->topic->link(['#reply' . $this->reply->id]) . "' target='_blank'>{$this->reply->topic->title}</a><br /><br />评论内容如下：<br />";
-        $this->_send($this->topic, $this->fromUser, '有user评论了你of concern主题', $action, $this->reply->body, $this->reply->body);
+        $action = " comment the 你of concern主题: <a href='" . $this->topic->link(['#reply' . $this->reply->id]) . "' target='_blank'>{$this->reply->topic->title}</a><br /><br />comment内容如under：<br />";
+        $this->_send($this->topic, $this->fromUser, '有usercomment the 你of concern主题', $action, $this->reply->body, $this->reply->body);
     }
 
     protected function sendVoteAppendNotifyMail()
     {
         if (!$this->body || !$this->topic)
             return false;
-        $action = " 你点过赞的topic: <a href='" . $this->topic->link() . "' target='_blank'>{$this->topic->title}</a> 有新附言<br /><br />附言内容如下：<br />";
-        $this->_send($this->topic, '', '你点过赞的topic有新附言', $action, $this->body, $this->body);
+        $action = " You oclock upvoted of topic: <a href='" . $this->topic->link() . "' target='_blank'>{$this->topic->title}</a> have new words<br /><br />Topic as follows：<br />";
+        $this->_send($this->topic, '', 'You oclockupvoted of topichave new words', $action, $this->body, $this->body);
     }
 
     protected function sendCommentAppendNotifyMail()
     {
         if (!$this->body || !$this->topic)
             return false;
-        $action = " 你评论过的topic: <a href='" . $this->topic->link() . "' target='_blank'>{$this->topic->title}</a> 有新附言<br /><br />附言内容如下：<br />";
-        $this->_send($this->topic, '', '你评论过的topic有新附言', $action, $this->body, $this->body);
+        $action = " 你comment过 of topic: <a href='" . $this->topic->link() . "' target='_blank'>{$this->topic->title}</a> have new words<br /><br />附言内容如under：<br />";
+        $this->_send($this->topic, '', '你comment过 of topichave new words', $action, $this->body, $this->body);
     }
 
     protected function sendAttendAppendNotifyMail()
     {
         if (!$this->body || !$this->topic)
             return false;
-        $action = " 你of concerntopic: <a href='" . $this->topic->link() . "' target='_blank'>{$this->topic->title}</a> 有新附言<br /><br />附言内容如下：<br />";
-        $this->_send($this->topic, '', '你of concerntopic有新附言', $action, $this->body, $this->body);
+        $action = " 你of concerntopic: <a href='" . $this->topic->link() . "' target='_blank'>{$this->topic->title}</a> have new words<br /><br />附言内容如under：<br />";
+        $this->_send($this->topic, '', '你of concerntopichave new words', $action, $this->body, $this->body);
     }
 
     protected function sendMentionedInTopicNotifyMail()
     {
         if (!$this->topic)
             return false;
-        $action = " 在主题: <a href='" . $this->topic->link() . "' target='_blank'>{$this->topic->title}</a> 中提及了你。<br />";
+        $action = " 在主题: <a href='" . $this->topic->link() . "' target='_blank'>{$this->topic->title}</a> 中提及 the 你。<br />";
         $this->_send($this->topic, $this->fromUser, '有user在主题中提及你', $action, '', '');
     }
 
@@ -169,8 +170,8 @@ class EmailHandler
     private function _correctSubject($subject, Topic $topic)
     {
         if ($topic->isArticle()) {
-            $subject = str_replace('主题', '文章', $subject);
-            return str_replace('topic', '文章', $subject);
+            $subject = str_replace('主题', 'article', $subject);
+            return str_replace('topic', 'article', $subject);
         }
         return $subject;
     }
@@ -178,8 +179,8 @@ class EmailHandler
     private function _correctAction($action, Topic $topic)
     {
         if ($topic->isArticle()) {
-            $action = str_replace('topic', '文章', $action);
-            $action = str_replace('主题', '文章', $action);
+            $action = str_replace('topic', 'article', $action);
+            $action = str_replace('主题', 'article', $action);
             $action = str_replace('topics', 'articles', $action);
         }
         return $action;

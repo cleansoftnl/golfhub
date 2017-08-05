@@ -8,7 +8,7 @@
 
   <div class="hall_of_fames">
 
-    <div class="box text-center site-intro rm-link-color">
+    <div class="box  site-intro rm-link-color">
       {!! $role->description !!}
     </div>
 

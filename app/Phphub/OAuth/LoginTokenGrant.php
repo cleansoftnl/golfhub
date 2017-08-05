@@ -11,7 +11,7 @@ class LoginTokenGrant extends BaseGrant
 
     public function getUserId(Request $request, $verifier)
     {
-        // get('username') 为客户端的兼容写法
+        // get('username') 为客户端 of 兼容写法
         // 修改为 user id 会更加稳定
         $user_id = $this->server->getRequest()->request->get('username', null);
         if (is_null($user_id)) {

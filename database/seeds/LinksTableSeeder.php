@@ -34,7 +34,7 @@ class LinksTableSeeder extends Seeder
             2 =>
                 array(
                     'id' => 3,
-                    'title' => 'CNode：Node.js 中文社区',
+                    'title' => 'CNode：Node.js ',
                     'link' => 'http://cnodejs.org/',
                     'cover' => 'https://dn-phphub.qbox.me/assets/images/friends/cnodejs.png',
                     'created_at' => '2014-10-12 08:29:15',

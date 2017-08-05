@@ -9,13 +9,13 @@ class NotificationPresenter extends Presenter
     {
         switch ($this->type) {
             case 'new_topic_from_subscribe':
-                $lable = "在你订阅的专栏中发布了";
+                $lable = "在你订阅 of 专栏中发布 the ";
                 break;
             case 'mentioned_in_topic':
                 $lable = "在topic中提及你";
                 break;
             case 'new_topic_from_following':
-                $lable = "你of concernuser发布了新topic";
+                $lable = "你of concernuser发布 the 新topic";
                 break;
             case 'new_reply':
                 $lable = lang('Your topic have new reply:');

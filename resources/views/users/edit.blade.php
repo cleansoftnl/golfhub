@@ -128,7 +128,7 @@
                 <input class="form-control" name="linkedin" type="text" value="{{ $user->linkedin}}">
               </div>
               <div class="col-sm-4 help-block">
-                你的 <a href="https://www.linkedin.com">LinkedIn</a> 主页完整 URL 地址，如：https://cn.linkedin.com/in/summerblue
+                你 of  <a href="https://www.linkedin.com">LinkedIn</a> 主页完整 URL 地址，如：https://cn.linkedin.com/in/summerblue
               </div>
             </div>
 
@@ -151,7 +151,7 @@
                 @endif
               </div>
               <div class="col-sm-4 help-block">
-                你的微信个人账号，或者订阅号
+                你 of 微信个人账号，或者订阅号
               </div>
             </div>
 
@@ -165,7 +165,7 @@
                 @endif
               </div>
               <div class="col-sm-4 help-block">
-                文章打赏时使用，微信支付二维码
+                articleFavorite时使用，微信支付二维码
               </div>
             </div>
 
@@ -176,7 +176,7 @@
                           cols="50">{{ $user->introduction }}</textarea>
               </div>
               <div class="col-sm-4 help-block">
-                {{ lang('introduction_placeholder_hint') }}，大部分情况下会在你的头像和名字旁边显示
+                {{ lang('introduction_placeholder_hint') }}，大部分情况under会在你 of 头像和名字旁边显示
               </div>
             </div>
 
@@ -186,7 +186,7 @@
                 <textarea class="form-control" rows="3" name="signature" cols="50">{{ $user->signature }}</textarea>
               </div>
               <div class="col-sm-4 help-block">
-                文章署名，会拼接在每一个你发表过的帖子内容后面。支持 Markdown。
+                article署名，会拼接在每一个你发表过 of 帖子内容后面。支持 Markdown。
               </div>
             </div>
 

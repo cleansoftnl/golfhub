@@ -64,7 +64,7 @@
                       <ul class="dropdown-menu" aria-labelledby="dLabel">
                         <li>
                           <a class="button no-pjax" href="{{ route('articles.create') }}">
-                            <i class="fa fa-paint-brush text-md"></i> 创作文章
+                            <i class="fa fa-paint-brush text-md"></i> 创作article
                           </a>
                         </li>
 

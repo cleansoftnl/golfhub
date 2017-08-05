@@ -2,7 +2,7 @@
 
 @section('content')
 
-  <div class="box text-center site-intro rm-link-color">
+  <div class="box  site-intro rm-link-color">
     {!! lang('site_intro') !!}
   </div>
 
@@ -10,7 +10,7 @@
 
   <div class="panel panel-default list-panel home-topic-list">
     <div class="panel-heading">
-      <h3 class="panel-title text-center">
+      <h3 class="panel-title">
         {{ lang('Excellent Topics') }} &nbsp;
         <a href="{{ route('feed') }}" style="color: #E5974E; font-size: 14px;" target="_blank">
           <i class="fa fa-rss"></i>

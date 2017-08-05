@@ -18,7 +18,7 @@ class MigrateBlogTopicRelationship extends Command
      *
      * @var string
      */
-    protected $description = '建立文章博客多对多连接！';
+    protected $description = 'Create article blog many-to-many connections!';
 
     /**
      * Create a new command instance.
@@ -41,7 +41,7 @@ class MigrateBlogTopicRelationship extends Command
                         $blog->authors()->attach($topic->user_id);
                     }
                 }
-                $this->info("处理完成：$topic->id");
+                $this->info("Processing is complete：$topic->id");
             }
         });
     }

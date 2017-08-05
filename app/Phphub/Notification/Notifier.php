@@ -9,6 +9,7 @@ use App\Models\Topic;
 use App\Models\Notification;
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Staff;
 use App\Models\Append;
 use App\Jobs\SendReplyNotifyMail;
 
@@ -16,7 +17,7 @@ class Notifier
 {
     public $notifiedUsers = [];
 
-    public function newTopicNotify(User $fromUser, Mention $mentionParser, Topic $topic)
+    public function newTopicNotify(Staff $fromUser, Mention $mentionParser, Topic $topic)
     {
         // Notify mentioned users
         Notification::batchNotify(
@@ -40,7 +41,7 @@ class Notifier
         }
     }
 
-    public function newReplyNotify(User $fromUser, Mention $mentionParser, Topic $topic, Reply $reply)
+    public function newReplyNotify(Staff $fromUser, Mention $mentionParser, Topic $topic, Reply $reply)
     {
         // Notify the author
         Notification::batchNotify(
@@ -65,7 +66,7 @@ class Notifier
             $reply);
     }
 
-    public function newAppendNotify(User $fromUser, Topic $topic, Append $append)
+    public function newAppendNotify(Staff $fromUser, Topic $topic, Append $append)
     {
         $users = $topic->replies()->with('user')->get()->lists('user');
         // Notify commented user
@@ -94,7 +95,7 @@ class Notifier
             $append->content);
     }
 
-    public function newFollowNotify(User $fromUser, User $toUser)
+    public function newFollowNotify(Staff $fromUser, Staff $toUser)
     {
         Notification::notify(
             'follow',

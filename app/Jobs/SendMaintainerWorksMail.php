@@ -2,6 +2,7 @@
 namespace App\Jobs;
 
 use App\Models\User;
+use App\Models\Staff;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -15,7 +16,7 @@ class SendMaintainerWorksMail extends Job implements SelfHandling, ShouldQueue
     protected $timeFrame;
     protected $content;
 
-    public function __construct(User $user, $timeFrame, $content)
+    public function __construct(Staff $user, $timeFrame, $content)
     {
         $this->user = $user;
         $this->timeFrame = $timeFrame;

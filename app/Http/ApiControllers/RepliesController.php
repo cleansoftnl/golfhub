@@ -8,6 +8,7 @@ use Phphub\Core\CreatorListener;
 use Illuminate\Http\Request;
 use App\Models\Topic;
 use App\Models\User;
+use App\Models\Staff;
 use App\Models\Reply;
 use Auth;
 
@@ -30,7 +31,7 @@ class RepliesController extends Controller implements CreatorListener
     public function store(Request $request)
     {
         if (!Auth::user()->verified) {
-            throw new StoreResourceFailedException('创建评论失败，请验证user邮箱');
+            throw new StoreResourceFailedException('Failed to create comment, please verify user mailbox');
         }
         return app('Phphub\Creators\ReplyCreator')->create($this, $request->except('_token'));
     }
@@ -56,7 +57,7 @@ class RepliesController extends Controller implements CreatorListener
      */
     public function creatorFailed($errors)
     {
-        throw new StoreResourceFailedException('创建评论失败：' . output_msb($errors->getMessageBag()));
+        throw new StoreResourceFailedException('Failed to create comment：' . output_msb($errors->getMessageBag()));
     }
 
     public function creatorSucceed($reply)

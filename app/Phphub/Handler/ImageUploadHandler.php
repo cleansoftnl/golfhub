@@ -2,6 +2,7 @@
 namespace Phphub\Handler;
 
 use App\Models\User;
+use App\Models\Staff;
 use Image;
 use Auth;
 use Phphub\Handler\Exception\ImageUploadException;

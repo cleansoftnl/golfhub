@@ -1,11 +1,12 @@
 <?php
 use App\Models\User;
+use App\Models\Staff;
 
 return [
-    'title' => 'user',
-    'heading' => 'user',
+    'title' => 'Staff',
+    'heading' => 'Staff',
     'single' => 'user',
-    'model' => User::class,
+    'model' => Staff::class,
     'permission' => function () {
         return Auth::user()->may('manage_users');
     },
@@ -14,7 +15,7 @@ return [
             'title' => 'ID',
         ],
         'image_url' => [
-            'title' => '头像',
+            'title' => 'imag',
             'output' => function ($value, $model) {
                 $value = $model->present()->gravatar();
                 return empty($value) ? 'N/A' : '<img src="' . $value . '" width="80">';
@@ -22,46 +23,46 @@ return [
             'sortable' => false,
         ],
         'name' => [
-            'title' => 'user名',
+            'title' => 'user',
             'sortable' => false,
             'output' => function ($value, $model) {
                 return '<a href="/users/' . $model->id . '" target=_blank>' . $value . '</a>';
             },
         ],
         'real_name' => [
-            'title' => '真实姓名',
+            'title' => 'Real Name',
             'sortable' => false,
         ],
         'github_name' => [
-            'title' => 'GitHub user名'
+            'title' => 'GitHub user'
         ],
         'topic_count' => [
-            'title' => 'topic数量'
+            'title' => 'topic count'
         ],
         'reply_count' => [
-            'title' => 'replies数量'
+            'title' => 'replies count'
         ],
         'register_source' => [
-            'title' => '注册来源',
+            'title' => 'RegisterSource',
         ],
         'email' => [
-            'title' => '邮箱',
+            'title' => 'Email',
         ],
         'is_banned' => [
-            'title' => '是否被屏蔽',
+            'title' => 'isBanned',
             'output' => function ($value) {
                 return admin_enum_style_output($value, true);
             },
         ],
         'verified' => [
-            'title' => '邮箱是否已验证',
+            'title' => 'Verified',
             'output' => function ($value) {
                 $value = $value ? 'yes' : 'no';
                 return admin_enum_style_output($value);
             },
         ],
         'email_notify_enabled' => [
-            'title' => '是否开启邮件提醒',
+            'title' => 'NotifEnabled',
             'output' => function ($value) {
                 return admin_enum_style_output($value);
             },
@@ -205,7 +206,7 @@ return [
             'messages' => array(
                 'active' => '正在处理...',
                 'success' => '处理成功',
-                'error' => '处理失败，请重新尝试',
+                'error' => '处理failure，请重新尝试',
             ),
             'permission' => function ($model) {
                 return $model->is_banned == 'no';
@@ -221,7 +222,7 @@ return [
             'messages' => array(
                 'active' => '正在处理...',
                 'success' => '处理成功',
-                'error' => '处理失败，请重新尝试',
+                'error' => '处理failure，请重新尝试',
             ),
             'permission' => function ($model) {
                 return $model->is_banned == 'yes';
@@ -237,7 +238,7 @@ return [
             'messages' => array(
                 'active' => '正在处理...',
                 'success' => '处理成功',
-                'error' => '处理失败，请重新尝试',
+                'error' => '处理failure，请重新尝试',
             ),
             'permission' => function ($model) {
                 return !$model->verified;
@@ -253,7 +254,7 @@ return [
             'messages' => array(
                 'active' => '正在处理...',
                 'success' => '处理成功',
-                'error' => '处理失败，请重新尝试',
+                'error' => '处理failure，请重新尝试',
             ),
             'permission' => function ($model) {
                 return $model->verified;
@@ -269,7 +270,7 @@ return [
             'messages' => array(
                 'active' => '正在处理...',
                 'success' => '处理成功',
-                'error' => '处理失败，请重新尝试',
+                'error' => '处理failure，请重新尝试',
             ),
             'permission' => function ($model) {
                 return $model->email_notify_enabled == 'no';
@@ -285,7 +286,7 @@ return [
             'messages' => array(
                 'active' => '正在处理...',
                 'success' => '处理成功',
-                'error' => '处理失败，请重新尝试',
+                'error' => '处理failure，请重新尝试',
             ),
             'permission' => function ($model) {
                 return $model->email_notify_enabled == 'yes';

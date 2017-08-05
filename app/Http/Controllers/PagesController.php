@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Models\Banner;
 use App\Models\Topic;
 use App\Models\User;
+use App\Models\Staff;
 use Auth;
 use Illuminate\Http\Request;
 use Jrean\UserVerification\Facades\UserVerification;
@@ -65,7 +66,7 @@ class PagesController extends Controller
         $topics = Topic::excellent()->recent()->limit(20)->get();
         $channel = [
             'title' => 'Laravel China 社区',
-            'description' => '我们是 PHP 和 Laravel 的中文社区，在这里我们讨论技术, 分享技术。',
+            'description' => '我们是 PHP 和 Laravel',
             'link' => url(route('feed')),
         ];
         $feed = Rss::feed('2.0', 'UTF-8');

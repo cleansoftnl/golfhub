@@ -3,6 +3,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 use App\Models\User;
+use App\Models\Staff;
 use App\Jobs\SendActivateMail;
 
 class UpdateUserRequest extends Request
@@ -35,7 +36,7 @@ class UpdateUserRequest extends Request
         ];
     }
 
-    public function performUpdate(User $user)
+    public function performUpdate(Staff $user)
     {
         $data = $this->only($this->allowed_fields);
         $old_email = $user->email;

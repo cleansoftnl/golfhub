@@ -34,10 +34,10 @@
             {{ Carbon\Carbon::parse($user_result->created_at)->format('Y-m-d') }}
         </span>
 
-        ⋅ <span>{{ $user_result->follower_count }}</span> 关注者
+        ⋅ <span>{{ $user_result->follower_count }}</span> attention者
         ⋅ <span>{{ $user_result->topic_count }}</span> 篇topic
         ⋅ <span>{{ $user_result->reply_count }}</span> 条回帖
-        ⋅ <span>{{ $user_result->article_count }}</span> 篇文章
+        ⋅ <span>{{ $user_result->article_count }}</span> 篇article
       </div>
     </div>
   </div>

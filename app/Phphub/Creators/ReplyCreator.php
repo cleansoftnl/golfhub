@@ -23,7 +23,7 @@ class ReplyCreator
 
     public function create(CreatorListener $observer, $data)
     {
-        // 检查是否重复发布评论
+        // 检查是否重复发布comment
         if ($this->isDuplicateReply($data)) {
             $errorMessages = new MessageBag;
             $errorMessages->add('duplicated', '请不要发布重复内容。');

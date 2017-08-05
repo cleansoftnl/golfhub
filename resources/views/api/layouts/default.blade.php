@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
   <title>
     @section('title')
-      PHPHub  - PHP & Laravel 中文社区
+      PHPHub  - PHP & Laravel
     @show
   </title>
   <link rel="stylesheet" href="{{ cdn(elixir('assets/css/api.css')) }}">

@@ -29,7 +29,7 @@
             </div>
           @endif
 
-          <div class="article-meta text-center">
+          <div class="article-meta">
             <i class="fa fa-clock-o"></i> <abbr title="{{ $topic->created_at }}"
                                                 class="timeago">{{ $topic->created_at }}</abbr>
             ⋅
@@ -74,11 +74,11 @@
 
         <div class="panel panel-default corner-radius">
 
-          <div class="panel-heading text-center">
+          <div class="panel-heading">
             <h3 class="panel-title">Author：{{ $topic->user->name }}</h3>
           </div>
 
-          <div class="panel-body text-center topic-author-box">
+          <div class="panel-body  topic-author-box">
             @include('topics.partials.topic_author_box')
 
             @if(Auth::check() && $currentUser->id != $topic->user->id)
@@ -90,7 +90,7 @@
                                    href="javascript:void(0);" data-url="{{ route('users.doFollow', $topic->user->id) }}"
                                    id="user-edit-button">
                                   <i
-                                    class="fa {{!$isFollowing ? 'fa-plus' : 'fa-minus'}}"></i> {{ !$isFollowing ? '关注 Ta' : '已关注' }}
+                                    class="fa {{!$isFollowing ? 'fa-plus' : 'fa-minus'}}"></i> {{ !$isFollowing ? 'attention Ta' : '已attention' }}
                                 </a>
 
                                 <a class="btn btn-default btn-block"
@@ -108,7 +108,7 @@
 
         <div class="recommended-wrap">
           <div class="panel panel-default corner-radius recommended-articles">
-            <div class="panel-heading text-center">
+            <div class="panel-heading">
               <h3 class="panel-title">专栏推荐</h3>
             </div>
             <div class="panel-body">
@@ -133,7 +133,7 @@
       var $config = {
         title: '{{ $topic->title }} | from LC #laravel-china# {{ $topic->user->id != 1 ? '@summer_charlie' : '' }} {{ $topic->user->weibo_name ? '@'.$topic->user->weibo_name : '' }}',
         wechatQrcodeTitle: "微信扫一扫：分享", // 微信二维码提示文字
-        wechatQrcodeHelper: '<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>',
+        wechatQrcodeHelper: '<p>微信里点“发现”，扫一under</p><p>二维码便可将本文分享至朋友圈。</p>',
         image: "{{ $cover ? $cover->link : $blog->cover }}",
         sites: ['weibo', 'wechat', 'facebook', 'twitter', 'google', 'qzone', 'qq', 'douban'],
       };

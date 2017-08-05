@@ -17,7 +17,7 @@ use App\Jobs\SendActivateMail;
 use Phphub\Handler\Exception\ImageUploadException;
 use App\Activities\UserFollowedUser;
 
-class UsersController extends Controller
+class StaffController extends Controller
 {
     public function __construct()
     {

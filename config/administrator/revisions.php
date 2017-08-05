@@ -22,10 +22,10 @@ return [
             'title' => 'ID',
         ],
         'revisionable_type' => [
-            'title' => '记录的 Model'
+            'title' => '记录 of  Model'
         ],
         'revisionable_id' => [
-            'title' => '记录的 id',
+            'title' => '记录 of  id',
             'sortable' => false,
         ],
         'user' => [
@@ -34,10 +34,10 @@ return [
             'select' => "(:table).name",
         ],
         'key' => [
-            'title' => '操作的字段',
+            'title' => '操作 of 字段',
         ],
         'logs' => [
-            'title' => '操作的 Log',
+            'title' => '操作 of  Log',
             'output' => function ($value, $model) {
                 $html = "<div style='text-align:left;'>
                             <div style='text-indent:2em'>'old_value'&nbsp;&nbsp;&nbsp;=> '$model->old_value',</div>
@@ -57,10 +57,10 @@ return [
     ],
     'filters' => [
         'revisionable_type' => [
-            'title' => '记录的 Model'
+            'title' => '记录 of  Model'
         ],
         'revisionable_id' => [
-            'title' => '记录的 id',
+            'title' => '记录 of  id',
         ],
         'user' => [
             'title' => '操作user',
@@ -68,13 +68,13 @@ return [
             'select' => "(:table).name",
         ],
         'key' => [
-            'title' => '操作的字段',
+            'title' => '操作 of 字段',
         ],
         'old_value' => [
-            'title' => '修改前的值'
+            'title' => '修改前 of 值'
         ],
         'new_value' => [
-            'title' => '修改后的值'
+            'title' => '修改后 of 值'
         ],
     ],
     'actions' => [],

@@ -5,6 +5,7 @@ use Illuminate\Console\Command;
 use Carbon\Carbon;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Staff;
 use App\Models\MaintainerLog;
 
 class CalculateMaintainerWorks extends Command

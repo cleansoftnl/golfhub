@@ -45,7 +45,7 @@
                         </a>
                         •
                         @if ($notification->type != 'follow' && $notification->topic->isArticle())
-                          {{ str_replace('topic', '文章', $notification->present()->lableUp) }}
+                          {{ str_replace('topic', 'article', $notification->present()->lableUp) }}
                           <a
                             href="{{ $notification->topic->link() }}{{ !empty($notification->reply_id) ? '#reply' . $notification->reply_id : '' }}"
                             title="{{ $notification->topic->title }}">
@@ -72,7 +72,7 @@
 
                     </div>
                   @else
-                    <div class="deleted text-center">{{ lang('Data has been deleted.') }}</div>
+                    <div class="deleted">{{ lang('Data has been deleted.') }}</div>
                   @endif
                 </li>
               @endforeach

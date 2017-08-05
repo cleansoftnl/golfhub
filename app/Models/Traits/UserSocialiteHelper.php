@@ -1,6 +1,7 @@
 <?php namespace App\Models\Traits;
 
 use App\Models\User;
+use App\Models\Staff;
 
 trait UserSocialiteHelper
 {

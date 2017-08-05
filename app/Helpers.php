@@ -1,9 +1,9 @@
 <?php
-// 如：db:seed 或者 清空数据库命令的地方调用
+// 如：db:seed 或者 清空数据库命令 of 地方调用
 function insanity_check()
 {
     if (App::environment('production')) {
-        exit('别傻了? 这是线上环境呀。');
+        exit('别傻 the ? 这是线上环境呀。');
     }
 }
 
@@ -74,7 +74,7 @@ function per_page($default = null)
 }
 
 /**
- * 生成user客户端 URL Schema 技术的链接.
+ * 生成user客户端 URL Schema 技术 of 链接.
  */
 function schema_url($path, $parameters = [])
 {

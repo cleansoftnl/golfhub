@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Traits;
 
 use App\Models\User;
+use App\Models\Staff;
 use Auth;
 use Flash;
 use Illuminate\Http\Request;

@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 use App\Http\Requests\Request;
 use App\Models\Blog;
 use App\Models\User;
+use App\Models\Staff;
 use Auth;
 
 class BlogStoreRequest extends Request

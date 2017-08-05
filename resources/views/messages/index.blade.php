@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-  我的私信 | @parent
+  我 of 私信 | @parent
 @stop
 
 @section('content')
@@ -17,7 +17,7 @@
       <div class="panel panel-default padding-sm">
 
         <div class="panel-heading">
-          <h1>我的消息</h1>
+          <h1>我 of 消息</h1>
         </div>
 
         @if($threads->count() > 0)

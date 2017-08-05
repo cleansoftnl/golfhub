@@ -113,7 +113,7 @@ abstract class BaseGrant extends AbstractGrant
     }
 
     /**
-     * 根据请求的 client_id 和 client_secret 获取 ClientEntity.
+     * 根据请求 of  client_id 和 client_secret 获取 ClientEntity.
      *
      * @throws InvalidClientException
      * @throws InvalidRequestException

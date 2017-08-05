@@ -4,7 +4,7 @@
  */
 $router->post('oauth/access_token', 'OauthController@issueAccessToken');
 /*
- *  此分组下路由 需要通过 login-token 方式认证的 access token
+ *  此分组under路由 需要通过 login-token 方式认证 of  access token
  */
 $router->group(['middleware' => 'oauth2:user'], function ($router) {
     // 发布内容单独设置频率限制
@@ -22,8 +22,8 @@ $router->group(['middleware' => 'oauth2:user'], function ($router) {
         'expires' => config('api.rate_limits.access.expires'),
     ], function ($router) {
         // Users
-        $router->get('me', 'UsersController@me');
-        $router->put('users/{id}', 'UsersController@update');
+        $router->get('me', 'StaffController@me');
+        $router->put('users/{id}', 'StaffController@update');
         // Topics
         $router->delete('topics/{id}', 'TopicsController@destroy');
         $router->post('topics/{id}/vote-up', 'TopicsController@voteUp');
@@ -34,7 +34,7 @@ $router->group(['middleware' => 'oauth2:user'], function ($router) {
     });
 });
 /*
- * 此分组下路由 同时支持两种认证方式获取的 access_token
+ * 此分组under路由 同时支持两种认证方式获取 of  access_token
  */
 $router->group([
     'middleware' => ['oauth2', 'api.throttle'],
@@ -64,7 +64,7 @@ $router->group([
     $router->get('topics/{id}/replies', 'RepliesController@indexByTopicId');
     $router->get('users/{id}/replies', 'RepliesController@indexByUserId');
     //Users
-    $router->get('users/{id}', 'UsersController@show');
+    $router->get('users/{id}', 'StaffController@show');
     //Adverts
     $router->get('adverts/launch_screen', 'LaunchScreenAdvertsController@index');
 });

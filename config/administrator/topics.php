@@ -54,7 +54,7 @@ return [
             'title' => '屏蔽？',
         ],
         'reply_count' => [
-            'title' => '评论',
+            'title' => 'comment',
         ],
         'view_count' => [
             'title' => '查看',
@@ -117,7 +117,7 @@ return [
             'value' => 'no',
         ],
         'reply_count' => [
-            'title' => '评论',
+            'title' => 'comment',
         ],
         'view_count' => [
             'title' => '查看',

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\Staff;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -30,7 +31,7 @@ class AuthController extends Controller implements UserCreatorListener
      *
      * @return void
      */
-    public function __construct(User $userModel)
+    public function __construct(Staff $userModel)
     {
         $this->middleware('guest', ['except' => ['logout', 'oauth', 'callback', 'getVerification', 'userBanned']]);
     }

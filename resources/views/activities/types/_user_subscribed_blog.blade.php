@@ -13,7 +13,7 @@
       <a href="{{ route('users.show', [$activity->user->id]) }}">
         {{ $activity->user->name }}
       </a>
-      关注了专栏
+      attention the 专栏
       <a href="{{ $activity->data['blog_link'] }}" title="{{ $activity->data['blog_name'] }}">
         {{ str_limit($activity->data['blog_name'], '100') }}
       </a>

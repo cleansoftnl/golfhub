@@ -8,7 +8,7 @@
 
   <div class="panel panel-default users-index">
 
-    <div class="panel-heading text-center">
+    <div class="panel-heading">
       {{ lang('Newly Registered User List') }} ( {{ lang('Total User') }} {{ $siteStat->user_count }} )
     </div>
 

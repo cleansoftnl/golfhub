@@ -11,31 +11,31 @@ Route::get('/hall_of_fames', 'PagesController@hallOfFames')->name('hall_of_fames
 Route::get('/composer', 'PagesController@composer')->name('composer');
 Route::get('/roles/{id}', 'RolesController@show')->name('roles.show');
 # ------------------ User stuff ------------------------
-Route::get('/users/drafts', 'UsersController@drafts')->name('users.drafts');
-Route::get('/users/{id}/replies', 'UsersController@replies')->name('users.replies');
-Route::get('/users/{id}/topics', 'UsersController@topics')->name('users.topics');
-Route::get('/users/{id}/articles', 'UsersController@articles')->name('users.articles');
-Route::get('/users/{id}/votes', 'UsersController@votes')->name('users.votes');
-Route::get('/users/{id}/following', 'UsersController@following')->name('users.following');
-Route::get('/users/{id}/followers', 'UsersController@followers')->name('users.followers');
-Route::get('/users/{id}/refresh_cache', 'UsersController@refreshCache')->name('users.refresh_cache');
-Route::get('/users/{id}/access_tokens', 'UsersController@accessTokens')->name('users.access_tokens');
-Route::get('/access_token/{token}/revoke', 'UsersController@revokeAccessToken')->name('users.access_tokens.revoke');
-Route::post('/users/regenerate_login_token', 'UsersController@regenerateLoginToken')->name('users.regenerate_login_token');
-Route::post('/users/follow/{id}', 'UsersController@doFollow')->name('users.doFollow');
-Route::get('/users/{id}/edit_email_notify', 'UsersController@editEmailNotify')->name('users.edit_email_notify');
-Route::post('/users/{id}/update_email_notify', 'UsersController@updateEmailNotify')->name('users.update_email_notify');
-Route::get('/users/{id}/edit_password', 'UsersController@editPassword')->name('users.edit_password');
-Route::patch('/users/{id}/update_password', 'UsersController@updatePassword')->name('users.update_password');
-Route::get('/users/{id}/edit_social_binding', 'UsersController@editSocialBinding')->name('users.edit_social_binding');
-Route::get('/users', 'UsersController@index')->name('users.index');
-Route::get('/users/create', 'UsersController@create')->name('users.create');
-Route::post('/users', 'UsersController@store')->name('users.store');
-Route::get('/users/{id}', 'UsersController@show')->name('users.show');
-Route::get('/users/{id}/edit', 'UsersController@edit')->name('users.edit');
-Route::patch('/users/{id}', 'UsersController@update')->name('users.update');
-Route::get('/users/{id}/edit_avatar', 'UsersController@editAvatar')->name('users.edit_avatar');
-Route::patch('/users/{id}/update_avatar', 'UsersController@updateAvatar')->name('users.update_avatar');
+Route::get('/users/drafts', 'StaffController@drafts')->name('users.drafts');
+Route::get('/users/{id}/replies', 'StaffController@replies')->name('users.replies');
+Route::get('/users/{id}/topics', 'StaffController@topics')->name('users.topics');
+Route::get('/users/{id}/articles', 'StaffController@articles')->name('users.articles');
+Route::get('/users/{id}/votes', 'StaffController@votes')->name('users.votes');
+Route::get('/users/{id}/following', 'StaffController@following')->name('users.following');
+Route::get('/users/{id}/followers', 'StaffController@followers')->name('users.followers');
+Route::get('/users/{id}/refresh_cache', 'StaffController@refreshCache')->name('users.refresh_cache');
+Route::get('/users/{id}/access_tokens', 'StaffController@accessTokens')->name('users.access_tokens');
+Route::get('/access_token/{token}/revoke', 'StaffController@revokeAccessToken')->name('users.access_tokens.revoke');
+Route::post('/users/regenerate_login_token', 'StaffController@regenerateLoginToken')->name('users.regenerate_login_token');
+Route::post('/users/follow/{id}', 'StaffController@doFollow')->name('users.doFollow');
+Route::get('/users/{id}/edit_email_notify', 'StaffController@editEmailNotify')->name('users.edit_email_notify');
+Route::post('/users/{id}/update_email_notify', 'StaffController@updateEmailNotify')->name('users.update_email_notify');
+Route::get('/users/{id}/edit_password', 'StaffController@editPassword')->name('users.edit_password');
+Route::patch('/users/{id}/update_password', 'StaffController@updatePassword')->name('users.update_password');
+Route::get('/users/{id}/edit_social_binding', 'StaffController@editSocialBinding')->name('users.edit_social_binding');
+Route::get('/users', 'StaffController@index')->name('users.index');
+Route::get('/users/create', 'StaffController@create')->name('users.create');
+Route::post('/users', 'StaffController@store')->name('users.store');
+Route::get('/users/{id}', 'StaffController@show')->name('users.show');
+Route::get('/users/{id}/edit', 'StaffController@edit')->name('users.edit');
+Route::patch('/users/{id}', 'StaffController@update')->name('users.update');
+Route::get('/users/{id}/edit_avatar', 'StaffController@editAvatar')->name('users.edit_avatar');
+Route::patch('/users/{id}/update_avatar', 'StaffController@updateAvatar')->name('users.update_avatar');
 Route::get('/notifications/unread', 'NotificationsController@unread')->name('notifications.unread');
 Route::get('/notifications', 'NotificationsController@index')->name('notifications.index');
 Route::get('/notifications/count', 'NotificationsController@count')->name('notifications.count');
@@ -44,8 +44,8 @@ Route::get('/messages/to/{id}', 'MessagesController@create')->name('messages.cre
 Route::post('/messages', 'MessagesController@store')->name('messages.store');
 Route::get('/messages/{id}', 'MessagesController@show')->name('messages.show');
 Route::put('/messages/{id}', 'MessagesController@update')->name('messages.update');
-Route::get('/email-verification-required', 'UsersController@emailVerificationRequired')->name('email-verification-required');
-Route::post('/users/send-verification-mail', 'UsersController@sendVerificationMail')->name('users.send-verification-mail');
+Route::get('/email-verification-required', 'StaffController@emailVerificationRequired')->name('email-verification-required');
+Route::post('/users/send-verification-mail', 'StaffController@sendVerificationMail')->name('users.send-verification-mail');
 # ------------------ Authentication ------------------------
 Route::get('/login', 'Auth\AuthController@oauth')->name('login');
 Route::get('/auth/login', 'Auth\AuthController@signin')->name('auth.login');
@@ -90,14 +90,14 @@ Route::group(['before' => 'manage_topics'], function () {
     Route::post('topics/sink/{id}', 'TopicsController@sink')->name('topics.sink');
 });
 Route::group(['before' => 'manage_users'], function () {
-    Route::post('users/blocking/{id}', 'UsersController@blocking')->name('users.blocking');
+    Route::post('users/blocking/{id}', 'StaffController@blocking')->name('users.blocking');
 });
 Route::post('/upload_image', 'TopicsController@uploadImage')->name('upload_image')->middleware('auth');
 // Health Checking
 Route::get('heartbeat', function () {
     return Category::first();
 });
-Route::get('/github-api-proxy/users/{username}', 'UsersController@githubApiProxy')->name('users.github-api-proxy');
+Route::get('/github-api-proxy/users/{username}', 'StaffController@githubApiProxy')->name('users.github-api-proxy');
 Route::group(['middleware' => ['auth', 'admin_auth']], function () {
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 });

@@ -2,6 +2,7 @@
 namespace Phphub\OAuth;
 
 use App\Models\User;
+use App\Models\Staff;
 
 class LoginTokenVerifier
 {

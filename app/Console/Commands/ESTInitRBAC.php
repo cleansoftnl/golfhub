@@ -4,6 +4,7 @@ use App;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Staff;
 use Illuminate\Database\Eloquent\Collection;
 
 class ESTInitRBAC extends BaseCommand

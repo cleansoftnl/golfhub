@@ -6,14 +6,14 @@
 
 @section('content')
 
-  <div class="box text-center site-intro rm-link-color">
+  <div class="box  site-intro rm-link-color">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-    欢迎交换友链，优先考虑 PHP、Laravel 相关topic的站点。请联系 <a href="mailto:jobslong@estgroupe.com">晓文同学</a>
+    欢迎交换友链，优先考虑 PHP、Laravel 相关topic of 站点。请联系 <a href="mailto:jobslong@estgroupe.com">晓文同学</a>
   </div>
 
   <div class="sites-index">
 
-    @include('sites.partials.sites', ['heading_title' => '<i class="fa fa-weibo text-md"></i> Laravel/PHP 圈内人的微博', 'filterd_sites' => $sites['weibo']])
+    @include('sites.partials.sites', ['heading_title' => '<i class="fa fa-weibo text-md"></i> Laravel/PHP 圈内人 of 微博', 'filterd_sites' => $sites['weibo']])
 
     @include('sites.partials.sites', ['heading_title' => '<i class="fa fa-globe text-md"></i> 推荐网站', 'filterd_sites' => $sites['site']])
 

@@ -21,7 +21,7 @@ class SlugTranslate
             return static::pinyin($text);
         }
         // http://api.fanyi.baidu.com/api/trans/product/apidoc
-        // appid+q+salt+密钥 的MD5值
+        // appid+q+salt+密钥  of MD5值
         $sign = md5($appid . $text . $salt . $key);
         $query = http_build_query([
             "q" => $text,

@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 class TopicImagesRecollect extends Command
 {
     protected $signature = 'topics:images_recollect';
-    protected $description = '把所有topic里的图片提取出来。';
+    protected $description = 'Extract all the topics in the picture.';
 
     public function __construct()
     {
@@ -19,7 +19,7 @@ class TopicImagesRecollect extends Command
         Topic::chunk(200, function ($topics) {
             foreach ($topics as $topic) {
                 $topic->collectImages();
-                $this->info("处理完成：$topic->id");
+                $this->info("Processing is complete：$topic->id");
             }
         });
     }

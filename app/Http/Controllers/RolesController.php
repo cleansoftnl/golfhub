@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Staff;
 use Illuminate\Http\Request;
 
 class RolesController extends Controller

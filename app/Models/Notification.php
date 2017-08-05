@@ -120,7 +120,7 @@ class Notification extends Model
             return;
         }
         $from_user_name = $notification->fromUser->name;
-        $topic_title = $notification->topic ? $notification->topic->title : '关注了你';
+        $topic_title = $notification->topic ? $notification->topic->title : 'attention the 你';
         $msg = $from_user_name
             . ' • ' . $notification->present()->lableUp()
             . ' • ' . $topic_title;

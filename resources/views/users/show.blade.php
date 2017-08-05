@@ -15,7 +15,7 @@
     <div class="main-col col-md-9 left-col">
 
       @if ($user->introduction)
-        <div class="box text-center">{{ $user->introduction }}</div>
+        <div class="box">{{ $user->introduction }}</div>
       @endif
 
       @if ($user->is_banned == 'yes')
@@ -24,7 +24,7 @@
 
       <div class="panel panel-default">
         <div class="panel-heading">
-          专栏文章
+          专栏article
         </div>
 
         <div class="panel-body">
@@ -33,7 +33,7 @@
           @elseif ($currentUser && $currentUser->id == $user->id)
             <div class="empty-block">
               <a href="{{ route('articles.create') }}" class="btn btn-primary no-pjax">
-                <i class="fa fa-paint-brush" aria-hidden="true"></i> 创作文章
+                <i class="fa fa-paint-brush" aria-hidden="true"></i> 创作article
               </a>
             </div>
           @else

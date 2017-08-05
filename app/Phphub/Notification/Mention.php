@@ -1,6 +1,7 @@
 <?php namespace Phphub\Notification;
 
 use App\Models\User;
+use App\Models\Staff;
 
 class Mention
 {

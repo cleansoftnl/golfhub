@@ -7,6 +7,7 @@ use Gate;
 use Illuminate\Http\Request;
 use App\Transformers\UserTransformer;
 use App\Models\User;
+use App\Models\Staff;
 use App\Models\Reply;
 use Prettus\Validator\Exceptions\ValidatorException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -22,7 +23,7 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        $user->links = true; // 在 Transformer 中返回 links，我的评论 web view
+        $user->links = true; // 在 Transformer 中返回 links，我 of comment web view
         return $this->response()->item($user, new UserTransformer());
     }
 

@@ -7,12 +7,12 @@
   <div class="pull-right actions">
 
     @if ($currentUser && $currentUser->isAttentedTopic($topic))
-      <a class="popover-with-html" data-content="关注主题，当评论和附言创建时将会被通知" data-method="post" id="topic-attent-cancel-button"
+      <a class="popover-with-html" data-content="attention主题，当comment和附言创建时将会被通知" data-method="post" id="topic-attent-cancel-button"
          href="javascript:void(0);" data-url="{{ route('attentions.createOrDelete', $topic->id) }}">
         <i class="glyphicon glyphicon-eye-open" style="color:#ce8a81"></i> <span></span>
       </a>
     @elseif ($currentUser)
-      <a class="popover-with-html" data-content="关注主题，当评论和附言创建时将会被通知" data-method="post" id="topic-attent-button"
+      <a class="popover-with-html" data-content="attention主题，当comment和附言创建时将会被通知" data-method="post" id="topic-attent-button"
          href="javascript:void(0);" data-url="{{ route('attentions.createOrDelete', $topic->id) }}">
         <i class="glyphicon glyphicon-eye-open"></i> <span></span>
       </a>
@@ -22,7 +22,7 @@
       <a data-ajax="post" id="topic-recomend-button" href="javascript:void(0);"
          data-url="{{ route('topics.recommend', [$topic->id]) }}"
          class="admin popover-with-html {{ $topic->is_excellent == 'yes' ? 'active' : ''}}"
-         data-content="推荐主题，加精的帖子会出现在首页">
+         data-content="推荐主题，加精 of 帖子会出现在首页">
         <i class="fa fa-trophy"></i>
       </a>
 
@@ -62,14 +62,14 @@
 
     @if (!isset($is_article) && $currentUser && ($manage_topics || $currentUser->id == $topic->user_id))
       <a id="topic-append-button" href="javascript:void(0);" class="admin  popover-with-html" data-toggle="modal"
-         data-target="#exampleModal" data-content="帖子附言，添加附言后所有参与讨论的user都能收到消息提醒，包括点赞和评论的user">
+         data-target="#exampleModal" data-content="帖子附言，添加附言后所有参与讨论 of user都能收到消息提醒，包括点upvoted和comment of user">
         <i class="fa fa-plus"></i>
       </a>
 
       @if ($topic->user->blogs()->count() > 0)
         <a data-method="patch" data-btn="transform-button" href="javascript:void(0);"
            data-url="{{ route('articles.transform', [$topic->id]) }}" class="admin  popover-with-html"
-           data-content="转换topic为专栏文章">
+           data-content="转换topic为专栏article">
           <i class="fa fa-rocket" aria-hidden="true"></i>
         </a>
       @endif

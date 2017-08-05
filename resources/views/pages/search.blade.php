@@ -14,11 +14,11 @@
           <i class="fa fa-search"></i> 关键词 “{{ $query }}” search范围：{{ $user->name }} <a class="popover-with-html"
                                                                                     data-content="清除search范围"
                                                                                     href="{{ route('search', ['q' => Input::get('q')]) }}"><i
-              class="fa fa-times" aria-hidden="true"></i></a> 的结果为空。以下展示全局的search {{ count($users) + $topics->total() }} 条：
+              class="fa fa-times" aria-hidden="true"></i></a>  of 结果为空。以under展示全局 of search {{ count($users) + $topics->total() }} 条：
         </h3>
       @else
         <h3 class="panel-title ">
-          <i class="fa fa-search"></i> 关于 “{{ $query }}” 的search结果, 共 {{ count($users) + $topics->total() }} 条
+          <i class="fa fa-search"></i> 关于 “{{ $query }}”  of search结果, 共 {{ count($users) + $topics->total() }} 条
           @if ($user->id > 0)
             。当前search范围：{{ $user->name }} <a class="popover-with-html" data-content="清除search范围"
                                          href="{{ route('search', ['q' => Input::get('q')]) }}"><i class="fa fa-times"

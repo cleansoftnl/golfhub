@@ -1,22 +1,22 @@
 <div class="votes-container panel panel-default padding-md">
 
-  <div class="panel-body vote-box text-center">
+  <div class="panel-body vote-box">
 
     <div class="btn-group">
 
       <a data-ajax="post" href="javascript:void(0);" data-url="{{ route('topics.upvote', $topic->id) }}"
          title="{{ lang('Up Vote') }}"
-         data-content="点赞相当于收藏，可以在个人页面的「赞过的topic」导航里查看"
+         data-content="You can view it in the "favorite topic" navigation on the individual page"
          id="up-vote"
          <?php
          $is_voted = $currentUser && $topic->votes()->ByWhom(Auth::id())->WithType('upvote')->exists();
          ?>
          class="vote btn btn-primary {{ $topic->user->payment_qrcode ?: 'btn-inverted' }} popover-with-html {{  $is_voted ? 'active' :'' }}">
         @if ($is_voted)
-          已赞过
+          Has been voted
         @else
           <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-          点赞
+          Like
         @endif
 
       </a>
@@ -24,9 +24,9 @@
       @if( $topic->user->payment_qrcode )
         <div class="or"></div>
         <button class="btn btn-warning popover-with-html" data-toggle="modal" data-target="#payment-qrcode-modal"
-                data-content="如果觉得我的文章对您有用，请随意打赏。你的支持将鼓励我继续创作！<br>可以修改个人资料「支付二维码」开启打赏功能。">
+                data-content="If you think my article is useful to you, please feel free to play. Your support will encourage me to continue to create! <br> You can modify your profile to pay for two-dimensional code.">
           <i class="fa fa-heart" aria-hidden="true"></i>
-          打赏
+          Favorite
         </button>
       @endif
     </div>
@@ -47,7 +47,7 @@
 
         </div>
         <div class="vote-hint">
-          成为第一个点赞的人吧 <img title=":bowtie:" alt=":bowtie:" class="emoji"
+          成为第一个点upvoted of 人吧 <img title=":bowtie:" alt=":bowtie:" class="emoji"
                           src="https://dn-phphub.qbox.me/assets/images/emoji/bowtie.png" align="absmiddle"></img>
         </div>
       @endif

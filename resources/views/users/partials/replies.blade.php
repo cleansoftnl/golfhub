@@ -15,10 +15,10 @@
             {!! $reply->body !!}
           </div>
         @else
-          <div class="deleted text-center">内容被屏蔽</div>
+          <div class="deleted">内容被屏蔽</div>
         @endif
       @else
-        <div class="deleted text-center">{{ lang('Data has been deleted.') }}</div>
+        <div class="deleted">{{ lang('Data has been deleted.') }}</div>
       @endif
 
 

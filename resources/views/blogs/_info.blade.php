@@ -1,6 +1,6 @@
 <div class="panel panel-default corner-radius">
 
-  <div class="panel-body text-center topic-author-box blog-info">
+  <div class="panel-body  topic-author-box blog-info">
 
     <div class="image blog-cover">
       <a href="{{ route('wildcard', $blog->slug) }}">
@@ -11,13 +11,13 @@
       <h4><a href="{{ route('wildcard', $blog->slug) }}">{{ $blog->name }}</a></h4>
     </div>
     <div class="blog-description">
-      {{ $blog->description ?: $user->name . '的个人专栏' }}
+      {{ $blog->description ?: $user->name . ' of 个人专栏' }}
     </div>
 
     <hr>
 
     <a href="{{ route('wildcard', $blog->slug) }}" class="{{ navViewActive('users.articles') }}">
-      <li class="list-group-item"><i class="text-md fa fa-list-ul"></i> &nbsp;专栏文章（{{ $blog->article_count }}）</li>
+      <li class="list-group-item"><i class="text-md fa fa-list-ul"></i> &nbsp;专栏article（{{ $blog->article_count }}）</li>
     </a>
 
     @if ($currentUser && ($currentUser->id == $user->id || Entrust::can('manage_users')) )

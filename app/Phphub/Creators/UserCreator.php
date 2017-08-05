@@ -3,6 +3,7 @@ namespace Phphub\Creators;
 
 use Phphub\Listeners\UserCreatorListener;
 use App\Models\User;
+use App\Models\Staff;
 
 /**
  * This class can call the following methods on the observer object:
@@ -14,7 +15,7 @@ class UserCreator
 {
     protected $userModel;
 
-    public function __construct(User $userModel)
+    public function __construct(Staff $userModel)
     {
         $this->userModel = $userModel;
     }

@@ -14,20 +14,20 @@
         {{ $activity->user->name }}
       </a>
       @if ($activity->data['topic_type'] == 'article')
-        赞了文章
+        upvoted the article
       @else
-        赞了topic
+        upvoted the topic
       @endif
       <a href="{{ $activity->data['topic_link'] }}#reply{{ $activity->data['reply_id'] }}"
          title="{{ $activity->data['topic_title'] }}">
         {{ str_limit($activity->data['topic_title'], '100') }}
       </a>
       @if (isset($activity->data['reply_user_name']))
-        下 <a
+        under <a
           href="{{ $activity->data['topic_link'] }}#reply{{ $activity->data['reply_id'] }}">{{ '@'.$activity->data['reply_user_name'] }}
-          的评论</a>：
+           of comment</a>：
       @else
-        下的 <a href="{{ $activity->data['topic_link'] }}#reply{{ $activity->data['reply_id'] }}">评论</a>：
+        under of  <a href="{{ $activity->data['topic_link'] }}#reply{{ $activity->data['reply_id'] }}">comment / reply</a>：
       @endif
 
       <span class="meta pull-right">

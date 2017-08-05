@@ -10,6 +10,7 @@ use Phphub\Core\CreatorListener;
 use Illuminate\Http\Request;
 use App\Models\Topic;
 use App\Models\User;
+use App\Models\Staff;
 use App\Models\Vote;
 use Gate;
 use Auth;
@@ -41,7 +42,7 @@ class TopicsController extends Controller implements CreatorListener
     public function store(Request $request)
     {
         if (!Auth::user()->verified) {
-            throw new StoreResourceFailedException('创建topic失败，请验证user邮箱');
+            throw new StoreResourceFailedException('创建topicfailure，请验证user邮箱');
         }
         $data = array_merge($request->except('_token'), ['category_id' => $request->category_id]);
         return app('Phphub\Creators\TopicCreator')->create($this, $data);
@@ -117,7 +118,7 @@ class TopicsController extends Controller implements CreatorListener
      */
     public function creatorFailed($errors)
     {
-        throw new StoreResourceFailedException('创建topic失败：' . output_msb($errors->getMessageBag()));
+        throw new StoreResourceFailedException('创建topicfailure：' . output_msb($errors->getMessageBag()));
     }
 
     public function creatorSucceed($topic)

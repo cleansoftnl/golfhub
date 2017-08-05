@@ -27,7 +27,7 @@ return [
             'sortable' => false,
         ],
         'count' => [
-            'title' => '打过label的内容数量',
+            'title' => '打过label of 内容数量',
             'sortable' => false,
         ],
         'operation' => [

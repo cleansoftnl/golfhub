@@ -11,7 +11,7 @@
     <div class="panel panel-default">
 
       <div class="panel-heading">
-        <h3 class="panel-title text-center">{{ lang('Community Wiki') }}</h3>
+        <h3 class="panel-title">{{ lang('Community Wiki') }}</h3>
       </div>
 
       <div class="panel-body remove-padding-vertically remove-padding-horizontal">

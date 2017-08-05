@@ -13,7 +13,7 @@
       <a href="{{ route('users.show', [$activity->user->id]) }}">
         {{ $activity->user->name }}
       </a>
-      关注了user
+      attention the user
       <a href="{{ $activity->data['following_link'] }}" title="{{ $activity->data['following_name'] }}">
         {{ str_limit($activity->data['following_name'], '100') }}
       </a>

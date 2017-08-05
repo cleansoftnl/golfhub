@@ -11,11 +11,11 @@
   @if (isset($topic))
     <div class="panel panel-default corner-radius">
 
-      <div class="panel-heading text-center">
+      <div class="panel-heading">
         <h3 class="panel-title">Author：{{ $topic->user->name }}</h3>
       </div>
 
-      <div class="panel-body text-center topic-author-box">
+      <div class="panel-body  topic-author-box">
         @include('topics.partials.topic_author_box')
 
 
@@ -26,7 +26,7 @@
                 <a data-method="post" class="btn btn-{{ !$isFollowing ? 'warning' : 'default' }} btn-block"
                    href="javascript:void(0);" data-url="{{ route('users.doFollow', $topic->user->id) }}"
                    id="user-edit-button">
-                  <i class="fa {{!$isFollowing ? 'fa-plus' : 'fa-minus'}}"></i> {{ !$isFollowing ? '关注 Ta' : '已关注' }}
+                  <i class="fa {{!$isFollowing ? 'fa-plus' : 'fa-minus'}}"></i> {{ !$isFollowing ? 'attention Ta' : '已attention' }}
                 </a>
 
                 <a class="btn btn-default btn-block" href="{{ route('messages.create', $topic->user->id) }}">
@@ -42,7 +42,7 @@
 
   @if (isset($userTopics) && count($userTopics))
     <div class="panel panel-default corner-radius">
-      <div class="panel-heading text-center">
+      <div class="panel-heading">
         <h3 class="panel-title">{{ $topic->user->name }} other topics</h3>
       </div>
       <div class="panel-body">
@@ -54,7 +54,7 @@
 
   @if (isset($categoryTopics) && count($categoryTopics))
     <div class="panel panel-default corner-radius">
-      <div class="panel-heading text-center">
+      <div class="panel-heading">
         <h3 class="panel-title">{{ lang('Same Category Topics') }}</h3>
       </div>
       <div class="panel-body">
@@ -79,7 +79,7 @@
 
   @if (isset($active_users) && count($active_users))
     <div class="panel panel-default corner-radius panel-active-users">
-      <div class="panel-heading text-center">
+      <div class="panel-heading">
         <h3 class="panel-title">{{ lang('Active Users') }}（<a href="{{ route('hall_of_fames') }}"><i class="fa fa-star"
                                                                                                      aria-hidden="true"></i> {{ lang('Hall of Fame') }}
           </a>）</h3>
@@ -92,7 +92,7 @@
 
   @if (isset($hot_topics) && count($hot_topics))
     <div class="panel panel-default corner-radius panel-hot-topics">
-      <div class="panel-heading text-center">
+      <div class="panel-heading">
         <h3 class="panel-title">七天内最热</h3>
       </div>
       <div class="panel-body">
@@ -103,7 +103,7 @@
 
 
   <div class="panel panel-default corner-radius">
-    <div class="panel-body text-center sidebar-sponsor-box">
+    <div class="panel-body  sidebar-sponsor-box">
       @if(isset($banners['sidebar-sponsor']))
         @foreach($banners['sidebar-sponsor'] as $banner)
           <a class="sidebar-sponsor-link" href="{{ $banner->link }}" target="_blank">
@@ -119,10 +119,10 @@
   @if (Route::currentRouteName() != 'home')
     @if (isset($links) && count($links))
       <div class="panel panel-default corner-radius">
-        <div class="panel-heading text-center">
+        <div class="panel-heading">
           <h3 class="panel-title">{{ lang('Links') }}</h3>
         </div>
-        <div class="panel-body text-center" style="padding-top: 5px;">
+        <div class="panel-body" style="padding-top: 5px;">
           @foreach ($links as $link)
             <a href="{{ $link->link }}" target="_blank" rel="nofollow" title="{{ $link->title }}" style="padding: 3px;">
               <img src="{{ $link->cover }}" style="width:150px; margin: 3px 0;">
@@ -136,10 +136,10 @@
   @if (Route::currentRouteName() == 'topics.index')
 
     <div class="panel panel-default corner-radius">
-      <div class="panel-heading text-center">
+      <div class="panel-heading">
         <h3 class="panel-title">{{ lang('App Download') }}</h3>
       </div>
-      <div class="panel-body text-center" style="padding: 7px;">
+      <div class="panel-body" style="padding: 7px;">
         <a href="https://laravel-china.org/topics/1531" target="_blank" rel="nofollow" title="">
           <img src="https://dn-phphub.qbox.me/uploads/images/201512/08/1/cziZFHqkm8.png" style="width:240px;">
         </a>
@@ -153,7 +153,7 @@
     @include('layouts.partials._resources_panel')
 
     <div class="panel panel-default corner-radius" style="color:#a5a5a5">
-      <div class="panel-body text-center">
+      <div class="panel-body">
         <a href="http://estgroupe.com/" style="color:#a5a5a5">
           <img src="https://dn-phphub.qbox.me/uploads/images/201612/12/1/iq7WQc2iuW.png"
                style="width: 20px;margin-right: 4px;margin-top: -4px;">
@@ -165,7 +165,7 @@
     </div>
 
     <div class="panel panel-default corner-radius" style="color:#a5a5a5">
-      <div class="panel-body text-center">
+      <div class="panel-body">
         <a href="{{ Auth::check() ? 'https://laravel-china.org/messages/to/1' : 'mailto:summer@yousails.com'}}"
            style="color:#a5a5a5">
           <span style="margin-top: 7px;display: inline-block;">

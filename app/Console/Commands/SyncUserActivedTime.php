@@ -3,6 +3,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\User;
+use App\Models\Staff;
 use Cache;
 
 class SyncUserActivedTime extends Command

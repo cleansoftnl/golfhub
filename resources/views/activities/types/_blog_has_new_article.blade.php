@@ -15,7 +15,7 @@
       </a>
       在专栏 <a href="{{ $activity->data['blog_link'] }}">{{ $activity->data['blog_name'] }}</a>
 
-      中发表了文章
+      中发表 the article
       <a href="{{ $activity->data['topic_link'] }}" title="{{ $activity->data['topic_title'] }}">
         《{{ str_limit($activity->data['topic_title'], '100') }}》
       </a>

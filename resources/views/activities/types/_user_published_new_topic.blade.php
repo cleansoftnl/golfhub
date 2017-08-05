@@ -14,14 +14,14 @@
         {{ $activity->user->name }}
       </a>
       @if ($activity->data['topic_type'] == 'article')
-        发布了文章
+        Publish the Article
         <?php
         $topic_title = "《" . str_limit($activity->data['topic_title'], '100') . "》";
         ?>
       @else
         在 <a
           href="{{ route('categories.show', $activity->data['topic_category_id'] ) }}">{{ $activity->data['topic_category_name'] }}</a>
-        下发布了topic
+        under发布 the topic
 
         <?php
         $topic_title = str_limit($activity->data['topic_title'], '100');

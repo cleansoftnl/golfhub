@@ -21,7 +21,7 @@ class ArticlesController extends Controller implements CreatorListener
     {
         $user = Auth::user();
         if ($user->blogs()->count() <= 0) {
-            Flash::info('please create a column first，专栏创建成功后才能发布文章。');
+            Flash::info('please create a column first，专栏创建成功后才能发布article。');
             return redirect()->route('blogs.create');
         }
         $topic = new Topic;
@@ -47,7 +47,7 @@ class ArticlesController extends Controller implements CreatorListener
         Auth::user()->decrement('topic_count', 1);
         Auth::user()->increment('article_count', 1);
         if (Auth::user()->blogs()->count() <= 0) {
-            Flash::info('please create a column first，专栏创建成功后才能发布文章。');
+            Flash::info('please create a column first，专栏创建成功后才能发布article。');
             return redirect()->route('blogs.create');
         }
         $topic = Topic::find($id);
@@ -89,7 +89,7 @@ class ArticlesController extends Controller implements CreatorListener
      */
     public function creatorFailed($error)
     {
-        Flash::error('发布失败：' . $error);
+        Flash::error('发布failure：' . $error);
         return redirect()->back();
     }
 
