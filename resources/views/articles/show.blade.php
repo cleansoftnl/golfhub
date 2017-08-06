@@ -25,7 +25,7 @@
           @if ($topic->is_draft == 'yes')
             <div class="text-center alert alert-warning">
               当前状态为 <i class="fa fa-file-text-o"></i> 草稿，仅Author可见，请前往 <a href="{{ route('articles.edit', $topic->id) }}"
-                                                                      class="no-pjax">编辑发布</a>
+                                                                      class="no-pjax">编辑release </a>
             </div>
           @endif
 

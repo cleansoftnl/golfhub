@@ -45,7 +45,7 @@
                     <div class="media-heading">
 
                       @if ($thread->latestMessage->user_id == $currentUser->id)
-                        我发送给
+                        i sent it to
                       @endif
 
                       <a href="{{ route('users.show', [$participant->id]) }}">
@@ -93,7 +93,7 @@
 
         @else
           <div class="panel-body">
-            <div class="empty-block">消息列表为空！</div>
+            <div class="empty-block">消息list为空！</div>
           </div>
         @endif
 

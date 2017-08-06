@@ -17,7 +17,7 @@ class Notification extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Staff::class);
     }
 
     public function topic()
@@ -27,13 +27,13 @@ class Notification extends Model
 
     public function fromUser()
     {
-        return $this->belongsTo(User::class, 'from_user_id');
+        return $this->belongsTo(Staff::class, 'from_user_id');
     }
 
     // for api
     public function from_user()
     {
-        return $this->belongsTo(User::class, 'from_user_id');
+        return $this->belongsTo(Staff::class, 'from_user_id');
     }
 
     /**
@@ -45,7 +45,7 @@ class Notification extends Model
      * @param  Reply $reply the content
      * @return [type]           none
      */
-    public static function batchNotify($type, User $fromUser, $users, Topic $topic, Reply $reply = null, $content = null)
+    public static function batchNotify($type, Staff $fromUser, $users, Topic $topic, Reply $reply = null, $content = null)
     {
         $nowTimestamp = Carbon::now()->toDateTimeString();
         $data = [];
@@ -83,7 +83,7 @@ class Notification extends Model
         return $query->orderBy('created_at', 'desc');
     }
 
-    public static function notify($type, User $fromUser, User $toUser, Topic $topic = null, Reply $reply = null)
+    public static function notify($type, Staff $fromUser, Staff $toUser, Topic $topic = null, Reply $reply = null)
     {
         if ($fromUser->id == $toUser->id) {
             return;

@@ -22,9 +22,9 @@ class TopicCreator
 
     public function create(CreatorListener $observer, $data, $blog = null)
     {
-        // 检查是否重复发布
+        // 检查是否重复release 
         if ($this->isDuplicate($data)) {
-            return $observer->creatorFailed('请不要发布重复内容。');
+            return $observer->creatorFailed('请不要release 重复内容。');
         }
         $data['user_id'] = Auth::id();
         $data['created_at'] = Carbon::now()->toDateTimeString();

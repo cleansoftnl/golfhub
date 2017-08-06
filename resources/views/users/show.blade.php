@@ -24,16 +24,14 @@
 
       <div class="panel panel-default">
         <div class="panel-heading">
-          专栏article
+          article
         </div>
 
         <div class="panel-body">
-          @if (count($articles) && count($blog))
-            @include('users.partials.articles')
-          @elseif ($currentUser && $currentUser->id == $user->id)
+          @if ($currentUser && $currentUser->id == $user->id)
             <div class="empty-block">
               <a href="{{ route('articles.create') }}" class="btn btn-primary no-pjax">
-                <i class="fa fa-paint-brush" aria-hidden="true"></i> 创作article
+                <i class="fa fa-paint-brush" aria-hidden="true"></i> article
               </a>
             </div>
           @else

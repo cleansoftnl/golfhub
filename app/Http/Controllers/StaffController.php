@@ -15,7 +15,7 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Jobs\SendActivateMail;
 use Phphub\Handler\Exception\ImageUploadException;
-use App\Activities\UserFollowedUser;
+use App\Activities\StaffFollowedStaff;
 
 class StaffController extends Controller
 {
@@ -39,9 +39,9 @@ class StaffController extends Controller
         $user = Staff::findOrFail($id);
         $topics = Topic::whose($user->id)->withoutArticle()->withoutBoardTopics()->recent()->limit(20)->get();
         $articles = Topic::whose($user->id)->onlyArticle()->withoutDraft()->recent()->with('blogs')->limit(20)->get();
-        $blog = $user->blogs()->first();
+        //$blog = $user->blogs()->first();
         $replies = Reply::whose($user->id)->recent()->limit(20)->get();
-        return view('users.show', compact('user', 'blog', 'articles', 'topics', 'replies'));
+        return view('users.show', compact('user', 'articles', 'topics', 'replies'));
     }
 
     public function edit($id)
@@ -216,14 +216,14 @@ class StaffController extends Controller
         $user = Staff::findOrFail($id);
         if (Auth::user()->isFollowing($id)) {
             Auth::user()->unfollow($id);
-            app(UserFollowedStaff::class)->remove(Auth::user(), $user);
+            app(StaffFollowedStaff::class)->remove(Auth::user(), $user);
         } else {
             Auth::user()->follow($id);
             app('Phphub\Notification\Notifier')->newFollowNotify(Auth::user(), $user);
-            app(UserFollowedStaff::class)->generate(Auth::user(), $user);
-
+            app(StaffFollowedStaff::class)->generate(Auth::user(), $user);
         }
-        $user->update(['follower_count' => $user->followers()->count()]);
+        //$user->update(['follower_count' => $user->followers()->count()]);
+
         Flash::success(lang('Operation succeeded.'));
         return redirect()->back();
     }

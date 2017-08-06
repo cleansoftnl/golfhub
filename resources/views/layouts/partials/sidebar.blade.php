@@ -3,7 +3,7 @@
   @if (Auth::check() && Auth::user()->draft_count > 0)
     <div class="text-center alert alert-warning">
       <a href="{{ route('users.drafts') }}" style="color:inherit;"><i class="fa fa-file-text-o"></i>
-        草稿 {{ Auth::user()->draft_count }} 篇</a>
+        draft {{ Auth::user()->draft_count }} Articles</a>
     </div>
   @endif
 
@@ -30,8 +30,7 @@
                 </a>
 
                 <a class="btn btn-default btn-block" href="{{ route('messages.create', $topic->user->id) }}">
-                  <i class="fa fa-envelope-o"></i> 发私信
-                </a>
+                  <i class="fa fa-envelope-o"></i> Send private messages</a>
             </span>
         @endif
       </div>
@@ -63,14 +62,8 @@
     </div>
   @endif
 
-  <div class="panel panel-default corner-radius" style="
-    text-align: center;
-    background-color: transparent;
-    border: none;
-">
-    <a href="https://laravel-china.org/topics/3383" rel="nofollow" title="" style="">
-      <img src="https://dn-phphub.qbox.me/uploads/images/201612/09/1/qASrRyKNj0.jpg"
-           style="width: 100%;border-radius: 0px;box-shadow: none;border: 1px solid #ffafaf;"></a>
+  <div class="panel panel-default corner-radius" style=" background-color: transparent; border: none;">
+    <a href="https://rivbernardini.com" rel="nofollow" title="" style="">Riv Bernardini</a>
   </div>
 
   @if (Route::currentRouteName() == 'topics.index')
@@ -93,7 +86,7 @@
   @if (isset($hot_topics) && count($hot_topics))
     <div class="panel panel-default corner-radius panel-hot-topics">
       <div class="panel-heading">
-        <h3 class="panel-title">七天内最热</h3>
+        <h3 class="panel-title">The hottest days in seven days</h3>
       </div>
       <div class="panel-body">
         @include('layouts.partials.sidebar_topics', ['sidebarTopics' => $hot_topics, 'numbered' => true])
@@ -155,10 +148,9 @@
     <div class="panel panel-default corner-radius" style="color:#a5a5a5">
       <div class="panel-body">
         <a href="http://estgroupe.com/" style="color:#a5a5a5">
-          <img src="https://dn-phphub.qbox.me/uploads/images/201612/12/1/iq7WQc2iuW.png"
-               style="width: 20px;margin-right: 4px;margin-top: -4px;">
+          <img src="https://dn-phphub.qbox.me/uploads/images/201612/12/1/iq7WQc2iuW.png" style="width: 20px;margin-right: 4px;margin-top: -4px;">
           <span style="margin-top: 7px;display: inline-block;">
-              优帆远扬 - 创造不息，交付不止
+              Youfan Far - be creative，Delivery more
           </span>
         </a>
       </div>
@@ -169,7 +161,7 @@
         <a href="{{ Auth::check() ? 'https://laravel-china.org/messages/to/1' : 'mailto:summer@yousails.com'}}"
            style="color:#a5a5a5">
           <span style="margin-top: 7px;display: inline-block;">
-              <i class="fa fa-heart" aria-hidden="true" style="color: rgba(232, 146, 136, 0.89);"></i> 建议反馈？请私信 Summer
+              <i class="fa fa-heart" aria-hidden="true" style="color: rgba(232, 146, 136, 0.89);"></i> Suggested feedback Please be private Summer
           </span>
         </a>
       </div>

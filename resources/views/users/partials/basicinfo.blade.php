@@ -198,7 +198,7 @@
 @if ($currentUser && $currentUser->id == $user->id && Auth::user()->draft_count > 0)
   <div class="text-center alert alert-warning">
     <a href="{{ route('users.drafts') }}" style="color:inherit;"><i class="fa fa-file-text-o"></i>
-      草稿 {{ Auth::user()->draft_count }} 篇</a>
+      草稿 {{ Auth::user()->draft_count }} Articles</a>
   </div>
 @endif
 
@@ -207,11 +207,11 @@
   <div class="padding-sm user-basic-nav">
     <ul class="list-group">
       <a href="{{ route('users.articles', $user->id) }}" class="{{ navViewActive('users.articles') }}">
-        <li class="list-group-item"><i class="text-md fa fa-headphones"></i> Ta 发布 of article</li>
+        <li class="list-group-item"><i class="text-md fa fa-headphones"></i> Ta release of article</li>
       </a>
 
       <a href="{{ route('users.topics', $user->id) }}" class="{{ navViewActive('users.topics') }}">
-        <li class="list-group-item"><i class="text-md fa fa-list-ul"></i> Ta 发布 of topic</li>
+        <li class="list-group-item"><i class="text-md fa fa-list-ul"></i> Ta release of topic</li>
       </a>
 
       <a href="{{ route('users.replies', $user->id) }}" class="{{ navViewActive('users.replies') }}">

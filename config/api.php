@@ -203,7 +203,7 @@ return [
             'expires' => env('RATE_LIMITS_EXPIRES', 1),
             'limits' => env('RATE_LIMITS', 60),
         ],
-        // 发布频率限制（发帖和comment），次数/分钟
+        // release 频率限制（发帖和comment），次数/分钟
         'publish' => [
             'expires' => env('PUBLISH_RATE_LIMITS_EXPIRES', 1),
             'limits' => env('PUBLISH_RATE_LIMITS', 10),

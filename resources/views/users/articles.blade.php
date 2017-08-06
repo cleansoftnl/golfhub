@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-  {{ $user->name }}  of article列表 | @parent
+  {{ $user->name }}  of articlelist | @parent
 @stop
 
 @section('content')
@@ -15,11 +15,11 @@
     <div class="main-col col-md-9 left-col">
 
       <ol class="breadcrumb">
-        <li><a href="{{ route('users.show', $user->id) }}">个人中心</a></li>
+        <li><a href="{{ route('users.show', $user->id) }}">Personal Center</a></li>
         @if(Request::is('users/drafts'))
-          <li class="active">我 of 草稿（{{ $user->draft_count }}）</li>
+          <li class="active">My Draft（{{ $user->draft_count }}）</li>
         @else
-          <li class="active">Ta 发表 of article（{{ $user->article_count }}）</li>
+          <li class="active">published articles（{{ $user->article_count }}）</li>
         @endif
       </ol>
 

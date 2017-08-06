@@ -21,7 +21,7 @@ class CategoriesTableSeeder extends Seeder
                     'weight' => 100,
                     'name' => '招聘',
                     'slug' => 'zhao-pin',
-                    'description' => 'PHPHub 是国内最大 of  PHP & Laravel 社区，招聘、求职、外包等相关 of topic，都可以在此主题under发布。<br>请遵照 <a href="https://laravel-china.org/topics/817">PHPHub 招聘贴发布规范</a>，不遵循规范，会被视为对user of 不尊重，operation员会做沉贴操作，沉贴后user基本上看不到帖子。符合规范，我们会为topic加精并推荐到网站首页、手机端首页、精华帖周报邮件、<a href="http://weibo.com/laravelnews">Laravel information微博</a>。',
+                    'description' => 'PHPHub 是国内最大 of  PHP & Laravel 社区，招聘、求职、外包等相关 of topic，都可以在此主题underrelease 。<br>请遵照 <a href="https://laravel-china.org/topics/817">PHPHub 招聘贴release 规范</a>，不遵循规范，会被视为对user of 不尊重，operation员会做沉贴操作，沉贴后user基本上看不到帖子。符合规范，我们会为topic加精并推荐到网站首页、手机端首页、精华帖周报邮件、<a href="http://weibo.com/laravelnews">Laravel information微博</a>。',
                     'created_at' => '2016-07-03 10:00:00',
                     'updated_at' => '2016-07-03 10:00:00',
                     'deleted_at' => null,

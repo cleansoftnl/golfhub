@@ -16,22 +16,12 @@
 
     <div id="top-navbar-collapse" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="{{ (Request::is('topics') && ! Request::is('categories*') ? ' active' : '') }}"><a
-            href="{{ route('topics.index') }}">{{ lang('Topics') }}</a></li>
-        <li
-          class="{{ (Request::is('categories/'.config('phphub.life_category_id')) || (isset($topic) && $topic->category_id == config('phphub.life_category_id'))) ? ' active' : '' }}">
-          <a href="{{ route('categories.show', config('phphub.life_category_id')) }}">life</a></li>
-        <li class="{{ Request::is('categories/1') || (isset($topic) && $topic->category_id === 1) ? ' active' : '' }}">
-          <a href="{{ route('categories.show', 1) }}">{{ lang('Jobs') }}</a></li>
-        <li
-          class="{{ (Request::is('categories/'.config('phphub.qa_category_id')) || (isset($topic) && $topic->category_id == config('phphub.qa_category_id'))) ? ' active' : '' }}">
-          <a href="{{ route('categories.show', config('phphub.qa_category_id')) }}">Q & A</a></li>
-        <li class="{{ (Request::is('news') ? ' active' : '') }}"><a href="https://laravel-china.org/news"
-                                                                    class="no-pjax">information</a></li>
-        <li class="{{ (Request::is('wiki') ? ' active' : '') }} hidden-sm"><a href="{{ route('wiki') }}">Wiki</a></li>
-        <li class="nav-docs hidden-sm"><a href="http://d.laravel-china.org" class="no-pjax" target="_blank">document</a></li>
-        <li class="hidden-sm"><a href="https://fsdhub.com/books/laravel-essential-training-5.1" class="no-pjax"
-                                 target="_blank">Tutorial</a></li>
+        <li class="{{ (Request::is('topics') && ! Request::is('categories*') ? ' active' : '') }}"><a href="{{ route('topics.index') }}">{{ lang('Topics') }}</a></li>
+        <li class="{{ (Request::is('categories/'.config('phphub.life_category_id')) || (isset($topic) && $topic->category_id == config('phphub.life_category_id'))) ? ' active' : '' }}"><a href="{{ route('categories.show', config('phphub.life_category_id')) }}">life</a></li>
+        <li class="{{ Request::is('categories/1') || (isset($topic) && $topic->category_id === 1) ? ' active' : '' }}"><a href="{{ route('categories.show', 1) }}">{{ lang('Jobs') }}</a></li>
+        <li class="{{ (Request::is('tickets') ? ' active' : '') }}"><a href="{{ route('categories.show', config('phphub.qa_category_id')) }}">Tickets</a></li>
+        <li class="{{ (Request::is('relations') ? ' active' : '') }}"><a href="{{ route('topics.index') }}">Relations</a></li>
+        <li class="{{ (Request::is('projects') ? ' active' : '') }}"><a href="{{ route('topics.index') }}">Projects</a></li>
       </ul>
 
       <div class="navbar-right">
@@ -62,18 +52,30 @@
                         <i class="fa fa-plus text-md"></i>
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="dLabel">
+
                         <li>
-                          <a class="button no-pjax" href="{{ route('articles.create') }}">
-                            <i class="fa fa-paint-brush text-md"></i> 创作article
+                          <a class="button no-pjax"
+                             href="{{ isset($category) ? '#'  : '#' }}">
+                            <i class="fa fa-comment text-md"></i> create relation
+                          </a>
+                        </li>
+
+                        <li>
+                          <a class="button no-pjax"
+                             href="{{ isset($category) ? '#'  : '#' }}">
+                            <i class="fa fa-comment text-md"></i> create project
                           </a>
                         </li>
 
                         <li>
                           <a class="button no-pjax"
                              href="{{ isset($category) ? URL::route('topics.create', ['category_id' => $category->id]) : URL::route('topics.create') }}">
-                            <i class="fa fa-comment text-md"></i> initiate discussion
+                            <i class="fa fa-comment text-md"></i> create Ticket
                           </a>
                         </li>
+
+
+
                       </ul>
                     </li>
 

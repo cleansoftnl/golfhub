@@ -7,7 +7,7 @@ $router->post('oauth/access_token', 'OauthController@issueAccessToken');
  *  此分组under路由 需要通过 login-token 方式认证 of  access token
  */
 $router->group(['middleware' => 'oauth2:user'], function ($router) {
-    // 发布内容单独设置频率限制
+    // release 内容单独设置频率限制
     $router->group([
         'middleware' => 'api.throttle',
         'limit' => config('api.rate_limits.publish.limits'),

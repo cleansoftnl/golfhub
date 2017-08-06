@@ -23,10 +23,10 @@ class ReplyCreator
 
     public function create(CreatorListener $observer, $data)
     {
-        // 检查是否重复发布comment
+        // 检查是否重复release comment
         if ($this->isDuplicateReply($data)) {
             $errorMessages = new MessageBag;
-            $errorMessages->add('duplicated', '请不要发布重复内容。');
+            $errorMessages->add('duplicated', '请不要release 重复内容。');
             return $observer->creatorFailed($errorMessages);
         }
         $data['user_id'] = Auth::id();

@@ -15,7 +15,7 @@
     <div class="main-col col-md-9 left-col">
 
       <ol class="breadcrumb">
-        <li><a href="{{ route('users.show', $user->id) }}">个人中心</a></li>
+        <li><a href="{{ route('users.show', $user->id) }}">Personal Center</a></li>
         <li class="active">Ta  of attention者</li>
       </ol>
 

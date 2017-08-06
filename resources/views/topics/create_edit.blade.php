@@ -34,7 +34,7 @@
                             disabled {{ count($category) != 0 ?: 'selected' }}>{{ lang('Pick a category') }}</option>
 
                     @foreach ($categories as $value)
-                      {{-- 如果user可以发布公告，并且是 id == 3  of 话 --}}
+                      {{-- 如果user可以release 公告，并且是 id == 3  of 话 --}}
                       @if($value->id != 3 || Auth::user()->can('compose_announcement'))
                         @if($value->id != config('phphub.admin_board_cid') || Auth::user()->can('access_board'))
                           <option
@@ -86,7 +86,7 @@
         <div class="panel-body">
           <ul class="list">
             <li>请传播美好 of 事物，这里拒绝低俗、诋毁、谩骂等相关信息</li>
-            <li>请尽量分享技术相关 of topic，谢绝发布社会, 政治等相关新闻</li>
+            <li>请尽量分享技术相关 of topic，谢绝release 社会, 政治等相关新闻</li>
             <li>这里绝对不讨论任何有关盗版软件、音乐、电影如何获得 of 问题</li>
         </div>
       </div>
@@ -176,7 +176,7 @@
               $('#topic-submit').click();
             },
             className: "fa fa-paper-plane",
-            title: "发布article",
+            title: "release article",
           }
         ],
       });

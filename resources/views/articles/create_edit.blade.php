@@ -91,11 +91,11 @@
         event.preventDefault();
         swal({
           title: "",
-          text: "确定要将发布草稿？",
+          text: "确定要将release 草稿？",
           type: "warning",
           showCancelButton: true,
           cancelButtonText: "取消",
-          confirmButtonText: "发布"
+          confirmButtonText: "release "
         }).then(function () {
           $('<input />').attr('type', 'hidden')
             .attr('name', "subject")
@@ -144,7 +144,7 @@
               $('.submit-btn').click();
             },
             className: "fa fa-paper-plane",
-            title: "发布article",
+            title: "release article",
           }
         ],
       });

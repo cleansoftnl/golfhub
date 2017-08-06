@@ -29,7 +29,7 @@
       @if ($topic->order >= 0)
         <a data-ajax="post" id="topic-pin-button" href="javascript:void(0);"
            data-url="{{ route('topics.pin', [$topic->id]) }}"
-           class="admin popover-with-html {{ $topic->order > 0 ? 'active' : '' }}" data-content="帖子置顶，会在列表页置顶">
+           class="admin popover-with-html {{ $topic->order > 0 ? 'active' : '' }}" data-content="帖子置顶，会在list页置顶">
           <i class="fa fa-thumb-tack"></i>
         </a>
       @endif

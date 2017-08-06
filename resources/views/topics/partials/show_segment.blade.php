@@ -47,8 +47,8 @@
 
         </div>
         <div class="vote-hint">
-          成为第一个点upvoted of 人吧 <img title=":bowtie:" alt=":bowtie:" class="emoji"
-                          src="https://dn-phphub.qbox.me/assets/images/emoji/bowtie.png" align="absmiddle"></img>
+          Upvoted Bowtie
+          <img title=":bowtie:" alt=":bowtie:" class="emoji" src="https://dn-phphub.qbox.me/assets/images/emoji/bowtie.png" align="absmiddle">
         </div>
       @endif
 

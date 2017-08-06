@@ -47,7 +47,7 @@ return [
     'Noreply' => 'No reply',
     'Publish' => 'Publish',
     'at' => 'at',
-    'Last Reply by' => 'Last Reply by',
+    'last_reply_by' => 'last_reply_by',
     'Reads' => 'Reads',
     'Are you sure want to delete is topic?' => 'Are you sure you want to delete this topic?',
     'This topic has been mark as Excenllent Topic.' => 'This topic has been marked as Excellent Topic.',

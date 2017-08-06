@@ -35,9 +35,9 @@
         </span>
 
         ⋅ <span>{{ $user_result->follower_count }}</span> attention者
-        ⋅ <span>{{ $user_result->topic_count }}</span> 篇topic
+        ⋅ <span>{{ $user_result->topic_count }}</span> Articlestopic
         ⋅ <span>{{ $user_result->reply_count }}</span> 条回帖
-        ⋅ <span>{{ $user_result->article_count }}</span> 篇article
+        ⋅ <span>{{ $user_result->article_count }}</span> Articlesarticle
       </div>
     </div>
   </div>

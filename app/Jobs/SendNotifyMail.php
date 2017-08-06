@@ -6,8 +6,8 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
-r
 use App\Models\Reply;
+use App\Models\Staff;
 use App\Models\Topic;
 use App\Models\Mention;
 use App\Models\Append;
@@ -23,7 +23,7 @@ class SendNotifyMail extends Job implements SelfHandling, ShouldQueue
     protected $topic;
     protected $reply;
 
-    public function __construct($type, User $fromUser, User $toUser, Topic $topic = null, Reply $reply = null, $body = null)
+    public function __construct($type, Staff $fromUser, Staff $toUser, Topic $topic = null, Reply $reply = null, $body = null)
     {
         $this->type = $type;
         $this->fromUser = $fromUser;
